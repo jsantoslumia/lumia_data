@@ -194,7 +194,9 @@ def build_three_tables(
                 lambda s: np.nan,
             )
 
-        membership_bridge = bridge.groupby(group_cols, as_index=False).agg(**agg_map)
+        membership_bridge = bridge.groupby(
+            group_cols, as_index=False, dropna=False
+        ).agg(**agg_map)
 
         for c in [
             "revenue_in_combo",
