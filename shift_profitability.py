@@ -72,11 +72,96 @@ def _to_bool_series(s: pd.Series) -> pd.Series:
     return out.fillna(False).astype(bool)
 
 
+def _apply_dva_claim_pricing(
+    visits: pd.DataFrame,
+    dva_claims_csv: str,
+    membership_scheme_col: str,
+    amount_col: str = "visit_projected_price",
+) -> pd.DataFrame:
+    """
+    If membership_funding_scheme == 'dva' (case-insensitive),
+    override visits[visit_projected_price] from dva_claims_expanded ChargeAmount* by visit_id.
+    If visit_id not found => set to 0 for those dva rows.
+
+    Requires visits to have a visit_id column.
+    """
+    # Find/standardize visit_id column
+    visit_id_col = _first_existing_col_case_insensitive(
+        visits, ["visit_id", "Visit ID", "visitId", "visit id"]
+    )
+    if visit_id_col is None:
+        print("[dva] Skipping DVA pricing: visits missing visit_id column.")
+        return visits
+
+    if visit_id_col != "visit_id":
+        visits = visits.rename(columns={visit_id_col: "visit_id"})
+
+    visits["visit_id"] = _clean_id_series(visits["visit_id"])
+
+    # Load DVA claims expanded file
+    dva = _read_csv(dva_claims_csv)
+
+    dva_visit_col = _first_existing_col_case_insensitive(
+        dva, ["VisitId", "visit_id", "visit id"]
+    )
+    dva_amount_col = _first_existing_col_case_insensitive(
+        dva, ["ChargeAmount*", "ChargeAmount", "charge_amount"]
+    )
+
+    if dva_visit_col is None or dva_amount_col is None:
+        print(
+            f"[dva] Skipping DVA pricing: dva claims missing columns. "
+            f"Need VisitId + ChargeAmount*. Found visit_col={dva_visit_col}, amount_col={dva_amount_col}"
+        )
+        return visits
+
+    if dva_visit_col != "VisitId":
+        dva = dva.rename(columns={dva_visit_col: "VisitId"})
+    if dva_amount_col != "ChargeAmount*":
+        dva = dva.rename(columns={dva_amount_col: "ChargeAmount*"})
+
+    dva["VisitId"] = _clean_id_series(dva["VisitId"])
+    dva["ChargeAmount*"] = pd.to_numeric(dva["ChargeAmount*"], errors="coerce").fillna(
+        0.0
+    )
+
+    # In case of duplicates, sum per VisitId (safer)
+    dva_map = (
+        dva.loc[dva["VisitId"].notna()]
+        .groupby("VisitId", as_index=True)["ChargeAmount*"]
+        .sum()
+    )
+
+    scheme = visits[membership_scheme_col].astype("string").str.strip().str.lower()
+    mask_dva = scheme.eq("dva") & visits["visit_id"].notna()
+
+    if not mask_dva.any():
+        print("[dva] No rows with membership_funding_scheme == 'dva' found in visits.")
+        return visits
+
+    mapped = visits.loc[mask_dva, "visit_id"].map(dva_map)
+    matched = mapped.notna().sum()
+    unmatched = int(mask_dva.sum() - matched)
+
+    # Override
+    visits.loc[mask_dva, amount_col] = pd.to_numeric(mapped, errors="coerce").fillna(
+        0.0
+    )
+
+    print(
+        f"[dva] Applied DVA pricing from {Path(dva_claims_csv).name}: "
+        f"dva_rows={int(mask_dva.sum()):,} matched={int(matched):,} unmatched={unmatched:,} (unmatched set to 0)"
+    )
+
+    return visits
+
+
 def build_shift_profitability_feed(
     visits_csv: str,
     costs_csv: str,
     exclude_zero_revenue_visits: bool = False,
     billable_only: bool = False,
+    dva_claims_csv: Optional[str] = None,
 ) -> pd.DataFrame:
     visits = _read_csv(visits_csv)
     costs = _read_csv(costs_csv)
@@ -126,9 +211,6 @@ def build_shift_profitability_feed(
     else:
         visits["actual_visit_hours"] = np.nan
 
-    if exclude_zero_revenue_visits:
-        visits = visits.loc[visits["visit_projected_price"] != 0].copy()
-
     membership_community_col = (
         "membership_community_name"
         if "membership_community_name" in visits.columns
@@ -146,6 +228,18 @@ def build_shift_profitability_feed(
         )
     if membership_scheme_col:
         visits[membership_scheme_col] = _clean_str_series(visits[membership_scheme_col])
+
+    # ✅ Preprocess visit_export prices for DVA before aggregating
+    if dva_claims_csv and membership_scheme_col:
+        visits = _apply_dva_claim_pricing(
+            visits=visits,
+            dva_claims_csv=dva_claims_csv,
+            membership_scheme_col=membership_scheme_col,
+            amount_col="visit_projected_price",
+        )
+
+    if exclude_zero_revenue_visits:
+        visits = visits.loc[visits["visit_projected_price"] != 0].copy()
 
     visit_count_agg = (
         ("visit_id", "nunique")
@@ -431,6 +525,11 @@ def main() -> int:
     )
     parser.add_argument("--visits", required=True, help="Visits CSV path.")
     parser.add_argument("--costs", required=True, help="Shift costs CSV path.")
+    parser.add_argument(
+        "--dva-claims",
+        default=None,
+        help="Optional path to dva_claims_expanded.csv. If provided, DVA visits will be priced from this file by visit_id.",
+    )
     parser.add_argument("--out-dir", default=".", help="Output directory.")
     parser.add_argument(
         "--out", default="shift_profitability_feed.csv", help="Output filename."
@@ -450,6 +549,7 @@ def main() -> int:
         costs_csv=args.costs,
         exclude_zero_revenue_visits=args.exclude_zero_revenue_visits,
         billable_only=args.billable_only,
+        dva_claims_csv=args.dva_claims,
     )
 
     out_path = out_dir / args.out
