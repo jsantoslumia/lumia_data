@@ -297,7 +297,6 @@ def build_shift_profitability_feed(
         "cost_amount",
         "amount",
         "rate",
-        "Rate",
     ]
     units_candidates = ["shift_cost_line_units", "units", "Units", "qty", "quantity"]
 
@@ -326,9 +325,10 @@ def build_shift_profitability_feed(
     costs["row_cost"] = costs["shift_cost_line_amount"] * costs["shift_cost_line_units"]
 
     desc_candidates = [
-        "shift_cost_line_description",
-        "description",
-        "Shift Cost Line Description",
+        "Rule Name",
+        # "shift_cost_line_description",
+        # "description",
+        # "Shift Cost Line Description",
     ]
     desc_col = _first_existing_col_case_insensitive(costs, desc_candidates)
     if desc_col:
@@ -340,10 +340,45 @@ def build_shift_profitability_feed(
         costs["is_other_allowance"] = (
             costs["is_allowance"] & ~costs["is_travel_allowance"]
         )
+
+        # Vehicle cost lines (case-insensitive match on Rule Name / description)
+        costs["is_vehicle_cost_line"] = desc.str.contains(
+            r"vehicle", case=False, na=False
+        )
+        # Additional flags derived from Rule Name / description (case-insensitive)
+        costs["is_overtime_line"] = desc.str.contains(r"overtime", case=False, na=False)
+        costs["is_weekend_line"] = desc.str.contains(
+            r"saturday|sunday", case=False, na=False
+        )
+        costs["is_public_holiday_line"] = desc.str.contains(
+            r"holiday", case=False, na=False
+        )
+        costs["is_afternoon_line"] = desc.str.contains(
+            r"afternoon", case=False, na=False
+        )
+        costs["is_night_line"] = desc.str.contains(r"night", case=False, na=False)
+        costs["is_broken_shift_line"] = desc.str.contains(
+            r"brokenshift", case=False, na=False
+        )
+        costs["is_casual_loading_line"] = desc.str.contains(
+            r"casual\s*loading", case=False, na=False
+        )
+        costs["is_minimum_shift_length_line"] = desc.str.contains(
+            r"minimum\s*shift\s*length", case=False, na=False
+        )
     else:
         costs["is_allowance"] = False
         costs["is_travel_allowance"] = False
         costs["is_other_allowance"] = False
+        costs["is_vehicle_cost_line"] = False
+        costs["is_overtime_line"] = False
+        costs["is_weekend_line"] = False
+        costs["is_public_holiday_line"] = False
+        costs["is_afternoon_line"] = False
+        costs["is_night_line"] = False
+        costs["is_broken_shift_line"] = False
+        costs["is_casual_loading_line"] = False
+        costs["is_minimum_shift_length_line"] = False
 
     meta_cols = [
         "Employee ID",
@@ -355,7 +390,6 @@ def build_shift_profitability_feed(
         "Shift end date and time",
         "Award Name",
         "Payroll Category",
-        "Rate",
     ]
     meta_cols_present = [c for c in meta_cols if c in costs.columns]
 
@@ -374,15 +408,28 @@ def build_shift_profitability_feed(
             other_allowance_cost=np.where(
                 costs["is_other_allowance"], costs["row_cost"], 0.0
             ),
+            vehicle_cost=np.where(
+                costs["is_vehicle_cost_line"], costs["row_cost"], 0.0
+            ),
         )
         .groupby("shift_id", as_index=False)
         .agg(
             allowance_cost_total=("allowance_cost", "sum"),
             travel_allowance_cost=("travel_allowance_cost", "sum"),
             other_allowance_cost=("other_allowance_cost", "sum"),
+            vehicle_cost=("vehicle_cost", "sum"),
             has_allowance=("is_allowance", "max"),
             has_travel_allowance=("is_travel_allowance", "max"),
             has_other_allowance=("is_other_allowance", "max"),
+            has_vehicle_cost_lines=("is_vehicle_cost_line", "max"),
+            has_overtime=("is_overtime_line", "max"),
+            is_weekend=("is_weekend_line", "max"),
+            is_public_holiday=("is_public_holiday_line", "max"),
+            is_afternoon=("is_afternoon_line", "max"),
+            is_night=("is_night_line", "max"),
+            is_broken_shift=("is_broken_shift_line", "max"),
+            is_casual_loading=("is_casual_loading_line", "max"),
+            is_minimum_shift_length=("is_minimum_shift_length_line", "max"),
         )
     )
     costs_agg = costs_agg.merge(rollups, on="shift_id", how="left")
@@ -399,6 +446,7 @@ def build_shift_profitability_feed(
         "allowance_cost_total",
         "travel_allowance_cost",
         "other_allowance_cost",
+        "vehicle_cost",
     ]:
         if c not in shift_fact.columns:
             shift_fact[c] = 0.0
@@ -424,6 +472,15 @@ def build_shift_profitability_feed(
         "has_allowance",
         "has_travel_allowance",
         "has_other_allowance",
+        "has_vehicle_cost_lines",
+        "has_overtime",
+        "is_weekend",
+        "is_public_holiday",
+        "is_afternoon",
+        "is_night",
+        "is_broken_shift",
+        "is_casual_loading",
+        "is_minimum_shift_length",
         "has_multiple_membership_community_name",
         "has_multiple_membership_funding_scheme",
     ]
@@ -432,8 +489,10 @@ def build_shift_profitability_feed(
             shift_fact[c] = False
         shift_fact[c] = _to_bool_series(shift_fact[c])
 
-    shift_fact["base_cost"] = (
-        shift_fact["total_cost"] - shift_fact["allowance_cost_total"]
+    shift_fact["base_cost_without_allowances_vehicle_cost"] = (
+        shift_fact["total_cost"]
+        - shift_fact["allowance_cost_total"]
+        - shift_fact["vehicle_cost"]
     )
     shift_fact["profit"] = shift_fact["revenue"] - shift_fact["total_cost"]
     shift_fact["margin"] = np.where(
@@ -444,11 +503,12 @@ def build_shift_profitability_feed(
     for c in [
         "revenue",
         "total_cost",
-        "base_cost",
+        "base_cost_without_allowances_vehicle_cost",
         "profit",
         "allowance_cost_total",
         "travel_allowance_cost",
         "other_allowance_cost",
+        "vehicle_cost",
     ]:
         _safe_round(shift_fact, c, 2)
     _safe_round(shift_fact, "margin", 6)
@@ -461,10 +521,20 @@ def build_shift_profitability_feed(
         "helper_id",
         "revenue",
         "total_cost",
-        "base_cost",
+        "base_cost_without_allowances_vehicle_cost",
         "allowance_cost_total",
         "travel_allowance_cost",
         "other_allowance_cost",
+        "vehicle_cost",
+        "has_vehicle_cost_lines",
+        "has_overtime",
+        "is_weekend",
+        "is_public_holiday",
+        "is_afternoon",
+        "is_night",
+        "is_broken_shift",
+        "is_casual_loading",
+        "is_minimum_shift_length",
         "has_allowance",
         "has_travel_allowance",
         "has_other_allowance",
@@ -486,7 +556,6 @@ def build_shift_profitability_feed(
         "Shift end date and time",
         "Award Name",
         "Payroll Category",
-        "Rate",
     ]
     existing = [c for c in preferred_order if c in shift_fact.columns]
     remaining = [c for c in shift_fact.columns if c not in existing]
