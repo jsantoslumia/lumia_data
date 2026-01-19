@@ -156,6 +156,200 @@ def _apply_dva_claim_pricing(
     return visits
 
 
+def build_enriched_visits_export(
+    visits_csv: str,
+    exclude_zero_revenue_visits: bool = False,
+    dva_claims_csv: Optional[str] = None,
+) -> pd.DataFrame:
+    """Read the raw visit export and return an enriched visit-level table.
+
+    Enrichment performed:
+      - Normalizes ID columns (visit_shift_id, helper_id, visit_id where present)
+      - Cleans membership_* string columns (trims whitespace)
+      - Ensures visit_projected_price is numeric
+      - If dva_claims_csv is provided and membership_funding_scheme exists, applies
+        DVA claim pricing overrides via _apply_dva_claim_pricing.
+
+    Notes:
+      - This function intentionally preserves the incoming schema (column set and
+        order) except for any in-place normalization (e.g., visit_id column
+        standardization) and the possible override of visit_projected_price.
+      - This does NOT touch shift_profitability_feed output schema.
+    """
+    visits = _read_csv(visits_csv)
+
+    # Standardize shift key name
+    if "visit_shift_id" not in visits.columns and "shift_id" in visits.columns:
+        visits = visits.rename(columns={"shift_id": "visit_shift_id"})
+
+    if "visit_shift_id" not in visits.columns:
+        raise ValueError("Visits CSV must contain visit_shift_id (or shift_id).")
+
+    # Preserve original column order
+    original_cols = list(visits.columns)
+
+    visits["visit_shift_id"] = _clean_id_series(visits["visit_shift_id"])
+
+    if "helper_id" in visits.columns:
+        visits["helper_id"] = _clean_id_series(visits["helper_id"])
+
+    if "visit_projected_price" not in visits.columns:
+        raise ValueError("Visits CSV must contain visit_projected_price.")
+    visits["visit_projected_price"] = pd.to_numeric(
+        visits["visit_projected_price"], errors="coerce"
+    ).fillna(0.0)
+
+    # Clean optional visit hour fields if present
+    if "projected_visit_hours" in visits.columns:
+        visits["projected_visit_hours"] = pd.to_numeric(
+            visits["projected_visit_hours"], errors="coerce"
+        )
+    if "actual_visit_hours" in visits.columns:
+        visits["actual_visit_hours"] = pd.to_numeric(
+            visits["actual_visit_hours"], errors="coerce"
+        )
+
+    membership_community_col = (
+        "membership_community_name"
+        if "membership_community_name" in visits.columns
+        else None
+    )
+    membership_scheme_col = (
+        "membership_funding_scheme"
+        if "membership_funding_scheme" in visits.columns
+        else None
+    )
+
+    if membership_community_col:
+        visits[membership_community_col] = _clean_str_series(
+            visits[membership_community_col]
+        )
+    if membership_scheme_col:
+        visits[membership_scheme_col] = _clean_str_series(visits[membership_scheme_col])
+
+    # Apply DVA pricing overrides at visit grain (if applicable)
+    if dva_claims_csv and membership_scheme_col:
+        visits = _apply_dva_claim_pricing(
+            visits=visits,
+            dva_claims_csv=dva_claims_csv,
+            membership_scheme_col=membership_scheme_col,
+            amount_col="visit_projected_price",
+        )
+
+    if exclude_zero_revenue_visits:
+        visits = visits.loc[visits["visit_projected_price"] != 0].copy()
+
+    # Re-apply original ordering where possible
+    ordered = [c for c in original_cols if c in visits.columns]
+    remaining = [c for c in visits.columns if c not in ordered]
+    visits = visits[ordered + remaining]
+
+    return visits
+
+
+def apply_revenue_weighted_cost_allocation_to_visits(
+    visits_enriched: pd.DataFrame,
+    shift_profitability_feed: pd.DataFrame,
+) -> pd.DataFrame:
+    """Add revenue-weighted cost allocation columns to an enriched visits export.
+
+    Allocation logic (within each shift):
+      visit_cost_allocated = shift_total_cost * (visit_projected_price / shift_total_revenue)
+
+    Rows with missing/blank visit_shift_id, shifts not found in shift_profitability_feed,
+    or shifts with zero shift_total_revenue are allocated 0 and flagged.
+
+    This function does NOT modify the schema of shift_profitability_feed.
+    """
+    visits = visits_enriched.copy()
+
+    if "visit_shift_id" not in visits.columns:
+        raise ValueError("visits_enriched must contain visit_shift_id")
+    if "visit_projected_price" not in visits.columns:
+        raise ValueError("visits_enriched must contain visit_projected_price")
+    if "shift_id" not in shift_profitability_feed.columns:
+        raise ValueError("shift_profitability_feed must contain shift_id")
+    if "total_cost" not in shift_profitability_feed.columns:
+        raise ValueError("shift_profitability_feed must contain total_cost")
+
+    # Ensure clean join keys
+    visits["visit_shift_id"] = _clean_id_series(visits["visit_shift_id"])
+    shift_lookup = shift_profitability_feed[["shift_id", "total_cost"]].copy()
+    shift_lookup["shift_id"] = _clean_id_series(shift_lookup["shift_id"])
+
+    # Precompute shift_total_revenue from the (already DVA-priced) visits export
+    # Only consider nonblank shift ids.
+    valid_mask = visits["visit_shift_id"].notna()
+    shift_rev = (
+        visits.loc[valid_mask]
+        .groupby("visit_shift_id", as_index=False)["visit_projected_price"]
+        .sum()
+        .rename(columns={"visit_projected_price": "shift_total_revenue"})
+    )
+
+    # Merge shift_total_cost and shift_total_revenue onto the visit rows
+    visits = visits.merge(
+        shift_lookup.rename(
+            columns={"shift_id": "visit_shift_id", "total_cost": "shift_total_cost"}
+        ),
+        on="visit_shift_id",
+        how="left",
+    )
+    visits = visits.merge(shift_rev, on="visit_shift_id", how="left")
+
+    # Defaults
+    visits["shift_total_cost"] = pd.to_numeric(
+        visits["shift_total_cost"], errors="coerce"
+    )
+    visits["shift_total_revenue"] = pd.to_numeric(
+        visits["shift_total_revenue"], errors="coerce"
+    )
+    visits["shift_total_cost"] = visits["shift_total_cost"].fillna(0.0)
+    visits["shift_total_revenue"] = visits["shift_total_revenue"].fillna(0.0)
+
+    # Allocation flags
+    has_shift_id = visits["visit_shift_id"].notna()
+    # has_shift_match = has_shift_id & (visits["shift_total_cost"] != 0.0)
+    # has_positive_shift_revenue = has_shift_id & (visits["shift_total_revenue"] > 0)
+
+    # NOTE: A shift can legitimately have total_cost == 0. In that case, allocation is 0 and ok.
+    # We'll treat shift match as: shift_id exists in shift_lookup (not cost != 0).
+    # To implement that, build a boolean from membership in shift_lookup keys.
+    shift_ids_set = set(shift_lookup["shift_id"].dropna().astype("string").tolist())
+    exists_in_shift_feed = has_shift_id & visits["visit_shift_id"].astype(
+        "string"
+    ).isin(shift_ids_set)
+
+    # Allocation computation
+    visits["visit_cost_allocated"] = 0.0
+    ok_mask = exists_in_shift_feed
+    visits.loc[ok_mask, "visit_cost_allocated"] = visits.loc[
+        ok_mask, "shift_total_cost"
+    ] * (
+        visits.loc[ok_mask, "visit_projected_price"]
+        / visits.loc[ok_mask, "shift_total_revenue"]
+    )
+
+    visits["allocation_method"] = "revenue_weighted"
+    visits["allocation_ok"] = ok_mask
+
+    # Reason codes for debugging in Power BI
+    reason = pd.Series("ok", index=visits.index, dtype="string")
+    reason = reason.mask(~has_shift_id, "missing_shift_id")
+    reason = reason.mask(has_shift_id & ~exists_in_shift_feed, "no_shift_match")
+    reason = reason.mask(
+        exists_in_shift_feed & (visits["shift_total_revenue"] <= 0),
+        "zero_shift_revenue",
+    )
+    visits["allocation_reason"] = reason
+
+    # Round monetary fields (keep visit_projected_price as-is rounding managed elsewhere)
+    for c in ["shift_total_cost", "shift_total_revenue", "visit_cost_allocated"]:
+        _safe_round(visits, c, 2)
+
+    return visits
+
+
 def build_shift_profitability_feed(
     visits_csv: str,
     costs_csv: str,
@@ -590,7 +784,7 @@ def _write_csv(df: pd.DataFrame, path: Path, utf8_bom: bool) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Build shift_profitability_feed.csv only."
+        description="Build shift_profitability_feed.csv (and optionally an enriched visit export)."
     )
     parser.add_argument("--visits", required=True, help="Visits CSV path.")
     parser.add_argument("--costs", required=True, help="Shift costs CSV path.")
@@ -602,6 +796,11 @@ def main() -> int:
     parser.add_argument("--out-dir", default=".", help="Output directory.")
     parser.add_argument(
         "--out", default="shift_profitability_feed.csv", help="Output filename."
+    )
+    parser.add_argument(
+        "--out-visits",
+        default=None,
+        help="Optional output filename for an enriched visit export CSV (visit-level). If provided, the script will write this file alongside shift_profitability_feed.",
     )
     parser.add_argument("--exclude-zero-revenue-visits", action="store_true")
     parser.add_argument("--billable-only", action="store_true")
@@ -623,6 +822,24 @@ def main() -> int:
 
     out_path = out_dir / args.out
     _write_csv(df, out_path, utf8_bom=args.utf8_bom)
+
+    # Optional: write enriched visit export (visit-level) with DVA pricing applied
+    if args.out_visits:
+        visits_enriched = build_enriched_visits_export(
+            visits_csv=args.visits,
+            exclude_zero_revenue_visits=args.exclude_zero_revenue_visits,
+            dva_claims_csv=args.dva_claims,
+        )
+        # Add revenue-weighted allocated cost columns at visit grain for simpler Power BI modelling
+        visits_enriched = apply_revenue_weighted_cost_allocation_to_visits(
+            visits_enriched=visits_enriched,
+            shift_profitability_feed=df,
+        )
+        out_visits_path = out_dir / args.out_visits
+        _write_csv(visits_enriched, out_visits_path, utf8_bom=args.utf8_bom)
+        print(
+            f"Wrote: {out_visits_path.resolve()}  (rows={len(visits_enriched):,}, unique visit_shift_id={visits_enriched['visit_shift_id'].nunique():,})"
+        )
 
     print(
         f"Wrote: {out_path.resolve()}  (rows={len(df):,}, unique shifts={df['shift_id'].nunique():,})"
