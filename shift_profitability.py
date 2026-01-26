@@ -251,13 +251,22 @@ def apply_revenue_weighted_cost_allocation_to_visits(
     visits_enriched: pd.DataFrame,
     shift_profitability_feed: pd.DataFrame,
 ) -> pd.DataFrame:
-    """Add revenue-weighted cost allocation columns to an enriched visits export.
+    """Add HOURS-weighted cost allocation columns to an enriched visits export.
 
-    Allocation logic (within each shift):
-      visit_cost_allocated = shift_total_cost * (visit_projected_price / shift_total_revenue)
+    IMPORTANT (Power BI schema stability): this function preserves the *same output columns*
+    as the prior revenue-weighted implementation:
+      - shift_total_cost
+      - shift_total_revenue (still computed for reference/debugging)
+      - visit_cost_allocated
+      - allocation_method
+      - allocation_ok
+      - allocation_reason
+
+    Allocation logic (within each shift), using actual_visit_hours:
+      visit_cost_allocated = shift_total_cost * (actual_visit_hours / shift_total_hours)
 
     Rows with missing/blank visit_shift_id, shifts not found in shift_profitability_feed,
-    or shifts with zero shift_total_revenue are allocated 0 and flagged.
+    or shifts with zero shift_total_hours are allocated 0 and flagged.
 
     This function does NOT modify the schema of shift_profitability_feed.
     """
@@ -267,6 +276,10 @@ def apply_revenue_weighted_cost_allocation_to_visits(
         raise ValueError("visits_enriched must contain visit_shift_id")
     if "visit_projected_price" not in visits.columns:
         raise ValueError("visits_enriched must contain visit_projected_price")
+    if "actual_visit_hours" not in visits.columns:
+        raise ValueError(
+            "visits_enriched must contain actual_visit_hours for hours-weighted allocation"
+        )
     if "shift_id" not in shift_profitability_feed.columns:
         raise ValueError("shift_profitability_feed must contain shift_id")
     if "total_cost" not in shift_profitability_feed.columns:
@@ -274,6 +287,9 @@ def apply_revenue_weighted_cost_allocation_to_visits(
 
     # Ensure clean join keys
     visits["visit_shift_id"] = _clean_id_series(visits["visit_shift_id"])
+    visits["actual_visit_hours"] = pd.to_numeric(
+        visits["actual_visit_hours"], errors="coerce"
+    ).fillna(0.0)
     shift_lookup = shift_profitability_feed[["shift_id", "total_cost"]].copy()
     shift_lookup["shift_id"] = _clean_id_series(shift_lookup["shift_id"])
 
@@ -287,6 +303,14 @@ def apply_revenue_weighted_cost_allocation_to_visits(
         .rename(columns={"visit_projected_price": "shift_total_revenue"})
     )
 
+    # Precompute shift_total_hours from actual_visit_hours.
+    shift_hours = (
+        visits.loc[valid_mask]
+        .groupby("visit_shift_id", as_index=False)["actual_visit_hours"]
+        .sum()
+        .rename(columns={"actual_visit_hours": "_shift_total_hours"})
+    )
+
     # Merge shift_total_cost and shift_total_revenue onto the visit rows
     visits = visits.merge(
         shift_lookup.rename(
@@ -296,6 +320,7 @@ def apply_revenue_weighted_cost_allocation_to_visits(
         how="left",
     )
     visits = visits.merge(shift_rev, on="visit_shift_id", how="left")
+    visits = visits.merge(shift_hours, on="visit_shift_id", how="left")
 
     # Defaults
     visits["shift_total_cost"] = pd.to_numeric(
@@ -304,17 +329,18 @@ def apply_revenue_weighted_cost_allocation_to_visits(
     visits["shift_total_revenue"] = pd.to_numeric(
         visits["shift_total_revenue"], errors="coerce"
     )
+    visits["_shift_total_hours"] = pd.to_numeric(
+        visits["_shift_total_hours"], errors="coerce"
+    )
     visits["shift_total_cost"] = visits["shift_total_cost"].fillna(0.0)
     visits["shift_total_revenue"] = visits["shift_total_revenue"].fillna(0.0)
+    visits["_shift_total_hours"] = visits["_shift_total_hours"].fillna(0.0)
 
     # Allocation flags
     has_shift_id = visits["visit_shift_id"].notna()
-    # has_shift_match = has_shift_id & (visits["shift_total_cost"] != 0.0)
-    # has_positive_shift_revenue = has_shift_id & (visits["shift_total_revenue"] > 0)
 
     # NOTE: A shift can legitimately have total_cost == 0. In that case, allocation is 0 and ok.
-    # We'll treat shift match as: shift_id exists in shift_lookup (not cost != 0).
-    # To implement that, build a boolean from membership in shift_lookup keys.
+    # We treat shift match as: shift_id exists in shift_lookup (not cost != 0).
     shift_ids_set = set(shift_lookup["shift_id"].dropna().astype("string").tolist())
     exists_in_shift_feed = has_shift_id & visits["visit_shift_id"].astype(
         "string"
@@ -322,15 +348,15 @@ def apply_revenue_weighted_cost_allocation_to_visits(
 
     # Allocation computation
     visits["visit_cost_allocated"] = 0.0
-    ok_mask = exists_in_shift_feed
+    ok_mask = exists_in_shift_feed & (visits["_shift_total_hours"] > 0)
     visits.loc[ok_mask, "visit_cost_allocated"] = visits.loc[
         ok_mask, "shift_total_cost"
     ] * (
-        visits.loc[ok_mask, "visit_projected_price"]
-        / visits.loc[ok_mask, "shift_total_revenue"]
+        visits.loc[ok_mask, "actual_visit_hours"]
+        / visits.loc[ok_mask, "_shift_total_hours"]
     )
 
-    visits["allocation_method"] = "revenue_weighted"
+    visits["allocation_method"] = "hours_weighted"
     visits["allocation_ok"] = ok_mask
 
     # Reason codes for debugging in Power BI
@@ -338,14 +364,17 @@ def apply_revenue_weighted_cost_allocation_to_visits(
     reason = reason.mask(~has_shift_id, "missing_shift_id")
     reason = reason.mask(has_shift_id & ~exists_in_shift_feed, "no_shift_match")
     reason = reason.mask(
-        exists_in_shift_feed & (visits["shift_total_revenue"] <= 0),
-        "zero_shift_revenue",
+        exists_in_shift_feed & (visits["_shift_total_hours"] <= 0), "zero_shift_hours"
     )
     visits["allocation_reason"] = reason
 
     # Round monetary fields (keep visit_projected_price as-is rounding managed elsewhere)
     for c in ["shift_total_cost", "shift_total_revenue", "visit_cost_allocated"]:
         _safe_round(visits, c, 2)
+
+    # IMPORTANT: preserve output schema vs prior versions (do not add new exported columns).
+    if "_shift_total_hours" in visits.columns:
+        visits = visits.drop(columns=["_shift_total_hours"])
 
     return visits
 
