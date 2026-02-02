@@ -350,6 +350,11 @@ def apply_revenue_weighted_cost_allocation_to_visits(
         / visits.loc[ok_mask, "_helper_total_hours"]
     )
 
+    # Apply oncosts directly to visit_cost_allocated (accountant factor)
+    visits.loc[ok_mask, "visit_cost_allocated"] = (
+        visits.loc[ok_mask, "visit_cost_allocated"] * 1.2075
+    )
+
     visits["allocation_method"] = "helper_hours_weighted"
     visits["allocation_ok"] = ok_mask
 
