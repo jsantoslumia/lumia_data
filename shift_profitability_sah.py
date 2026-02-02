@@ -198,10 +198,9 @@ def apply_revenue_weighted_cost_allocation_to_visits(
     visits_enriched: pd.DataFrame,
     shift_profitability_feed: pd.DataFrame,
 ) -> pd.DataFrame:
-    """Add HOURS-weighted cost allocation columns to an enriched visits export.
+    """Add HELPER-hours-weighted cost allocation columns to an enriched visits export.
 
-    IMPORTANT (Power BI schema stability): this function preserves the *same output columns*
-    as prior versions:
+    Output columns preserved:
       - shift_total_cost
       - shift_total_revenue (computed for reference/debugging)
       - visit_cost_allocated
@@ -209,13 +208,22 @@ def apply_revenue_weighted_cost_allocation_to_visits(
       - allocation_ok
       - allocation_reason
 
-    Allocation logic (within each shift), using actual_visit_hours:
-      visit_cost_allocated = shift_total_cost * (actual_visit_hours / shift_total_hours)
+    Allocation logic (per helper), using actual_visit_hours:
 
-    Rows with missing/blank visit_shift_id, shifts not found in shift_profitability_feed,
-    or shifts with zero shift_total_hours are allocated 0 and flagged.
+      helper_total_cost  = SUM(total_cost) across shifts for that helper
+                          (restricted to shift_ids present in visits_enriched)
+      helper_total_hours = SUM(actual_visit_hours) across visits for that helper
 
-    This function does NOT modify the schema of shift_profitability_feed.
+      visit_cost_allocated = helper_total_cost * (actual_visit_hours / helper_total_hours)
+
+    This satisfies the accountant pivot formula at (helper, membership_uuid) grain:
+      SUM(visit_cost_allocated) over helper+membership
+        = helper_total_cost * (A / B)
+      where A = SUM(actual_visit_hours) for (helper, membership_uuid),
+            B = SUM(actual_visit_hours) for (helper).
+
+    Rows with missing helper_id, helper_total_hours == 0, or shifts not found in the
+    shift_profitability_feed are allocated 0 and flagged.
     """
     visits = visits_enriched.copy()
 
@@ -227,99 +235,144 @@ def apply_revenue_weighted_cost_allocation_to_visits(
         raise ValueError(
             "visits_enriched must contain actual_visit_hours for hours-weighted allocation"
         )
+    if "helper_id" not in visits.columns:
+        raise ValueError("visits_enriched must contain helper_id for helper allocation")
     if "shift_id" not in shift_profitability_feed.columns:
         raise ValueError("shift_profitability_feed must contain shift_id")
     if "total_cost" not in shift_profitability_feed.columns:
         raise ValueError("shift_profitability_feed must contain total_cost")
 
-    # Ensure clean join keys
+    # Clean join keys / types
     visits["visit_shift_id"] = _clean_id_series(visits["visit_shift_id"])
+    visits["helper_id"] = _clean_id_series(visits["helper_id"])
     visits["actual_visit_hours"] = pd.to_numeric(
         visits["actual_visit_hours"], errors="coerce"
     ).fillna(0.0)
-    shift_lookup = shift_profitability_feed[["shift_id", "total_cost"]].copy()
-    shift_lookup["shift_id"] = _clean_id_series(shift_lookup["shift_id"])
 
-    # Precompute shift_total_revenue from the visits export
-    valid_mask = visits["visit_shift_id"].notna()
+    # Shift-level lookup (restricted to shifts present in the visit export)
+    shift_ids_in_visits = (
+        visits["visit_shift_id"].dropna().astype("string").unique().tolist()
+    )
+
+    shift_lookup_cols = ["shift_id", "total_cost"]
+    if "helper_id" in shift_profitability_feed.columns:
+        shift_lookup_cols.append("helper_id")
+
+    shift_lookup = shift_profitability_feed[shift_lookup_cols].copy()
+    shift_lookup["shift_id"] = _clean_id_series(shift_lookup["shift_id"])
+    if "helper_id" in shift_lookup.columns:
+        shift_lookup["helper_id"] = _clean_id_series(shift_lookup["helper_id"])
+
+    shift_lookup = shift_lookup.loc[
+        shift_lookup["shift_id"].isin(set(shift_ids_in_visits))
+    ].copy()
+
+    # Precompute shift_total_revenue from the visits export (debugging only)
+    valid_shift = visits["visit_shift_id"].notna()
     shift_rev = (
-        visits.loc[valid_mask]
+        visits.loc[valid_shift]
         .groupby("visit_shift_id", as_index=False)["visit_projected_price"]
         .sum()
         .rename(columns={"visit_projected_price": "shift_total_revenue"})
     )
 
-    # Precompute shift_total_hours from actual_visit_hours.
-    shift_hours = (
-        visits.loc[valid_mask]
-        .groupby("visit_shift_id", as_index=False)["actual_visit_hours"]
-        .sum()
-        .rename(columns={"actual_visit_hours": "_shift_total_hours"})
-    )
-
-    # Merge shift_total_cost and shift_total_revenue onto the visit rows
+    # Merge shift_total_cost and shift_total_revenue onto visit rows
     visits = visits.merge(
-        shift_lookup.rename(
+        shift_lookup[["shift_id", "total_cost"]].rename(
             columns={"shift_id": "visit_shift_id", "total_cost": "shift_total_cost"}
         ),
         on="visit_shift_id",
         how="left",
     )
     visits = visits.merge(shift_rev, on="visit_shift_id", how="left")
-    visits = visits.merge(shift_hours, on="visit_shift_id", how="left")
 
-    # Defaults
     visits["shift_total_cost"] = pd.to_numeric(
         visits["shift_total_cost"], errors="coerce"
-    )
+    ).fillna(0.0)
     visits["shift_total_revenue"] = pd.to_numeric(
         visits["shift_total_revenue"], errors="coerce"
-    )
-    visits["_shift_total_hours"] = pd.to_numeric(
-        visits["_shift_total_hours"], errors="coerce"
-    )
-    visits["shift_total_cost"] = visits["shift_total_cost"].fillna(0.0)
-    visits["shift_total_revenue"] = visits["shift_total_revenue"].fillna(0.0)
-    visits["_shift_total_hours"] = visits["_shift_total_hours"].fillna(0.0)
+    ).fillna(0.0)
 
-    # Allocation flags
     has_shift_id = visits["visit_shift_id"].notna()
+    has_helper_id = visits["helper_id"].notna()
 
-    # Shift match: exists in shift_lookup (not based on cost != 0)
+    # Shift match check (exists in shift_lookup, not based on cost != 0)
     shift_ids_set = set(shift_lookup["shift_id"].dropna().astype("string").tolist())
     exists_in_shift_feed = has_shift_id & visits["visit_shift_id"].astype(
         "string"
     ).isin(shift_ids_set)
 
-    # Allocation computation
-    visits["visit_cost_allocated"] = 0.0
-    ok_mask = exists_in_shift_feed & (visits["_shift_total_hours"] > 0)
-    visits.loc[ok_mask, "visit_cost_allocated"] = visits.loc[
-        ok_mask, "shift_total_cost"
-    ] * (
-        visits.loc[ok_mask, "actual_visit_hours"]
-        / visits.loc[ok_mask, "_shift_total_hours"]
+    # Helper total hours (B)
+    helper_hours = (
+        visits.loc[has_helper_id]
+        .groupby("helper_id", as_index=False)["actual_visit_hours"]
+        .sum()
+        .rename(columns={"actual_visit_hours": "_helper_total_hours"})
     )
 
-    visits["allocation_method"] = "hours_weighted"
+    # Helper total cost: SUM(total_cost) across shifts for that helper (restricted to shifts_in_visits)
+    if "helper_id" in shift_lookup.columns:
+        helper_cost = (
+            shift_lookup.loc[shift_lookup["helper_id"].notna()]
+            .drop_duplicates(subset=["shift_id"])  # just-in-case
+            .groupby("helper_id", as_index=False)["total_cost"]
+            .sum()
+            .rename(columns={"total_cost": "_helper_total_cost"})
+        )
+    else:
+        # Fallback: derive helper_total_cost by deduping (helper_id, shift) from visits after merge
+        shift_cost_dedup = visits.loc[
+            has_helper_id & has_shift_id,
+            ["helper_id", "visit_shift_id", "shift_total_cost"],
+        ].drop_duplicates(subset=["helper_id", "visit_shift_id"])
+        helper_cost = (
+            shift_cost_dedup.groupby("helper_id", as_index=False)["shift_total_cost"]
+            .sum()
+            .rename(columns={"shift_total_cost": "_helper_total_cost"})
+        )
+
+    visits = visits.merge(helper_hours, on="helper_id", how="left")
+    visits = visits.merge(helper_cost, on="helper_id", how="left")
+
+    visits["_helper_total_hours"] = pd.to_numeric(
+        visits["_helper_total_hours"], errors="coerce"
+    ).fillna(0.0)
+    visits["_helper_total_cost"] = pd.to_numeric(
+        visits["_helper_total_cost"], errors="coerce"
+    ).fillna(0.0)
+
+    visits["visit_cost_allocated"] = 0.0
+    ok_mask = has_helper_id & exists_in_shift_feed & (visits["_helper_total_hours"] > 0)
+    visits.loc[ok_mask, "visit_cost_allocated"] = visits.loc[
+        ok_mask, "_helper_total_cost"
+    ] * (
+        visits.loc[ok_mask, "actual_visit_hours"]
+        / visits.loc[ok_mask, "_helper_total_hours"]
+    )
+
+    visits["allocation_method"] = "helper_hours_weighted"
     visits["allocation_ok"] = ok_mask
 
-    # Reason codes for debugging in Power BI
     reason = pd.Series("ok", index=visits.index, dtype="string")
     reason = reason.mask(~has_shift_id, "missing_shift_id")
+    reason = reason.mask(~has_helper_id, "missing_helper_id")
     reason = reason.mask(has_shift_id & ~exists_in_shift_feed, "no_shift_match")
     reason = reason.mask(
-        exists_in_shift_feed & (visits["_shift_total_hours"] <= 0), "zero_shift_hours"
+        has_helper_id & (visits["_helper_total_hours"] <= 0), "zero_helper_hours"
     )
     visits["allocation_reason"] = reason
 
-    # Round monetary fields
     for c in ["shift_total_cost", "shift_total_revenue", "visit_cost_allocated"]:
         _safe_round(visits, c, 2)
 
-    # IMPORTANT: preserve output schema vs prior versions (do not add new exported columns).
-    if "_shift_total_hours" in visits.columns:
-        visits = visits.drop(columns=["_shift_total_hours"])
+    # Drop internal helper totals (do not change exported schema)
+    visits = visits.drop(
+        columns=[
+            c
+            for c in ["_helper_total_hours", "_helper_total_cost"]
+            if c in visits.columns
+        ]
+    )
 
     return visits
 
@@ -985,6 +1038,18 @@ def main() -> int:
             exclude_zero_revenue_visits=args.exclude_zero_revenue_visits,
             allowed_membership_uuids=allowed_memberships,
         )
+
+        # ✅ Filter visit export to Central Coast only (per request)
+        if "membership_community_name" not in visits_enriched.columns:
+            raise ValueError(
+                "Visits export must contain membership_community_name to filter to NSW - Central Coast."
+            )
+        visits_enriched = visits_enriched.loc[
+            visits_enriched["membership_community_name"]
+            .astype("string")
+            .str.strip()
+            .eq("NSW - Central Coast")
+        ].copy()
 
         # Add allocated cost columns at visit grain for simpler Power BI modelling
         visits_enriched = apply_revenue_weighted_cost_allocation_to_visits(
