@@ -839,7 +839,8 @@ def read_and_enrich_sah_transactions(sah_transactions_csv: str) -> pd.DataFrame:
     tx["membership_uuid"] = _clean_id_series(tx["membership_uuid"])
     tx["line_sah_service_type"] = _clean_str_series(tx["line_sah_service_type"])
 
-    # product_name can be numeric or string; treat 0/blank as 'Other' branch
+    # service_type per Excel: IF(line_sah_service_type="Care management", 40103, IF(product_name=0, 40105, 40101))
+    # product_name can be numeric or string; treat 0/blank as 'Other' (Excel treats blank as 0 in Q2=0)
     prod_s = tx["product_name"].astype("string").str.strip().fillna("")
     prod_is_blank = prod_s.eq("")
     prod_is_zeroish_str = prod_s.str.lower().isin({"0", "0.0"})
@@ -850,7 +851,7 @@ def read_and_enrich_sah_transactions(sah_transactions_csv: str) -> pd.DataFrame:
     line_type = tx["line_sah_service_type"].astype("string").str.strip().fillna("")
     is_care_mgmt = line_type.str.casefold().eq("care management")
 
-    # Set defaults then override with masks (priority: care mgmt wins)
+    # Apply in order: default Services, then Other for zero/blank product, then Care Mgmt (care mgmt wins)
     tx["service_type"] = SERVICE_TYPE_SERVICES
     tx.loc[prod_is_zero_or_blank, "service_type"] = SERVICE_TYPE_OTHER
     tx.loc[is_care_mgmt, "service_type"] = SERVICE_TYPE_CARE_MGMT
@@ -875,13 +876,31 @@ def read_and_enrich_sah_transactions(sah_transactions_csv: str) -> pd.DataFrame:
 
 
 def build_memberships_sah_purchases_from_tx(tx: pd.DataFrame) -> pd.DataFrame:
-    """Aggregate SAH purchases (service_type == OTHER) by membership_uuid."""
+    """Aggregate SAH purchases (service_type == 40105 - HCP Revenue - Other) by membership_uuid.
+
+    Sign handling (same as revenue):
+      - invoice_category == 'invoice'     => +line_net_amount
+      - invoice_category == 'credit_note' => -line_net_amount
+    """
     other = tx.loc[
         tx["service_type"].eq(SERVICE_TYPE_OTHER) & tx["membership_uuid"].notna()
     ].copy()
 
+    # Apply sign: invoice => positive, credit_note => negative
+    amt = pd.to_numeric(other["line_net_amount"], errors="coerce").fillna(0.0)
+    cat = (
+        other["invoice_category"]
+        .astype("string")
+        .str.strip()
+        .str.lower()
+        .fillna("invoice")
+    )
+    signed_amt = amt.abs()
+    signed_amt = signed_amt.where(~cat.eq("credit_note"), -signed_amt)
+    other = other.assign(signed_amount=signed_amt)
+
     agg = other.groupby("membership_uuid", as_index=False).agg(
-        total_cost=("line_net_amount", "sum")
+        total_cost=("signed_amount", "sum")
     )
     agg["purchases"] = agg["total_cost"] / 1.05
 
