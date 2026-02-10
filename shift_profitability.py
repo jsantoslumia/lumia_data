@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+"""
+py -m shift_profitability --visits ./input_files/visit_export_jan.csv --costs ./input_files/shift_costs_jan.csv --out-dir . --out-visits visits_export_enriched.csv --sah-transactions ./input_files/sah_transactions_jan.csv --out-sah-purchases memberships_sah_purchases.csv --dva-claims ./dva_claims_expanded.csv
+"""
+
 from __future__ import annotations
 
 import argparse
@@ -278,6 +282,7 @@ def apply_revenue_weighted_cost_allocation_to_visits(
       helper_total_cost  = SUM(total_cost) across shifts for that helper
                           (restricted to shift_ids present in visits_enriched)
       helper_total_hours = SUM(actual_visit_hours) across visits for that helper
+                          (restricted to visits whose shift is in the shift feed)
       visit_cost_allocated = helper_total_cost * (actual_visit_hours / helper_total_hours)
       then visit_cost_allocated *= 1.2075 (oncosts).
 
@@ -361,9 +366,10 @@ def apply_revenue_weighted_cost_allocation_to_visits(
         "string"
     ).isin(shift_ids_set)
 
-    # Helper total hours (B)
+    # Helper total hours (B): only count hours from visits whose shift is in the feed
+    # (match shift_profitability_sah so SUM(visit_cost_allocated) per helper = helper_total_cost * 1.2075)
     helper_hours = (
-        visits.loc[has_helper_id]
+        visits.loc[has_helper_id & exists_in_shift_feed]
         .groupby("helper_id", as_index=False)["actual_visit_hours"]
         .sum()
         .rename(columns={"actual_visit_hours": "_helper_total_hours"})
@@ -979,14 +985,13 @@ def main() -> int:
     out_path = out_dir / args.out
     _write_csv(df, out_path, utf8_bom=args.utf8_bom)
 
-    # Optional: write enriched visit export (visit-level) with DVA pricing applied
+    # Optional: write enriched visit export (visit-level) with DVA pricing applied.
     if args.out_visits:
         visits_enriched = build_enriched_visits_export(
             visits_csv=args.visits,
             exclude_zero_revenue_visits=args.exclude_zero_revenue_visits,
             dva_claims_csv=args.dva_claims,
         )
-        # Add revenue-weighted allocated cost columns at visit grain for simpler Power BI modelling
         visits_enriched = apply_revenue_weighted_cost_allocation_to_visits(
             visits_enriched=visits_enriched,
             shift_profitability_feed=df,
