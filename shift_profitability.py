@@ -992,7 +992,8 @@ def main() -> int:
             shift_profitability_feed=df,
         )
 
-        # Add SAH revenue columns when SAH transactions were provided (same as shift_profitability_sah)
+        # Add SAH revenue columns when SAH transactions were provided (same as shift_profitability_sah).
+        # sah_revenue and sah_visit_revenue are null for visits that are not HCP/SAH or don't match a membership.
         if sah_revenue_by_membership is not None:
             if "membership_uuid" not in visits_enriched.columns:
                 raise ValueError(
@@ -1006,25 +1007,30 @@ def main() -> int:
             )
             visits_enriched["sah_revenue"] = pd.to_numeric(
                 visits_enriched["sah_revenue"], errors="coerce"
-            ).fillna(0.0)
+            )
             _safe_round(visits_enriched, "sah_revenue", 2)
 
-            if "actual_visit_hours" in visits_enriched.columns:
-                visits_enriched["actual_visit_hours"] = pd.to_numeric(
-                    visits_enriched["actual_visit_hours"], errors="coerce"
-                ).fillna(0.0)
-                total_hours = visits_enriched.groupby("membership_uuid")[
-                    "actual_visit_hours"
-                ].transform("sum")
-                share = np.where(
-                    total_hours > 0,
-                    visits_enriched["actual_visit_hours"] / total_hours,
-                    0.0,
+            # Allocate membership-level SAH revenue down to visits by actual_visit_hours (same as shift_profitability_sah)
+            if "actual_visit_hours" not in visits_enriched.columns:
+                raise ValueError(
+                    "Visits export must contain actual_visit_hours to allocate sah_revenue to sah_visit_revenue."
                 )
-                visits_enriched["sah_visit_revenue"] = (
-                    visits_enriched["sah_revenue"] * share
-                )
-                _safe_round(visits_enriched, "sah_visit_revenue", 2)
+            visits_enriched["actual_visit_hours"] = pd.to_numeric(
+                visits_enriched["actual_visit_hours"], errors="coerce"
+            ).fillna(0.0)
+
+            total_hours = visits_enriched.groupby("membership_uuid")[
+                "actual_visit_hours"
+            ].transform("sum")
+            share = np.where(
+                total_hours > 0,
+                visits_enriched["actual_visit_hours"] / total_hours,
+                0.0,
+            )
+            visits_enriched["sah_visit_revenue"] = (
+                visits_enriched["sah_revenue"] * share
+            )
+            _safe_round(visits_enriched, "sah_visit_revenue", 2)
 
         # Ensure allocation columns are present for Power BI / schema stability
         if "allocation_ok" not in visits_enriched.columns:
