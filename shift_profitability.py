@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-py -m shift_profitability --visits ./input_files/visit_export_jan.csv --costs ./input_files/shift_costs_jan.csv --out-dir . --out-visits visits_export_enriched.csv --sah-transactions ./input_files/sah_transactions_jan.csv --out-sah-purchases memberships_sah_purchases.csv --dva-claims ./dva_claims_expanded.csv
+py -m shift_profitability --visits ./input_files/visit_export_jan.csv --costs ./input_files/shift_costs_jan.csv --out-dir . --out-visits visits_export_enriched.csv --sah-transactions ./input_files/sah_transactions_jan.csv --out-sah-purchases memberships_sah_purchases.csv --dva-claims ./dva_claims_expanded.csv --vhc-claims ./vhc_claims.csv
 """
 
 from __future__ import annotations
@@ -172,10 +172,125 @@ def _apply_dva_claim_pricing(
     return visits
 
 
+# VHC Service Type rates (per hour); blank/unknown => 0
+VHC_SERVICE_TYPE_RATES: Dict[str, float] = {
+    "da": 98.72,
+    "pc": 115.05,
+    "ri": 73.0,
+}
+
+
+def _apply_vhc_claim_pricing(
+    visits: pd.DataFrame,
+    vhc_claims_csv: str,
+    membership_scheme_col: str,
+    amount_col: str = "visit_projected_price",
+) -> pd.DataFrame:
+    """
+    For rows with membership_funding_scheme == 'vhc' and visit_projected_price == 0,
+    set visit claim from vhc_claims CSV: (rate * actual_visit_hours) + Co-payment amount,
+    where rate comes from Service Type (DA=$98.72, PC=$115.05, RI=$73). Requires Visit ID,
+    Service Type, and Co-payment amount columns in the CSV.
+    """
+    visit_id_col = _first_existing_col_case_insensitive(
+        visits, ["visit_id", "Visit ID", "visitId", "visit id"]
+    )
+    if visit_id_col is None:
+        print("[vhc] Skipping VHC pricing: visits missing visit_id column.")
+        return visits
+
+    if visit_id_col != "visit_id":
+        visits = visits.rename(columns={visit_id_col: "visit_id"})
+    visits["visit_id"] = _clean_id_series(visits["visit_id"])
+
+    if "actual_visit_hours" not in visits.columns:
+        print("[vhc] Skipping VHC pricing: visits missing actual_visit_hours column.")
+        return visits
+    actual_hours = pd.to_numeric(visits["actual_visit_hours"], errors="coerce").fillna(
+        0.0
+    )
+
+    vhc = _read_csv(vhc_claims_csv)
+    vhc_visit_col = _first_existing_col_case_insensitive(
+        vhc, ["Visit ID", "VisitId", "visit_id", "visit id"]
+    )
+    vhc_service_col = _first_existing_col_case_insensitive(
+        vhc, ["Service Type", "ServiceType", "service_type"]
+    )
+    vhc_copay_col = _first_existing_col_case_insensitive(
+        vhc, ["Co-payment amount", "Co-payment", "copayment", "co_payment_amount"]
+    )
+
+    if vhc_visit_col is None or vhc_service_col is None or vhc_copay_col is None:
+        print(
+            f"[vhc] Skipping VHC pricing: vhc claims missing columns. "
+            f"Need Visit ID, Service Type, Co-payment amount. "
+            f"Found visit_col={vhc_visit_col}, service_col={vhc_service_col}, copay_col={vhc_copay_col}"
+        )
+        return visits
+
+    vhc = vhc.rename(
+        columns={
+            vhc_visit_col: "_vhc_visit_id",
+            vhc_service_col: "_vhc_service_type",
+            vhc_copay_col: "_vhc_copay",
+        }
+    )
+    vhc["_vhc_visit_id"] = _clean_id_series(vhc["_vhc_visit_id"])
+    vhc["_vhc_rate"] = (
+        vhc["_vhc_service_type"]
+        .astype("string")
+        .str.strip()
+        .str.lower()
+        .map(VHC_SERVICE_TYPE_RATES)
+        .fillna(0.0)
+    )
+    vhc["_vhc_copay"] = pd.to_numeric(vhc["_vhc_copay"], errors="coerce").fillna(0.0)
+
+    # One row per Visit ID: take first rate and sum co-payments if duplicates
+    vhc_agg = (
+        vhc.loc[vhc["_vhc_visit_id"].notna()]
+        .groupby("_vhc_visit_id", as_index=True)
+        .agg({"_vhc_rate": "first", "_vhc_copay": "sum"})
+    )
+
+    scheme = visits[membership_scheme_col].astype("string").str.strip().str.lower()
+    price = pd.to_numeric(visits[amount_col], errors="coerce").fillna(-1)
+    mask_vhc = (
+        scheme.eq("vhc")
+        & visits["visit_id"].notna()
+        & (price == 0)
+    )
+
+    if not mask_vhc.any():
+        print("[vhc] No rows with membership_funding_scheme == 'vhc' and visit_projected_price == 0 found in visits.")
+        return visits
+
+    vhc_visit_ids = visits.loc[mask_vhc, "visit_id"]
+    hours = actual_hours.loc[mask_vhc]
+    rates = vhc_visit_ids.map(vhc_agg["_vhc_rate"])
+    copays = vhc_visit_ids.map(vhc_agg["_vhc_copay"])
+    # claim = rate * actual_visit_hours + co_payment
+    amounts = (rates.fillna(0.0) * hours) + copays.fillna(0.0)
+    matched = vhc_visit_ids.isin(vhc_agg.index).sum()
+    unmatched = int(mask_vhc.sum() - matched)
+
+    visits.loc[mask_vhc, amount_col] = pd.to_numeric(amounts, errors="coerce").fillna(
+        0.0
+    )
+
+    print(
+        f"[vhc] Applied VHC pricing from {Path(vhc_claims_csv).name}: "
+        f"vhc_rows={int(mask_vhc.sum()):,} matched={int(matched):,} unmatched={unmatched:,} (unmatched set to 0)"
+    )
+    return visits
+
+
 def build_enriched_visits_export(
     visits_csv: str,
     exclude_zero_revenue_visits: bool = False,
     dva_claims_csv: Optional[str] = None,
+    vhc_claims_csv: Optional[str] = None,
 ) -> pd.DataFrame:
     """Read the raw visit export and return an enriched visit-level table.
 
@@ -185,6 +300,8 @@ def build_enriched_visits_export(
       - Ensures visit_projected_price is numeric
       - If dva_claims_csv is provided and membership_funding_scheme exists, applies
         DVA claim pricing overrides via _apply_dva_claim_pricing.
+      - If vhc_claims_csv is provided and membership_funding_scheme exists, applies
+        VHC claim pricing via _apply_vhc_claim_pricing (rate * actual_visit_hours + co-payment).
 
     Notes:
       - This function intentionally preserves the incoming schema (column set and
@@ -248,6 +365,14 @@ def build_enriched_visits_export(
         visits = _apply_dva_claim_pricing(
             visits=visits,
             dva_claims_csv=dva_claims_csv,
+            membership_scheme_col=membership_scheme_col,
+            amount_col="visit_projected_price",
+        )
+    # Apply VHC claim pricing (rate * actual_visit_hours + co-payment) at visit grain
+    if vhc_claims_csv and membership_scheme_col:
+        visits = _apply_vhc_claim_pricing(
+            visits=visits,
+            vhc_claims_csv=vhc_claims_csv,
             membership_scheme_col=membership_scheme_col,
             amount_col="visit_projected_price",
         )
@@ -454,6 +579,7 @@ def build_shift_profitability_feed(
     exclude_zero_revenue_visits: bool = False,
     billable_only: bool = False,
     dva_claims_csv: Optional[str] = None,
+    vhc_claims_csv: Optional[str] = None,
 ) -> pd.DataFrame:
     visits = _read_csv(visits_csv)
     costs = _read_csv(costs_csv)
@@ -526,6 +652,14 @@ def build_shift_profitability_feed(
         visits = _apply_dva_claim_pricing(
             visits=visits,
             dva_claims_csv=dva_claims_csv,
+            membership_scheme_col=membership_scheme_col,
+            amount_col="visit_projected_price",
+        )
+    # ✅ Preprocess visit_export prices for VHC (rate * actual_visit_hours + co-payment)
+    if vhc_claims_csv and membership_scheme_col:
+        visits = _apply_vhc_claim_pricing(
+            visits=visits,
+            vhc_claims_csv=vhc_claims_csv,
             membership_scheme_col=membership_scheme_col,
             amount_col="visit_projected_price",
         )
@@ -897,6 +1031,11 @@ def main() -> int:
         default=None,
         help="Optional path to dva_claims_expanded.csv. If provided, DVA visits will be priced from this file by visit_id.",
     )
+    parser.add_argument(
+        "--vhc-claims",
+        default=None,
+        help="Optional path to VHC claims CSV (columns: Visit ID, Service Type [DA/PC/RI], Co-payment amount). VHC visits are priced as rate*actual_visit_hours + co-payment.",
+    )
     parser.add_argument("--out-dir", default=".", help="Output directory.")
     parser.add_argument(
         "--out", default="shift_profitability_feed.csv", help="Output filename."
@@ -980,17 +1119,19 @@ def main() -> int:
         exclude_zero_revenue_visits=args.exclude_zero_revenue_visits,
         billable_only=args.billable_only,
         dva_claims_csv=args.dva_claims,
+        vhc_claims_csv=args.vhc_claims,
     )
 
     out_path = out_dir / args.out
     _write_csv(df, out_path, utf8_bom=args.utf8_bom)
 
-    # Optional: write enriched visit export (visit-level) with DVA pricing applied.
+    # Optional: write enriched visit export (visit-level) with DVA/VHC pricing applied.
     if args.out_visits:
         visits_enriched = build_enriched_visits_export(
             visits_csv=args.visits,
             exclude_zero_revenue_visits=args.exclude_zero_revenue_visits,
             dva_claims_csv=args.dva_claims,
+            vhc_claims_csv=args.vhc_claims,
         )
         visits_enriched = apply_revenue_weighted_cost_allocation_to_visits(
             visits_enriched=visits_enriched,
