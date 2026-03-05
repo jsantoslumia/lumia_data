@@ -14,6 +14,7 @@ Power BI:
 To Run:
 
 py -m compute_sah_cost --visits ./input_files/visit_export_jan.csv --costs ./input_files/shift_costs_jan.csv --out-dir . --out sah_cost_export.csv
+py -m compute_sah_cost --visits ./input_files/visit_export_feb.csv --costs ./input_files/shift_costs_feb.csv --out-dir . --out sah_cost_export.csv
 """
 
 from __future__ import annotations

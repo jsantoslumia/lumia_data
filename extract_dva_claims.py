@@ -154,7 +154,11 @@ def main():
 
     args = ap.parse_args()
 
-    input_path = Path(args.input_path)
+    # Support accidental "input_path=./path" usage (argparse treats it as one positional)
+    raw = getattr(args, "input_path", "")
+    if isinstance(raw, str) and raw.startswith("input_path="):
+        raw = raw.split("=", 1)[1].strip()
+    input_path = Path(raw)
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 

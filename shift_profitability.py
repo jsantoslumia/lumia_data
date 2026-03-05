@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """
-py -m shift_profitability --visits ./input_files/visit_export_jan.csv --costs ./input_files/shift_costs_jan.csv --out-dir . --out-visits visits_export_enriched.csv --sah-transactions ./input_files/sah_transactions_jan.csv --out-sah-purchases memberships_sah_purchases.csv --dva-claims ./dva_claims_expanded.csv --vhc-claims ./vhc_claims.csv
+py -m shift_profitability --visits ./input_files/visit_export_feb.csv --costs ./input_files/shift_costs_feb.csv --out-dir . --out-visits visits_export_enriched.csv --sah-transactions ./input_files/sah_transactions_feb.csv --out-sah-purchases memberships_sah_purchases.csv --dva-claims ./dva_claims_expanded.csv --vhc-claims ./vhc_claims.csv
 """
+
+# TODO: need to compute sum of Units from keypay report and add somewhere
 
 from __future__ import annotations
 
@@ -256,14 +258,12 @@ def _apply_vhc_claim_pricing(
 
     scheme = visits[membership_scheme_col].astype("string").str.strip().str.lower()
     price = pd.to_numeric(visits[amount_col], errors="coerce").fillna(-1)
-    mask_vhc = (
-        scheme.eq("vhc")
-        & visits["visit_id"].notna()
-        & (price == 0)
-    )
+    mask_vhc = scheme.eq("vhc") & visits["visit_id"].notna() & (price == 0)
 
     if not mask_vhc.any():
-        print("[vhc] No rows with membership_funding_scheme == 'vhc' and visit_projected_price == 0 found in visits.")
+        print(
+            "[vhc] No rows with membership_funding_scheme == 'vhc' and visit_projected_price == 0 found in visits."
+        )
         return visits
 
     vhc_visit_ids = visits.loc[mask_vhc, "visit_id"]
