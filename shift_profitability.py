@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-py -m shift_profitability --visits ./input_files/visit_export_feb.csv --costs ./input_files/shift_costs_feb.csv --out-dir . --out-visits visits_export_enriched.csv --sah-transactions ./input_files/sah_transactions_feb.csv --out-sah-purchases memberships_sah_purchases.csv --dva-claims ./dva_claims_expanded.csv --vhc-claims ./vhc_claims.csv
+py -m shift_profitability --visits ./input_files/visit_export_feb.csv --costs ./input_files/shift_costs_feb.csv --out-dir . --out-visits visits_export_enriched.csv --sah-transactions ./input_files/sah_transactions_feb.csv --out-sah-purchases memberships_sah_purchases.csv --dva-claims ./dva_claims_expanded.csv --vhc-claims ./vhc_claims.csv --chsp-claims ./chsp_dex_report.csv
 """
 
 # TODO: need to compute sum of Units from keypay report and add somewhere
@@ -286,11 +286,139 @@ def _apply_vhc_claim_pricing(
     return visits
 
 
+# CHSP: rate by Outlet ID (and Service type ID when Outlet contains "Community Home Support")
+CHSP_OUTLET_RATES: Dict[str, float] = {
+    "Allied Health and Therapy Services": 136.52,
+    "Domestic Assistance": 65.24,
+    "Home or Community General Respite": 61.84,
+    "Individual Social Support": 55.74,
+    "Personal Care": 64.69,
+}
+
+
+def _chsp_rate_from_row(outlet_id: str, service_type_id: str) -> float:
+    """Determine CHSP rate from Outlet ID and optionally Service type ID."""
+    outlet = (outlet_id or "").strip()
+    service = (service_type_id or "").strip()
+    if "Community Home Support" in outlet:
+        return 65.24 if "Domestic Assistance" in service else 0.0
+    for label, rate in CHSP_OUTLET_RATES.items():
+        if label in outlet:
+            return rate
+    return 0.0
+
+
+def _apply_chsp_claim_pricing(
+    visits: pd.DataFrame,
+    chsp_claims_csv: str,
+    membership_scheme_col: str,
+    amount_col: str = "visit_projected_price",
+) -> pd.DataFrame:
+    """
+    For rows with membership_funding_scheme == 'chsp', set visit_projected_price from
+    CHSP DEX report: (rate * time_hours) + Client contribution, where rate is derived
+    from Outlet ID (and Service type ID when Outlet contains 'Community Home Support').
+    Visit id is matched via Session ID (strip '_visit_fee' suffix if present).
+    """
+    visit_id_col = _first_existing_col_case_insensitive(
+        visits, ["visit_id", "Visit ID", "visitId", "visit id"]
+    )
+    if visit_id_col is None:
+        print("[chsp] Skipping CHSP pricing: visits missing visit_id column.")
+        return visits
+
+    if visit_id_col != "visit_id":
+        visits = visits.rename(columns={visit_id_col: "visit_id"})
+    visits["visit_id"] = _clean_id_series(visits["visit_id"])
+
+    chsp = _read_csv(chsp_claims_csv)
+    outlet_col = _first_existing_col_case_insensitive(
+        chsp, ["Outlet ID", "Outlet Id", "outlet_id"]
+    )
+    service_type_col = _first_existing_col_case_insensitive(
+        chsp,
+        ["Service type ID", "Service Type ID", "Service type Id", "service_type_id"],
+    )
+    time_col = _first_existing_col_case_insensitive(
+        chsp, ["Time minutes", "Time Minutes", "time_minutes"]
+    )
+    client_contrib_col = _first_existing_col_case_insensitive(
+        chsp, ["Client contribution", "Client Contribution", "client_contribution"]
+    )
+    session_col = _first_existing_col_case_insensitive(
+        chsp, ["Session ID", "Session Id", "session_id"]
+    )
+
+    if not all([outlet_col, time_col, client_contrib_col, session_col]):
+        print(
+            f"[chsp] Skipping CHSP pricing: CHSP claims missing columns. "
+            f"Need Outlet ID, Time minutes, Client contribution, Session ID. "
+            f"Found outlet={outlet_col}, time={time_col}, client_contrib={client_contrib_col}, session={session_col}"
+        )
+        return visits
+
+    outlet_vals = chsp[outlet_col].astype("string").fillna("")
+    service_vals = (
+        chsp[service_type_col].astype("string").fillna("")
+        if service_type_col
+        else pd.Series("", index=chsp.index)
+    )
+    chsp["_chsp_rate"] = [
+        _chsp_rate_from_row(o, s) for o, s in zip(outlet_vals, service_vals)
+    ]
+    chsp["_chsp_time_hours"] = (
+        pd.to_numeric(chsp[time_col], errors="coerce").fillna(0.0) / 60.0
+    )
+    chsp["_chsp_client_contrib"] = pd.to_numeric(
+        chsp[client_contrib_col], errors="coerce"
+    ).fillna(0.0)
+    chsp["_chsp_revenue"] = (
+        chsp["_chsp_rate"] * chsp["_chsp_time_hours"] + chsp["_chsp_client_contrib"]
+    )
+
+    # Normalize Session ID to visit id: strip trailing '_visit_fee' if present
+    raw_session = chsp[session_col].astype("string").str.strip()
+    chsp["_chsp_visit_id"] = raw_session.str.replace(
+        r"_visit_fee$", "", regex=True
+    ).str.strip()
+    chsp["_chsp_visit_id"] = _clean_id_series(chsp["_chsp_visit_id"])
+
+    chsp_map = (
+        chsp.loc[chsp["_chsp_visit_id"].notna()]
+        .groupby("_chsp_visit_id", as_index=True)["_chsp_revenue"]
+        .sum()
+    )
+
+    scheme = visits[membership_scheme_col].astype("string").str.strip().str.lower()
+    mask_chsp = scheme.eq("chsp") & visits["visit_id"].notna()
+
+    if not mask_chsp.any():
+        print(
+            "[chsp] No rows with membership_funding_scheme == 'chsp' found in visits."
+        )
+        return visits
+
+    mapped = visits.loc[mask_chsp, "visit_id"].map(chsp_map)
+    matched = mapped.notna().sum()
+    unmatched = int(mask_chsp.sum() - matched)
+
+    visits.loc[mask_chsp, amount_col] = pd.to_numeric(mapped, errors="coerce").fillna(
+        0.0
+    )
+
+    print(
+        f"[chsp] Applied CHSP pricing from {Path(chsp_claims_csv).name}: "
+        f"chsp_rows={int(mask_chsp.sum()):,} matched={int(matched):,} unmatched={unmatched:,} (unmatched set to 0)"
+    )
+    return visits
+
+
 def build_enriched_visits_export(
     visits_csv: str,
     exclude_zero_revenue_visits: bool = False,
     dva_claims_csv: Optional[str] = None,
     vhc_claims_csv: Optional[str] = None,
+    chsp_claims_csv: Optional[str] = None,
 ) -> pd.DataFrame:
     """Read the raw visit export and return an enriched visit-level table.
 
@@ -302,6 +430,8 @@ def build_enriched_visits_export(
         DVA claim pricing overrides via _apply_dva_claim_pricing.
       - If vhc_claims_csv is provided and membership_funding_scheme exists, applies
         VHC claim pricing via _apply_vhc_claim_pricing (rate * actual_visit_hours + co-payment).
+      - If chsp_claims_csv is provided and membership_funding_scheme exists, applies
+        CHSP claim pricing via _apply_chsp_claim_pricing ((rate * time_hours) + client contribution).
 
     Notes:
       - This function intentionally preserves the incoming schema (column set and
@@ -373,6 +503,14 @@ def build_enriched_visits_export(
         visits = _apply_vhc_claim_pricing(
             visits=visits,
             vhc_claims_csv=vhc_claims_csv,
+            membership_scheme_col=membership_scheme_col,
+            amount_col="visit_projected_price",
+        )
+    # Apply CHSP claim pricing ((rate * time_hours) + client contribution) at visit grain
+    if chsp_claims_csv and membership_scheme_col:
+        visits = _apply_chsp_claim_pricing(
+            visits=visits,
+            chsp_claims_csv=chsp_claims_csv,
             membership_scheme_col=membership_scheme_col,
             amount_col="visit_projected_price",
         )
@@ -580,6 +718,7 @@ def build_shift_profitability_feed(
     billable_only: bool = False,
     dva_claims_csv: Optional[str] = None,
     vhc_claims_csv: Optional[str] = None,
+    chsp_claims_csv: Optional[str] = None,
 ) -> pd.DataFrame:
     visits = _read_csv(visits_csv)
     costs = _read_csv(costs_csv)
@@ -660,6 +799,14 @@ def build_shift_profitability_feed(
         visits = _apply_vhc_claim_pricing(
             visits=visits,
             vhc_claims_csv=vhc_claims_csv,
+            membership_scheme_col=membership_scheme_col,
+            amount_col="visit_projected_price",
+        )
+    # ✅ Preprocess visit_export prices for CHSP ((rate * time_hours) + client contribution)
+    if chsp_claims_csv and membership_scheme_col:
+        visits = _apply_chsp_claim_pricing(
+            visits=visits,
+            chsp_claims_csv=chsp_claims_csv,
             membership_scheme_col=membership_scheme_col,
             amount_col="visit_projected_price",
         )
@@ -1036,6 +1183,11 @@ def main() -> int:
         default=None,
         help="Optional path to VHC claims CSV (columns: Visit ID, Service Type [DA/PC/RI], Co-payment amount). VHC visits are priced as rate*actual_visit_hours + co-payment.",
     )
+    parser.add_argument(
+        "--chsp-claims",
+        default=None,
+        help="Optional path to CHSP DEX report CSV (e.g. chsp_dex_report.csv). Columns: Outlet ID, Service type ID, Time minutes, Client contribution, Session ID. CHSP visits are priced as (rate*time_hours) + client contribution.",
+    )
     parser.add_argument("--out-dir", default=".", help="Output directory.")
     parser.add_argument(
         "--out", default="shift_profitability_feed.csv", help="Output filename."
@@ -1120,6 +1272,7 @@ def main() -> int:
         billable_only=args.billable_only,
         dva_claims_csv=args.dva_claims,
         vhc_claims_csv=args.vhc_claims,
+        chsp_claims_csv=args.chsp_claims,
     )
 
     out_path = out_dir / args.out
@@ -1132,6 +1285,7 @@ def main() -> int:
             exclude_zero_revenue_visits=args.exclude_zero_revenue_visits,
             dva_claims_csv=args.dva_claims,
             vhc_claims_csv=args.vhc_claims,
+            chsp_claims_csv=args.chsp_claims,
         )
         visits_enriched = apply_revenue_weighted_cost_allocation_to_visits(
             visits_enriched=visits_enriched,
