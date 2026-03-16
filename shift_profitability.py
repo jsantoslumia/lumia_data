@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-py -m shift_profitability --visits ./input_files/visit_export_feb.csv --costs ./input_files/shift_costs_feb.csv --out-dir . --out-visits visits_export_enriched.csv --sah-transactions ./input_files/sah_transactions_feb.csv --out-sah-purchases memberships_sah_purchases.csv --dva-claims ./dva_claims_expanded.csv --vhc-claims ./vhc_claims.csv --chsp-claims ./chsp_dex_report.csv
+py -m shift_profitability --visits ./input_files/visit_export_feb.csv --costs ./input_files/shift_costs_feb.csv --out-dir . --out-visits visits_export_enriched.csv --sah-transactions ./input_files/sah_transactions_feb.csv --out-sah-purchases memberships_sah_purchases.csv --dva-claims ./dva_claims_expanded.csv --vhc-claims ./vhc_claims_feb.csv --chsp-claims ./chsp_dex_report.csv
 """
 
 # TODO: need to compute sum of Units from keypay report and add somewhere
