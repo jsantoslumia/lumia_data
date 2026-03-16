@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-py -m shift_profitability --visits ./input_files/visit_export_feb.csv --costs ./input_files/shift_costs_feb.csv --out-dir . --out-visits visits_export_enriched.csv --sah-transactions ./input_files/sah_transactions_feb.csv --out-sah-purchases memberships_sah_purchases.csv --dva-claims ./dva_claims_expanded.csv --vhc-claims ./vhc_claims_feb.csv --chsp-claims ./chsp_dex_report.csv
+py -m shift_profitability --visits ./input_files/visit_export_feb.csv --costs ./input_files/shift_costs_feb.csv --out-dir . --out-visits visits_export_enriched.csv --sah-transactions ./input_files/sah_transactions_feb.csv --out-sah-purchases memberships_sah_purchases.csv --dva-claims ./dva_claims_expanded.csv --vhc-claims ./vhc_claims.csv --chsp-claims ./chsp_dex_report.csv
 """
 
 # TODO: need to compute sum of Units from keypay report and add somewhere
@@ -88,6 +88,105 @@ def _to_bool_series(s: pd.Series) -> pd.Series:
     out = out.mask(num.notna(), num != 0)
 
     return out.fillna(False).astype(bool)
+
+
+def _normalize_visits_for_feed(
+    visits: pd.DataFrame,
+    *,
+    ensure_helper_id: bool = False,
+    ensure_hours_columns: bool = False,
+) -> pd.DataFrame:
+    """
+    Standardize visit_shift_id, helper_id, visit_projected_price, hours, and
+    membership columns on a visits DataFrame. Used by both build_enriched_visits_export
+    and build_shift_profitability_feed to keep normalization logic in one place.
+    """
+    if "visit_shift_id" not in visits.columns and "shift_id" in visits.columns:
+        visits = visits.rename(columns={"shift_id": "visit_shift_id"})
+    if "visit_shift_id" not in visits.columns:
+        raise ValueError("Visits CSV must contain visit_shift_id (or shift_id).")
+
+    visits["visit_shift_id"] = _clean_id_series(visits["visit_shift_id"])
+
+    if "helper_id" in visits.columns:
+        visits["helper_id"] = _clean_id_series(visits["helper_id"])
+    elif ensure_helper_id:
+        visits["helper_id"] = pd.NA
+
+    if "visit_projected_price" not in visits.columns:
+        raise ValueError("Visits CSV must contain visit_projected_price.")
+    visits["visit_projected_price"] = pd.to_numeric(
+        visits["visit_projected_price"], errors="coerce"
+    ).fillna(0.0)
+
+    if "projected_visit_hours" in visits.columns:
+        visits["projected_visit_hours"] = pd.to_numeric(
+            visits["projected_visit_hours"], errors="coerce"
+        )
+    elif ensure_hours_columns:
+        visits["projected_visit_hours"] = np.nan
+
+    if "actual_visit_hours" in visits.columns:
+        visits["actual_visit_hours"] = pd.to_numeric(
+            visits["actual_visit_hours"], errors="coerce"
+        )
+    elif ensure_hours_columns:
+        visits["actual_visit_hours"] = np.nan
+
+    membership_community_col = (
+        "membership_community_name"
+        if "membership_community_name" in visits.columns
+        else None
+    )
+    membership_scheme_col = (
+        "membership_funding_scheme"
+        if "membership_funding_scheme" in visits.columns
+        else None
+    )
+    if membership_community_col:
+        visits[membership_community_col] = _clean_str_series(
+            visits[membership_community_col]
+        )
+    if membership_scheme_col:
+        visits[membership_scheme_col] = _clean_str_series(visits[membership_scheme_col])
+
+    return visits
+
+
+def _apply_claim_pricing_to_visits(
+    visits: pd.DataFrame,
+    *,
+    dva_claims_csv: Optional[str] = None,
+    vhc_claims_csv: Optional[str] = None,
+    chsp_claims_csv: Optional[str] = None,
+    membership_scheme_col: Optional[str] = None,
+) -> pd.DataFrame:
+    """
+    Apply DVA, VHC, and CHSP claim pricing to visit_projected_price when
+    the corresponding CSV and membership_scheme_col are provided.
+    """
+    if dva_claims_csv and membership_scheme_col:
+        visits = _apply_dva_claim_pricing(
+            visits=visits,
+            dva_claims_csv=dva_claims_csv,
+            membership_scheme_col=membership_scheme_col,
+            amount_col="visit_projected_price",
+        )
+    if vhc_claims_csv and membership_scheme_col:
+        visits = _apply_vhc_claim_pricing(
+            visits=visits,
+            vhc_claims_csv=vhc_claims_csv,
+            membership_scheme_col=membership_scheme_col,
+            amount_col="visit_projected_price",
+        )
+    if chsp_claims_csv and membership_scheme_col:
+        visits = _apply_chsp_claim_pricing(
+            visits=visits,
+            chsp_claims_csv=chsp_claims_csv,
+            membership_scheme_col=membership_scheme_col,
+            amount_col="visit_projected_price",
+        )
+    return visits
 
 
 def _apply_dva_claim_pricing(
@@ -441,84 +540,31 @@ def build_enriched_visits_export(
     """
     visits = _read_csv(visits_csv)
 
-    # Standardize shift key name
     if "visit_shift_id" not in visits.columns and "shift_id" in visits.columns:
         visits = visits.rename(columns={"shift_id": "visit_shift_id"})
-
     if "visit_shift_id" not in visits.columns:
         raise ValueError("Visits CSV must contain visit_shift_id (or shift_id).")
 
-    # Preserve original column order
     original_cols = list(visits.columns)
-
-    visits["visit_shift_id"] = _clean_id_series(visits["visit_shift_id"])
-
-    if "helper_id" in visits.columns:
-        visits["helper_id"] = _clean_id_series(visits["helper_id"])
-
-    if "visit_projected_price" not in visits.columns:
-        raise ValueError("Visits CSV must contain visit_projected_price.")
-    visits["visit_projected_price"] = pd.to_numeric(
-        visits["visit_projected_price"], errors="coerce"
-    ).fillna(0.0)
-
-    # Clean optional visit hour fields if present
-    if "projected_visit_hours" in visits.columns:
-        visits["projected_visit_hours"] = pd.to_numeric(
-            visits["projected_visit_hours"], errors="coerce"
-        )
-    if "actual_visit_hours" in visits.columns:
-        visits["actual_visit_hours"] = pd.to_numeric(
-            visits["actual_visit_hours"], errors="coerce"
-        )
-
-    membership_community_col = (
-        "membership_community_name"
-        if "membership_community_name" in visits.columns
-        else None
+    visits = _normalize_visits_for_feed(
+        visits, ensure_helper_id=False, ensure_hours_columns=False
     )
     membership_scheme_col = (
         "membership_funding_scheme"
         if "membership_funding_scheme" in visits.columns
         else None
     )
-
-    if membership_community_col:
-        visits[membership_community_col] = _clean_str_series(
-            visits[membership_community_col]
-        )
-    if membership_scheme_col:
-        visits[membership_scheme_col] = _clean_str_series(visits[membership_scheme_col])
-
-    # Apply DVA pricing overrides at visit grain (if applicable)
-    if dva_claims_csv and membership_scheme_col:
-        visits = _apply_dva_claim_pricing(
-            visits=visits,
-            dva_claims_csv=dva_claims_csv,
-            membership_scheme_col=membership_scheme_col,
-            amount_col="visit_projected_price",
-        )
-    # Apply VHC claim pricing (rate * actual_visit_hours + co-payment) at visit grain
-    if vhc_claims_csv and membership_scheme_col:
-        visits = _apply_vhc_claim_pricing(
-            visits=visits,
-            vhc_claims_csv=vhc_claims_csv,
-            membership_scheme_col=membership_scheme_col,
-            amount_col="visit_projected_price",
-        )
-    # Apply CHSP claim pricing ((rate * time_hours) + client contribution) at visit grain
-    if chsp_claims_csv and membership_scheme_col:
-        visits = _apply_chsp_claim_pricing(
-            visits=visits,
-            chsp_claims_csv=chsp_claims_csv,
-            membership_scheme_col=membership_scheme_col,
-            amount_col="visit_projected_price",
-        )
+    visits = _apply_claim_pricing_to_visits(
+        visits,
+        dva_claims_csv=dva_claims_csv,
+        vhc_claims_csv=vhc_claims_csv,
+        chsp_claims_csv=chsp_claims_csv,
+        membership_scheme_col=membership_scheme_col,
+    )
 
     if exclude_zero_revenue_visits:
         visits = visits.loc[visits["visit_projected_price"] != 0].copy()
 
-    # Re-apply original ordering where possible
     ordered = [c for c in original_cols if c in visits.columns]
     remaining = [c for c in visits.columns if c not in ordered]
     visits = visits[ordered + remaining]
@@ -526,11 +572,11 @@ def build_enriched_visits_export(
     return visits
 
 
-def apply_revenue_weighted_cost_allocation_to_visits(
+def apply_helper_hours_cost_allocation_to_visits(
     visits_enriched: pd.DataFrame,
     shift_profitability_feed: pd.DataFrame,
 ) -> pd.DataFrame:
-    """Add HELPER-hours-weighted cost allocation columns to an enriched visits export.
+    """Add helper-hours-weighted cost allocation columns to an enriched visits export.
 
     Same logic as shift_profitability_sah: allocation is per helper using actual_visit_hours,
     then oncost factor 1.2075 is applied. Preserves Power BI output columns:
@@ -711,21 +757,15 @@ def apply_revenue_weighted_cost_allocation_to_visits(
     return visits
 
 
-def build_shift_profitability_feed(
-    visits_csv: str,
-    costs_csv: str,
-    exclude_zero_revenue_visits: bool = False,
-    billable_only: bool = False,
-    dva_claims_csv: Optional[str] = None,
-    vhc_claims_csv: Optional[str] = None,
-    chsp_claims_csv: Optional[str] = None,
-) -> pd.DataFrame:
+def _load_visits_and_costs(
+    visits_csv: str, costs_csv: str
+) -> Tuple[pd.DataFrame, pd.DataFrame, int, int]:
+    """Load visits and costs CSVs, standardize shift IDs, drop rows with missing shift_id. Returns (visits, costs, dropped_visits_missing_shift, dropped_costs_missing_shift)."""
     visits = _read_csv(visits_csv)
     costs = _read_csv(costs_csv)
 
     if "visit_shift_id" not in visits.columns and "shift_id" in visits.columns:
         visits = visits.rename(columns={"shift_id": "visit_shift_id"})
-
     if "visit_shift_id" not in visits.columns:
         raise ValueError("Visits CSV must contain visit_shift_id (or shift_id).")
     if "shift_id" not in costs.columns:
@@ -739,35 +779,29 @@ def build_shift_profitability_feed(
     else:
         visits["helper_id"] = pd.NA
 
-    costs_rows_before = len(costs)
     visits_rows_before = len(visits)
-
+    costs_rows_before = len(costs)
     visits = visits.loc[visits["visit_shift_id"].notna()].copy()
     costs = costs.loc[costs["shift_id"].notna()].copy()
-
     dropped_visits_missing_shift = visits_rows_before - len(visits)
     dropped_costs_missing_shift = costs_rows_before - len(costs)
 
-    if "visit_projected_price" not in visits.columns:
-        raise ValueError("Visits CSV must contain visit_projected_price.")
-    visits["visit_projected_price"] = pd.to_numeric(
-        visits["visit_projected_price"], errors="coerce"
-    ).fillna(0.0)
+    return visits, costs, dropped_visits_missing_shift, dropped_costs_missing_shift
 
-    if "projected_visit_hours" in visits.columns:
-        visits["projected_visit_hours"] = pd.to_numeric(
-            visits["projected_visit_hours"], errors="coerce"
-        )
-    else:
-        visits["projected_visit_hours"] = np.nan
 
-    if "actual_visit_hours" in visits.columns:
-        visits["actual_visit_hours"] = pd.to_numeric(
-            visits["actual_visit_hours"], errors="coerce"
-        )
-    else:
-        visits["actual_visit_hours"] = np.nan
-
+def _aggregate_visits_to_shifts(
+    visits: pd.DataFrame,
+    costs: pd.DataFrame,
+    exclude_zero_revenue_visits: bool,
+    billable_only: bool,
+    dva_claims_csv: Optional[str],
+    vhc_claims_csv: Optional[str],
+    chsp_claims_csv: Optional[str],
+) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    """Normalize visits, apply claim pricing, aggregate by shift_id, optionally filter billable_only. Returns (visits_agg, costs_filtered)."""
+    visits = _normalize_visits_for_feed(
+        visits, ensure_helper_id=False, ensure_hours_columns=True
+    )
     membership_community_col = (
         "membership_community_name"
         if "membership_community_name" in visits.columns
@@ -778,38 +812,13 @@ def build_shift_profitability_feed(
         if "membership_funding_scheme" in visits.columns
         else None
     )
-
-    if membership_community_col:
-        visits[membership_community_col] = _clean_str_series(
-            visits[membership_community_col]
-        )
-    if membership_scheme_col:
-        visits[membership_scheme_col] = _clean_str_series(visits[membership_scheme_col])
-
-    # ✅ Preprocess visit_export prices for DVA before aggregating
-    if dva_claims_csv and membership_scheme_col:
-        visits = _apply_dva_claim_pricing(
-            visits=visits,
-            dva_claims_csv=dva_claims_csv,
-            membership_scheme_col=membership_scheme_col,
-            amount_col="visit_projected_price",
-        )
-    # ✅ Preprocess visit_export prices for VHC (rate * actual_visit_hours + co-payment)
-    if vhc_claims_csv and membership_scheme_col:
-        visits = _apply_vhc_claim_pricing(
-            visits=visits,
-            vhc_claims_csv=vhc_claims_csv,
-            membership_scheme_col=membership_scheme_col,
-            amount_col="visit_projected_price",
-        )
-    # ✅ Preprocess visit_export prices for CHSP ((rate * time_hours) + client contribution)
-    if chsp_claims_csv and membership_scheme_col:
-        visits = _apply_chsp_claim_pricing(
-            visits=visits,
-            chsp_claims_csv=chsp_claims_csv,
-            membership_scheme_col=membership_scheme_col,
-            amount_col="visit_projected_price",
-        )
+    visits = _apply_claim_pricing_to_visits(
+        visits,
+        dva_claims_csv=dva_claims_csv,
+        vhc_claims_csv=vhc_claims_csv,
+        chsp_claims_csv=chsp_claims_csv,
+        membership_scheme_col=membership_scheme_col,
+    )
 
     if exclude_zero_revenue_visits:
         visits = visits.loc[visits["visit_projected_price"] != 0].copy()
@@ -819,7 +828,6 @@ def build_shift_profitability_feed(
         if "visit_id" in visits.columns
         else ("visit_shift_id", "size")
     )
-
     visits_agg = (
         visits.groupby("visit_shift_id", as_index=False)
         .agg(
@@ -843,7 +851,6 @@ def build_shift_profitability_feed(
         )
         .rename(columns={"visit_shift_id": "shift_id"})
     )
-
     visits_agg["has_multiple_membership_community_name"] = (
         visits_agg["membership_community_name_distinct_count"] > 1
     )
@@ -851,7 +858,6 @@ def build_shift_profitability_feed(
         visits_agg["membership_funding_scheme_distinct_count"] > 1
     )
 
-    billable_shift_ids: Optional[List[str]] = None
     if billable_only:
         billable_shift_ids = (
             visits_agg.loc[visits_agg["revenue"] > 0, "shift_id"]
@@ -865,12 +871,16 @@ def build_shift_profitability_feed(
         ].copy()
         costs = costs.loc[costs["shift_id"].isin(billable_shift_ids)].copy()
 
-    # Restrict costs to shifts that appear in the visit export (same as shift_profitability_sah)
     allowed_shift_ids = (
         visits_agg["shift_id"].dropna().astype("string").unique().tolist()
     )
     costs = costs.loc[costs["shift_id"].isin(allowed_shift_ids)].copy()
 
+    return visits_agg, costs
+
+
+def _aggregate_costs(costs: pd.DataFrame) -> Tuple[pd.DataFrame, float]:
+    """Compute row_cost, flags, aggregate by shift_id with rollups. Returns (costs_agg, raw_cost_total)."""
     amount_candidates = [
         "shift_cost_line_amount",
         "cost_amount",
@@ -1016,6 +1026,21 @@ def build_shift_profitability_feed(
     if "Date" not in costs_agg.columns:
         costs_agg["Date"] = pd.NA
 
+    raw_cost_total = float(
+        pd.to_numeric(costs["row_cost"], errors="coerce").fillna(0.0).sum()
+    )
+    return costs_agg, raw_cost_total
+
+
+def _merge_and_finalize_shift_fact(
+    costs_agg: pd.DataFrame,
+    visits_agg: pd.DataFrame,
+    billable_only: bool,
+    dropped_visits_missing_shift: int,
+    dropped_costs_missing_shift: int,
+    raw_cost_total: float,
+) -> pd.DataFrame:
+    """Merge costs_agg and visits_agg, add derived columns, column order, reconcile print. Returns shift_fact."""
     how = "left" if billable_only else "outer"
     shift_fact = costs_agg.merge(visits_agg, on="shift_id", how=how)
 
@@ -1140,10 +1165,6 @@ def build_shift_profitability_feed(
     remaining = [c for c in shift_fact.columns if c not in existing]
     shift_fact = shift_fact[existing + remaining]
 
-    # Reconcile printout
-    raw_cost_total = float(
-        pd.to_numeric(costs["row_cost"], errors="coerce").fillna(0.0).sum()
-    )
     agg_cost_total = float(
         pd.to_numeric(shift_fact["total_cost"], errors="coerce").fillna(0.0).sum()
     )
@@ -1162,9 +1183,116 @@ def build_shift_profitability_feed(
     return shift_fact
 
 
+def build_shift_profitability_feed(
+    visits_csv: str,
+    costs_csv: str,
+    exclude_zero_revenue_visits: bool = False,
+    billable_only: bool = False,
+    dva_claims_csv: Optional[str] = None,
+    vhc_claims_csv: Optional[str] = None,
+    chsp_claims_csv: Optional[str] = None,
+) -> pd.DataFrame:
+    """Build the shift-level profitability feed from visits and costs CSVs."""
+    visits, costs, dropped_visits_missing_shift, dropped_costs_missing_shift = (
+        _load_visits_and_costs(visits_csv, costs_csv)
+    )
+    visits_agg, costs = _aggregate_visits_to_shifts(
+        visits,
+        costs,
+        exclude_zero_revenue_visits,
+        billable_only,
+        dva_claims_csv,
+        vhc_claims_csv,
+        chsp_claims_csv,
+    )
+    costs_agg, raw_cost_total = _aggregate_costs(costs)
+    return _merge_and_finalize_shift_fact(
+        costs_agg,
+        visits_agg,
+        billable_only,
+        dropped_visits_missing_shift,
+        dropped_costs_missing_shift,
+        raw_cost_total,
+    )
+
+
 def _write_csv(df: pd.DataFrame, path: Path, utf8_bom: bool) -> None:
     enc = "utf-8-sig" if utf8_bom else "utf-8"
     df.to_csv(path, index=False, encoding=enc)
+
+
+def _write_enriched_visits_export(
+    out_path: Path,
+    visits_csv: str,
+    shift_profitability_feed: pd.DataFrame,
+    exclude_zero_revenue_visits: bool,
+    dva_claims_csv: Optional[str],
+    vhc_claims_csv: Optional[str],
+    chsp_claims_csv: Optional[str],
+    sah_revenue_by_membership: Optional[pd.DataFrame],
+    utf8_bom: bool,
+) -> None:
+    """Build enriched visits (claim pricing + cost allocation), optionally add SAH revenue, ensure columns, write CSV."""
+    visits_enriched = build_enriched_visits_export(
+        visits_csv=visits_csv,
+        exclude_zero_revenue_visits=exclude_zero_revenue_visits,
+        dva_claims_csv=dva_claims_csv,
+        vhc_claims_csv=vhc_claims_csv,
+        chsp_claims_csv=chsp_claims_csv,
+    )
+    visits_enriched = apply_helper_hours_cost_allocation_to_visits(
+        visits_enriched=visits_enriched,
+        shift_profitability_feed=shift_profitability_feed,
+    )
+
+    if sah_revenue_by_membership is not None:
+        if "membership_uuid" not in visits_enriched.columns:
+            raise ValueError(
+                "Visits export must contain membership_uuid to add sah_revenue."
+            )
+        visits_enriched["membership_uuid"] = _clean_id_series(
+            visits_enriched["membership_uuid"]
+        )
+        visits_enriched = visits_enriched.merge(
+            sah_revenue_by_membership, on="membership_uuid", how="left"
+        )
+        visits_enriched["sah_revenue"] = pd.to_numeric(
+            visits_enriched["sah_revenue"], errors="coerce"
+        )
+        _safe_round(visits_enriched, "sah_revenue", 2)
+
+        if "actual_visit_hours" not in visits_enriched.columns:
+            raise ValueError(
+                "Visits export must contain actual_visit_hours to allocate sah_revenue to sah_visit_revenue."
+            )
+        visits_enriched["actual_visit_hours"] = pd.to_numeric(
+            visits_enriched["actual_visit_hours"], errors="coerce"
+        ).fillna(0.0)
+
+        total_hours = visits_enriched.groupby("membership_uuid")[
+            "actual_visit_hours"
+        ].transform("sum")
+        share = np.where(
+            total_hours > 0,
+            visits_enriched["actual_visit_hours"] / total_hours,
+            0.0,
+        )
+        visits_enriched["sah_visit_revenue"] = visits_enriched["sah_revenue"] * share
+        _safe_round(visits_enriched, "sah_visit_revenue", 2)
+
+    if "allocation_ok" not in visits_enriched.columns:
+        visits_enriched["allocation_ok"] = False
+    else:
+        visits_enriched["allocation_ok"] = visits_enriched["allocation_ok"].astype(bool)
+    if "allocation_method" not in visits_enriched.columns:
+        visits_enriched["allocation_method"] = ""
+    if "allocation_reason" not in visits_enriched.columns:
+        visits_enriched["allocation_reason"] = ""
+
+    _write_csv(visits_enriched, out_path, utf8_bom=utf8_bom)
+    print(
+        f"Wrote: {out_path.resolve()}  (rows={len(visits_enriched):,}, unique visit_shift_id={visits_enriched['visit_shift_id'].nunique():,})"
+    )
 
 
 def main() -> int:
@@ -1278,76 +1406,17 @@ def main() -> int:
     out_path = out_dir / args.out
     _write_csv(df, out_path, utf8_bom=args.utf8_bom)
 
-    # Optional: write enriched visit export (visit-level) with DVA/VHC pricing applied.
     if args.out_visits:
-        visits_enriched = build_enriched_visits_export(
+        _write_enriched_visits_export(
+            out_path=out_dir / args.out_visits,
             visits_csv=args.visits,
+            shift_profitability_feed=df,
             exclude_zero_revenue_visits=args.exclude_zero_revenue_visits,
             dva_claims_csv=args.dva_claims,
             vhc_claims_csv=args.vhc_claims,
             chsp_claims_csv=args.chsp_claims,
-        )
-        visits_enriched = apply_revenue_weighted_cost_allocation_to_visits(
-            visits_enriched=visits_enriched,
-            shift_profitability_feed=df,
-        )
-
-        # Add SAH revenue columns when SAH transactions were provided (same as shift_profitability_sah).
-        # sah_revenue and sah_visit_revenue are null for visits that are not HCP/SAH or don't match a membership.
-        if sah_revenue_by_membership is not None:
-            if "membership_uuid" not in visits_enriched.columns:
-                raise ValueError(
-                    "Visits export must contain membership_uuid to add sah_revenue."
-                )
-            visits_enriched["membership_uuid"] = _clean_id_series(
-                visits_enriched["membership_uuid"]
-            )
-            visits_enriched = visits_enriched.merge(
-                sah_revenue_by_membership, on="membership_uuid", how="left"
-            )
-            visits_enriched["sah_revenue"] = pd.to_numeric(
-                visits_enriched["sah_revenue"], errors="coerce"
-            )
-            _safe_round(visits_enriched, "sah_revenue", 2)
-
-            # Allocate membership-level SAH revenue down to visits by actual_visit_hours (same as shift_profitability_sah)
-            if "actual_visit_hours" not in visits_enriched.columns:
-                raise ValueError(
-                    "Visits export must contain actual_visit_hours to allocate sah_revenue to sah_visit_revenue."
-                )
-            visits_enriched["actual_visit_hours"] = pd.to_numeric(
-                visits_enriched["actual_visit_hours"], errors="coerce"
-            ).fillna(0.0)
-
-            total_hours = visits_enriched.groupby("membership_uuid")[
-                "actual_visit_hours"
-            ].transform("sum")
-            share = np.where(
-                total_hours > 0,
-                visits_enriched["actual_visit_hours"] / total_hours,
-                0.0,
-            )
-            visits_enriched["sah_visit_revenue"] = (
-                visits_enriched["sah_revenue"] * share
-            )
-            _safe_round(visits_enriched, "sah_visit_revenue", 2)
-
-        # Ensure allocation columns are present for Power BI / schema stability
-        if "allocation_ok" not in visits_enriched.columns:
-            visits_enriched["allocation_ok"] = False
-        else:
-            visits_enriched["allocation_ok"] = visits_enriched["allocation_ok"].astype(
-                bool
-            )
-        if "allocation_method" not in visits_enriched.columns:
-            visits_enriched["allocation_method"] = ""
-        if "allocation_reason" not in visits_enriched.columns:
-            visits_enriched["allocation_reason"] = ""
-
-        out_visits_path = out_dir / args.out_visits
-        _write_csv(visits_enriched, out_visits_path, utf8_bom=args.utf8_bom)
-        print(
-            f"Wrote: {out_visits_path.resolve()}  (rows={len(visits_enriched):,}, unique visit_shift_id={visits_enriched['visit_shift_id'].nunique():,})"
+            sah_revenue_by_membership=sah_revenue_by_membership,
+            utf8_bom=args.utf8_bom,
         )
 
     print(
