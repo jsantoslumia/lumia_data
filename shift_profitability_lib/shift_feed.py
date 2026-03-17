@@ -26,12 +26,16 @@ def _load_visits_and_costs(
     class_mapping_excel: Optional[str] = None,
 ) -> Tuple[pd.DataFrame, pd.DataFrame, int, int]:
     """Load visits and costs CSVs, standardize shift IDs, drop rows with missing shift_id."""
-    from shift_profitability_lib.class_mapping import merge_visit_class_from_excel
+    from shift_profitability_lib.class_mapping import (
+        merge_costs_gl_from_excel,
+        merge_visit_class_from_excel,
+    )
 
     visits = read_csv(visits_csv)
+    costs = read_csv(costs_csv)
     if class_mapping_excel:
         visits = merge_visit_class_from_excel(visits, class_mapping_excel)
-    costs = read_csv(costs_csv)
+        costs = merge_costs_gl_from_excel(costs, class_mapping_excel)
 
     if "visit_shift_id" not in visits.columns and "shift_id" in visits.columns:
         visits = visits.rename(columns={"shift_id": "visit_shift_id"})
@@ -247,6 +251,13 @@ def _aggregate_costs(costs: pd.DataFrame) -> Tuple[pd.DataFrame, float]:
     for c in meta_cols_present:
         costs_agg_dict[c] = (c, "first")
 
+    if "GL" in costs.columns:
+        def _combine_gl(s: pd.Series) -> object:
+            u = {str(x).strip() for x in s.dropna() if str(x).strip()}
+            return ", ".join(sorted(u)) if u else pd.NA
+
+        costs_agg_dict["GL"] = ("GL", _combine_gl)
+
     costs_agg = costs.groupby("shift_id", as_index=False).agg(**costs_agg_dict)
 
     rollups = (
@@ -421,6 +432,7 @@ def _merge_and_finalize_shift_fact(
         "Shift end date and time",
         "Award Name",
         "Payroll Category",
+        "GL",
     ]
     existing = [c for c in preferred_order if c in shift_fact.columns]
     remaining = [c for c in shift_fact.columns if c not in existing]

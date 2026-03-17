@@ -1,4 +1,4 @@
-"""Merge Excel 'Class' sheet onto visits by visit_rate."""
+"""Excel mapping: Class → visits (visit_rate); EH Mapping → costs (Rule Name → GL)."""
 
 from __future__ import annotations
 
@@ -56,3 +56,46 @@ def merge_visit_class_from_excel(
     out["_vrk"] = _visit_rate_merge_key(out[vr_visits])
     out = out.merge(m[["Class", "_vrk"]], on="_vrk", how="left")
     return out.drop(columns=["_vrk"])
+
+
+def _rule_name_key(series: pd.Series) -> pd.Series:
+    return series.astype("string").fillna("").str.strip()
+
+
+def merge_costs_gl_from_excel(
+    costs: pd.DataFrame, mapping_excel: Union[str, Path]
+) -> pd.DataFrame:
+    """
+    Left-join sheet 'EH Mapping' (Row Labels → GL) onto costs via Rule Name.
+    """
+    path = Path(mapping_excel)
+    rule_col = _find_col_ci(costs, "Rule Name")
+    if not rule_col:
+        raise ValueError(
+            "Costs must contain Rule Name when applying EH Mapping (GL)."
+        )
+    try:
+        mdf = pd.read_excel(path, sheet_name="EH Mapping")
+    except ValueError as e:
+        raise ValueError(
+            f"Could not read sheet 'EH Mapping' from {path}: {e}"
+        ) from e
+    row_col = _find_col_ci(mdf, "Row Labels")
+    gl_col = _find_col_ci(mdf, "GL")
+    if not row_col or not gl_col:
+        raise ValueError(
+            "Sheet 'EH Mapping' must contain Row Labels and GL columns."
+        )
+    m = mdf[[row_col, gl_col]].copy()
+    m = m.rename(columns={row_col: "_row_label", gl_col: "GL"})
+    m["_rk"] = _rule_name_key(m["_row_label"])
+    m = m.loc[m["_rk"].ne("")].drop_duplicates(subset=["_rk"], keep="first")
+
+    out = costs.copy()
+    for c in list(out.columns):
+        if str(c).strip().lower() == "gl":
+            out = out.drop(columns=[c])
+            break
+    out["_rk"] = _rule_name_key(out[rule_col])
+    out = out.merge(m[["GL", "_rk"]], on="_rk", how="left")
+    return out.drop(columns=["_rk"])
