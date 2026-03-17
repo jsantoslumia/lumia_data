@@ -79,9 +79,14 @@ def build_enriched_visits_export(
     dva_claims_csv: Optional[str] = None,
     vhc_claims_csv: Optional[str] = None,
     chsp_claims_csv: Optional[str] = None,
+    class_mapping_excel: Optional[str] = None,
 ) -> pd.DataFrame:
     """Read the raw visit export and return an enriched visit-level table with claim pricing applied."""
     visits = read_csv(visits_csv)
+    if class_mapping_excel:
+        from shift_profitability_lib.class_mapping import merge_visit_class_from_excel
+
+        visits = merge_visit_class_from_excel(visits, class_mapping_excel)
 
     if "visit_shift_id" not in visits.columns and "shift_id" in visits.columns:
         visits = visits.rename(columns={"shift_id": "visit_shift_id"})

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-py -m shift_profitability_new_allocation --visits ./input_files/visit_export_feb.csv --costs ./input_files/shift_costs_feb.csv --out-dir . --out-visits visits_export_enriched.csv --sah-transactions ./input_files/sah_transactions_feb.csv --out-sah-purchases memberships_sah_purchases.csv --dva-claims ./dva_claims_expanded.csv --vhc-claims ./vhc_claims.csv --chsp-claims ./chsp_dex_report.csv
+py -m shift_profitability_new_allocation --visits ./input_files/visit_export_feb.csv --costs ./input_files/shift_costs_feb.csv --out-dir . --out-visits visits_export_enriched.csv --sah-transactions ./input_files/sah_transactions_feb.csv --out-sah-purchases memberships_sah_purchases.csv --dva-claims ./dva_claims_expanded.csv --vhc-claims ./vhc_claims.csv --chsp-claims ./chsp_dex_report.csv --mapping ./wages_allocation_mapping.xlsx
 """
 
 from __future__ import annotations
@@ -76,10 +76,22 @@ def main() -> int:
     parser.add_argument(
         "--utf8-bom", action="store_true", help="Write UTF-8 with BOM (Excel-friendly)."
     )
+    parser.add_argument(
+        "--mapping",
+        default=None,
+        help="Optional Excel: sheet 'Class' with visit_rate + Class (merged on load).",
+    )
     args = parser.parse_args()
 
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
+
+    class_mapping: Optional[str] = None
+    if args.mapping:
+        mp = Path(args.mapping)
+        if not mp.is_file():
+            raise SystemExit(f"--mapping file not found: {mp.resolve()}")
+        class_mapping = str(mp.resolve())
 
     sah_revenue_by_membership: Optional[pd.DataFrame] = None
 
@@ -136,6 +148,7 @@ def main() -> int:
         dva_claims_csv=args.dva_claims,
         vhc_claims_csv=args.vhc_claims,
         chsp_claims_csv=args.chsp_claims,
+        class_mapping_excel=class_mapping,
     )
 
     out_path = out_dir / args.out
@@ -143,15 +156,16 @@ def main() -> int:
 
     if args.out_visits:
         write_enriched_visits_export(
-            out_path=out_dir / args.out_visits,
-            visits_csv=args.visits,
-            shift_profitability_feed=df,
-            exclude_zero_revenue_visits=args.exclude_zero_revenue_visits,
-            dva_claims_csv=args.dva_claims,
-            vhc_claims_csv=args.vhc_claims,
-            chsp_claims_csv=args.chsp_claims,
-            sah_revenue_by_membership=sah_revenue_by_membership,
-            utf8_bom=args.utf8_bom,
+            out_dir / args.out_visits,
+            args.visits,
+            df,
+            args.exclude_zero_revenue_visits,
+            args.dva_claims,
+            args.vhc_claims,
+            args.chsp_claims,
+            sah_revenue_by_membership,
+            args.utf8_bom,
+            class_mapping_excel=class_mapping,
         )
 
     print(

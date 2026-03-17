@@ -30,6 +30,8 @@ def write_enriched_visits_export(
     chsp_claims_csv: Optional[str],
     sah_revenue_by_membership: Optional[pd.DataFrame],
     utf8_bom: bool,
+    *,
+    class_mapping_excel: Optional[str] = None,
 ) -> None:
     """Build enriched visits (claim pricing + cost allocation), optionally add SAH revenue, ensure columns, write CSV."""
     visits_enriched = build_enriched_visits_export(
@@ -38,6 +40,7 @@ def write_enriched_visits_export(
         dva_claims_csv=dva_claims_csv,
         vhc_claims_csv=vhc_claims_csv,
         chsp_claims_csv=chsp_claims_csv,
+        class_mapping_excel=class_mapping_excel,
     )
     visits_enriched = apply_helper_hours_cost_allocation_to_visits(
         visits_enriched=visits_enriched,

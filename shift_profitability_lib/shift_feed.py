@@ -21,10 +21,16 @@ from shift_profitability_lib.visits import (
 
 
 def _load_visits_and_costs(
-    visits_csv: str, costs_csv: str
+    visits_csv: str,
+    costs_csv: str,
+    class_mapping_excel: Optional[str] = None,
 ) -> Tuple[pd.DataFrame, pd.DataFrame, int, int]:
     """Load visits and costs CSVs, standardize shift IDs, drop rows with missing shift_id."""
+    from shift_profitability_lib.class_mapping import merge_visit_class_from_excel
+
     visits = read_csv(visits_csv)
+    if class_mapping_excel:
+        visits = merge_visit_class_from_excel(visits, class_mapping_excel)
     costs = read_csv(costs_csv)
 
     if "visit_shift_id" not in visits.columns and "shift_id" in visits.columns:
@@ -446,10 +452,11 @@ def build_shift_profitability_feed(
     dva_claims_csv: Optional[str] = None,
     vhc_claims_csv: Optional[str] = None,
     chsp_claims_csv: Optional[str] = None,
+    class_mapping_excel: Optional[str] = None,
 ) -> pd.DataFrame:
     """Build the shift-level profitability feed from visits and costs CSVs."""
     visits, costs, dropped_visits_missing_shift, dropped_costs_missing_shift = (
-        _load_visits_and_costs(visits_csv, costs_csv)
+        _load_visits_and_costs(visits_csv, costs_csv, class_mapping_excel)
     )
     visits_agg, costs = _aggregate_visits_to_shifts(
         visits,
