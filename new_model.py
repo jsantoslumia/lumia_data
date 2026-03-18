@@ -5,10 +5,6 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-# -----------------------------
-# Config
-# -----------------------------
-
 GL_MAP = {
     "50001": "50001 - Direct Wages - General",
     "50007": "50007 - Direct Wages - Broken Shift Allowance",
@@ -19,17 +15,9 @@ GL_MAP = {
     "50013": "50013 - Direct Wages - Other Allowances",
 }
 
-SIMPLE_GLS = ["50007", "50008", "50012", "50013"]
-SPECIAL_GLS = ["50001", "50010", "50011"]
 
-
-# -----------------------------
-# Helpers
-# -----------------------------
-
-
-def round_2(x: pd.Series) -> pd.Series:
-    return x.round(2)
+def round_2(series: pd.Series) -> pd.Series:
+    return series.round(2)
 
 
 def derive_class_group(class_value: object) -> str:
@@ -51,13 +39,18 @@ def load_inputs_from_excel(
     cost_sheet: str = "Cost line",
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """
-    Reads the two source sheets from the workbook.
+    Read the two source sheets.
 
-    This assumes your Excel workbook has sheets named:
-    - Job extract
-    - Cost line
+    Expected Job extract columns:
+      - visit_shift_id
+      - Class
+      - actual_visit_hours
 
-    If your actual sheet names differ, pass them in.
+    Expected Cost line columns:
+      - shift_id
+      - GL account
+      - $
+      - Rate
     """
     excel_path = Path(excel_path)
     job_df = pd.read_excel(excel_path, sheet_name=job_sheet)
@@ -65,12 +58,10 @@ def load_inputs_from_excel(
     return job_df, cost_df
 
 
-# -----------------------------
-# Query replicas
-# -----------------------------
-
-
 def query_job_extract_base(job_df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Power Query replica of JobExtract_Base, minus Location.
+    """
     df = job_df.copy()
 
     df["visit_shift_id"] = pd.to_numeric(df["visit_shift_id"], errors="coerce").astype(
@@ -80,14 +71,18 @@ def query_job_extract_base(job_df: pd.DataFrame) -> pd.DataFrame:
 
     df = df[df["visit_shift_id"].notna()].copy()
 
-    for col in ["Class", "Location"]:
-        df[col] = df[col].apply(lambda x: None if pd.isna(x) or x == "#N/A" else str(x))
+    df["Class"] = df["Class"].apply(
+        lambda x: None if pd.isna(x) or x == "#N/A" else str(x)
+    )
 
-    df = df[["visit_shift_id", "Class", "actual_visit_hours", "Location"]].copy()
+    df = df[["visit_shift_id", "Class", "actual_visit_hours"]].copy()
     return df
 
 
 def query_class_hours_per_shift(job_extract_base: pd.DataFrame) -> pd.DataFrame:
+    """
+    Power Query replica of ClassHoursPerShift, minus Location.
+    """
     df = job_extract_base.copy()
 
     total_hours = (
@@ -108,10 +103,7 @@ def query_class_hours_per_shift(job_extract_base: pd.DataFrame) -> pd.DataFrame:
 
     result = (
         df.groupby(["visit_shift_id", "Class", "class_group"], dropna=False)
-        .agg(
-            proportion=("proportion", "sum"),
-            Location=("Location", "first"),
-        )
+        .agg(proportion=("proportion", "sum"))
         .reset_index()
     )
 
@@ -119,6 +111,9 @@ def query_class_hours_per_shift(job_extract_base: pd.DataFrame) -> pd.DataFrame:
 
 
 def query_shift_group_flags(class_hours_per_shift: pd.DataFrame) -> pd.DataFrame:
+    """
+    Power Query replica of ShiftGroupFlags.
+    """
     counts = (
         class_hours_per_shift[["visit_shift_id", "class_group"]]
         .drop_duplicates()
@@ -137,6 +132,9 @@ def query_shift_group_flags(class_hours_per_shift: pd.DataFrame) -> pd.DataFrame
 
 
 def query_costline_grouped(cost_df: pd.DataFrame, gl_code: str) -> pd.DataFrame:
+    """
+    Replica of CostLine_500xx grouped queries.
+    """
     gl_text = GL_MAP[gl_code]
 
     df = cost_df.copy()
@@ -161,6 +159,9 @@ def query_final_simple(
     class_hours_per_shift: pd.DataFrame,
     gl_code: str,
 ) -> pd.DataFrame:
+    """
+    Replica of Final_50007 / Final_50008 / Final_50012 / Final_50013.
+    """
     df = costline_grouped.merge(
         class_hours_per_shift,
         left_on="shift_id",
@@ -182,7 +183,6 @@ def query_final_simple(
             "total_cost",
             "allocated_cost",
             "Class",
-            "Location",
             "class_group",
             "GL_account",
         ]
@@ -197,6 +197,9 @@ def query_phase1_final(
     class_hours_per_shift: pd.DataFrame,
     gl_code: str,
 ) -> pd.DataFrame:
+    """
+    Replica of Final_50001_Phase1 / Final_50010_Phase1 / Final_50011_Phase1.
+    """
     df = costline_grouped.merge(
         shift_group_flags,
         left_on="shift_id",
@@ -227,7 +230,6 @@ def query_phase1_final(
             "total_cost",
             "allocated_cost",
             "Class",
-            "Location",
             "class_group",
             "GL_account",
         ]
@@ -241,6 +243,9 @@ def query_costline_phase2_raw(
     shift_group_flags: pd.DataFrame,
     gl_code: str,
 ) -> pd.DataFrame:
+    """
+    Replica of CostLine_50001_Phase2 / CostLine_50010_Phase2 / CostLine_50011_Phase2.
+    """
     gl_text = GL_MAP[gl_code]
 
     df = cost_df.copy()
@@ -265,6 +270,9 @@ def query_costline_phase2_raw(
 
 
 def query_phase2_ranked(costline_phase2_raw: pd.DataFrame) -> pd.DataFrame:
+    """
+    Replica of Phase2_Ranked / Phase2_Ranked_50010 / Phase2_Ranked_50011.
+    """
     max_rate = (
         costline_phase2_raw.groupby("shift_id", dropna=False)["Rate"]
         .max()
@@ -287,6 +295,9 @@ def query_final_phase2(
     class_hours_per_shift: pd.DataFrame,
     gl_code: str,
 ) -> pd.DataFrame:
+    """
+    Replica of Final_50001_Phase2 / Final_50010_Phase2 / Final_50011_Phase2.
+    """
     df = phase2_ranked.merge(
         class_hours_per_shift,
         left_on="shift_id",
@@ -316,15 +327,7 @@ def query_final_phase2(
     df["GL_account"] = gl_code
 
     result = df[
-        [
-            "shift_id",
-            "$",
-            "allocated_cost",
-            "Class",
-            "Location",
-            "class_group",
-            "GL_account",
-        ]
+        ["shift_id", "$", "allocated_cost", "Class", "class_group", "GL_account"]
     ].copy()
 
     return result
@@ -334,6 +337,9 @@ def query_phase2_no12(
     phase2_ranked: pd.DataFrame,
     class_hours_per_shift: pd.DataFrame,
 ) -> pd.DataFrame:
+    """
+    Replica of Phase2_No12 / Phase2_No12_50010 / Phase2_No12_50011.
+    """
     df = phase2_ranked.merge(
         class_hours_per_shift,
         left_on="shift_id",
@@ -360,6 +366,9 @@ def query_phase2_no12_allocated(
     class_hours_per_shift: pd.DataFrame,
     gl_code: str,
 ) -> pd.DataFrame:
+    """
+    Replica of Phase2_No12_Allocated / _50010 / _50011.
+    """
     df = phase2_ranked.merge(
         phase2_no12[["shift_id"]],
         on="shift_id",
@@ -382,15 +391,7 @@ def query_phase2_no12_allocated(
     df["GL_account"] = gl_code
 
     result = df[
-        [
-            "shift_id",
-            "$",
-            "allocated_cost",
-            "Class",
-            "Location",
-            "class_group",
-            "GL_account",
-        ]
+        ["shift_id", "$", "allocated_cost", "Class", "class_group", "GL_account"]
     ].copy()
 
     return result
@@ -400,19 +401,21 @@ def query_phase2_combined(
     final_phase2: pd.DataFrame,
     phase2_no12_allocated: pd.DataFrame,
 ) -> pd.DataFrame:
-    # Intentionally preserves the workbook logic exactly,
-    # including any duplicate rows that result from the append.
+    """
+    Replica of Final_50001_Phase2_Combined / Final_50010_Phase2_Combined /
+    Final_50011_Phase2_Combined.
+
+    Intentionally keeps workbook behavior exactly, including any duplicate rows.
+    """
     return pd.concat([final_phase2, phase2_no12_allocated], ignore_index=True)
-
-
-# -----------------------------
-# Full pipeline
-# -----------------------------
 
 
 def build_final_all(
     job_df: pd.DataFrame, cost_df: pd.DataFrame
 ) -> dict[str, pd.DataFrame]:
+    """
+    Full workbook replica, returning intermediate outputs plus Final_All.
+    """
     # Base queries
     job_extract_base = query_job_extract_base(job_df)
     class_hours_per_shift = query_class_hours_per_shift(job_extract_base)
@@ -494,7 +497,7 @@ def build_final_all(
         final_50011_phase2, phase2_no12_allocated_50011
     )
 
-    # Final_All append order must match workbook exactly
+    # Final append order must match workbook exactly
     final_all = pd.concat(
         [
             final_50007,
@@ -529,14 +532,10 @@ def build_final_all(
     }
 
 
-# -----------------------------
-# Example usage
-# -----------------------------
-
-if __name__ == "__main__":
+def main() -> None:
     input_file = "FebW1W2 Query.xlsx"
 
-    # Change these if the workbook sheet names differ
+    # Change these if your sheet names differ
     job_df, cost_df = load_inputs_from_excel(
         input_file,
         job_sheet="Job extract",
@@ -545,13 +544,20 @@ if __name__ == "__main__":
 
     outputs = build_final_all(job_df, cost_df)
 
-    # Write final output only
+    # Main output
     outputs["Final_All"].to_excel("Final_All_python.xlsx", index=False)
 
-    # Or write everything for debugging
+    # Debug workbook with intermediate outputs
     with pd.ExcelWriter("Replicated_Query_Output.xlsx", engine="openpyxl") as writer:
         for name, df in outputs.items():
-            safe_name = name[:31]
-            df.to_excel(writer, sheet_name=safe_name, index=False)
+            df.to_excel(writer, sheet_name=name[:31], index=False)
 
     print("Done.")
+    print(f"Final_All rows: {len(outputs['Final_All'])}")
+    print("Files written:")
+    print(" - Final_All_python.xlsx")
+    print(" - Replicated_Query_Output.xlsx")
+
+
+if __name__ == "__main__":
+    main()
