@@ -252,6 +252,7 @@ def _aggregate_costs(costs: pd.DataFrame) -> Tuple[pd.DataFrame, float]:
         costs_agg_dict[c] = (c, "first")
 
     if "GL" in costs.columns:
+
         def _combine_gl(s: pd.Series) -> object:
             u = {str(x).strip() for x in s.dropna() if str(x).strip()}
             return ", ".join(sorted(u)) if u else pd.NA
@@ -415,6 +416,7 @@ def _merge_and_finalize_shift_fact(
         "has_travel_allowance",
         "has_other_allowance",
         "profit",
+        "margin",
         "margin_pct",
         "visit_count",
         "projected_hours",

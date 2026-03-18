@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-py -m shift_profitability_new_allocation --visits ./input_files/visit_export_feb.csv --costs ./input_files/shift_costs_feb.csv --out-dir . --out-visits visits_export_enriched.csv --sah-transactions ./input_files/sah_transactions_feb.csv --out-sah-purchases memberships_sah_purchases.csv --dva-claims ./dva_claims_expanded.csv --vhc-claims ./vhc_claims.csv --chsp-claims ./chsp_dex_report.csv --mapping ./wages_allocation_mapping.xlsx
+py -m shift_profitability_new_allocation --visits ./input_files/visit_export_feb.csv --costs ./input_files/shift_costs_feb.csv --out-dir . --out-visits visits_export_enriched.csv --out-allocation-detail shift_gl_class_allocation.csv --sah-transactions ./input_files/sah_transactions_feb.csv --out-sah-purchases memberships_sah_purchases.csv --dva-claims ./dva_claims_expanded.csv --vhc-claims ./vhc_claims.csv --chsp-claims ./chsp_dex_report.csv --mapping ./wages_allocation_mapping.xlsx
 """
 
 from __future__ import annotations
@@ -9,9 +9,11 @@ import argparse
 from pathlib import Path
 from typing import Optional
 
+import numpy as np
 import pandas as pd
 
 from shift_profitability_lib import (
+    build_shift_gl_class_allocation_detail,
     build_shift_profitability_feed,
     clean_id_series,
     read_csv,
@@ -29,6 +31,19 @@ except ImportError:
     read_and_enrich_sah_transactions = None
     build_memberships_sah_purchases_from_tx = None
     build_memberships_sah_revenue_from_tx = None
+
+
+def _ensure_feed_has_margin_like_reference(feed: pd.DataFrame) -> pd.DataFrame:
+    """Reference shift_profitability feed exposes a ``margin`` column (profit/revenue)."""
+    out = feed.copy()
+    if "margin" in out.columns:
+        return out
+    if "revenue" not in out.columns or "profit" not in out.columns:
+        return out
+    r = pd.to_numeric(out["revenue"], errors="coerce")
+    p = pd.to_numeric(out["profit"], errors="coerce")
+    out["margin"] = np.where(r > 0, p / r, np.nan)
+    return out
 
 
 def main() -> int:
@@ -64,7 +79,7 @@ def main() -> int:
     parser.add_argument(
         "--sah-transactions",
         default=None,
-        help="Optional SAH transactions CSV path.",
+        help="SAH transactions CSV (same as reference). Omit only if PB model does not use sah_* columns.",
     )
     parser.add_argument(
         "--out-sah-purchases",
@@ -80,6 +95,11 @@ def main() -> int:
         "--mapping",
         default=None,
         help="Optional Excel: sheet 'Class' with visit_rate + Class (merged on load).",
+    )
+    parser.add_argument(
+        "--out-allocation-detail",
+        default=None,
+        help="Optional CSV: per shift × GL × Class (total_cost, allocated_cost, Class, Location, class_group, GL_account, Rate).",
     )
     args = parser.parse_args()
 
@@ -150,6 +170,7 @@ def main() -> int:
         chsp_claims_csv=args.chsp_claims,
         class_mapping_excel=class_mapping,
     )
+    df = _ensure_feed_has_margin_like_reference(df)
 
     out_path = out_dir / args.out
     write_csv(df, out_path, utf8_bom=args.utf8_bom)
@@ -166,6 +187,21 @@ def main() -> int:
             sah_revenue_by_membership,
             args.utf8_bom,
             class_mapping_excel=class_mapping,
+            costs_csv=args.costs,
+        )
+
+    if args.out_allocation_detail:
+        detail = build_shift_gl_class_allocation_detail(
+            visits_csv=args.visits,
+            costs_csv=args.costs,
+            shift_profitability_feed=df,
+            class_mapping_excel=class_mapping,
+            exclude_zero_revenue_visits=args.exclude_zero_revenue_visits,
+        )
+        detail_path = out_dir / args.out_allocation_detail
+        write_csv(detail, detail_path, utf8_bom=args.utf8_bom)
+        print(
+            f"Wrote allocation detail: {detail_path.resolve()}  (rows={len(detail):,})"
         )
 
     print(
