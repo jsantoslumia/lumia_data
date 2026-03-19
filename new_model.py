@@ -33,29 +33,151 @@ def derive_class_group(class_value: object) -> str:
     return "other"
 
 
-def load_inputs_from_excel(
-    excel_path: str | Path,
-    job_sheet: str = "Job extract",
-    cost_sheet: str = "Cost line",
-) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """
-    Read the two source sheets.
+# -----------------------------
+# Input loading + mapping prep
+# -----------------------------
 
-    Expected Job extract columns:
-      - visit_shift_id
+
+def load_source_files(
+    visits_csv_path: str | Path,
+    shift_costs_csv_path: str | Path,
+    mapping_excel_path: str | Path,
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    visits_df = pd.read_csv(visits_csv_path, low_memory=False)
+    shift_costs_df = pd.read_csv(shift_costs_csv_path, low_memory=False)
+
+    class_map_df = pd.read_excel(mapping_excel_path, sheet_name="Class")
+    eh_map_df = pd.read_excel(mapping_excel_path, sheet_name="EH Mapping")
+
+    return visits_df, shift_costs_df, class_map_df, eh_map_df
+
+
+def clean_numeric(series: pd.Series) -> pd.Series:
+    return pd.to_numeric(
+        series.astype(str)
+        .str.replace(",", "", regex=False)
+        .str.replace("$", "", regex=False)
+        .str.strip(),
+        errors="coerce",
+    )
+
+
+def prepare_class_mapping(class_map_df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Uses the 'Class' sheet from the mapping workbook.
+
+    Required columns:
+      - visit_rate
       - Class
-      - actual_visit_hours
 
-    Expected Cost line columns:
-      - shift_id
-      - GL account
-      - $
-      - Rate
+    Deduplicates by visit_rate to mimic a simple lookup table.
     """
-    excel_path = Path(excel_path)
-    job_df = pd.read_excel(excel_path, sheet_name=job_sheet)
-    cost_df = pd.read_excel(excel_path, sheet_name=cost_sheet)
-    return job_df, cost_df
+    required = {"visit_rate", "Class"}
+    missing = required - set(class_map_df.columns)
+    if missing:
+        raise ValueError(
+            f"Class mapping sheet missing required columns: {sorted(missing)}"
+        )
+
+    df = class_map_df[["visit_rate", "Class"]].copy()
+    df["visit_rate"] = df["visit_rate"].astype(str).str.strip()
+    df["Class"] = df["Class"].apply(
+        lambda x: None if pd.isna(x) or x == "#N/A" else str(x)
+    )
+
+    # Keep first mapping per visit_rate
+    df = df.drop_duplicates(subset=["visit_rate"], keep="first").copy()
+    return df
+
+
+def prepare_eh_mapping(eh_map_df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Uses the 'EH Mapping' sheet from the mapping workbook.
+
+    Required columns:
+      - Rule Name
+      - GL
+
+    Deduplicates by Rule Name to mimic a simple lookup table.
+    """
+    required = {"Rule Name", "GL"}
+    missing = required - set(eh_map_df.columns)
+    if missing:
+        raise ValueError(
+            f"EH Mapping sheet missing required columns: {sorted(missing)}"
+        )
+
+    df = eh_map_df[["Rule Name", "GL"]].copy()
+    df["Rule Name"] = df["Rule Name"].astype(str).str.strip()
+    df["GL"] = df["GL"].apply(lambda x: None if pd.isna(x) else str(x).strip())
+
+    # Keep first mapping per Rule Name
+    df = df.drop_duplicates(subset=["Rule Name"], keep="first").copy()
+    return df
+
+
+def build_job_extract_from_visits(
+    visits_df: pd.DataFrame,
+    class_map_df: pd.DataFrame,
+) -> pd.DataFrame:
+    required = {"visit_shift_id", "actual_visit_hours", "visit_rate"}
+    missing = required - set(visits_df.columns)
+    if missing:
+        raise ValueError(
+            f"visits_report.csv missing required columns: {sorted(missing)}"
+        )
+
+    df = visits_df.copy()
+
+    df["visit_rate"] = df["visit_rate"].astype(str).str.strip()
+    class_map_df = class_map_df.copy()
+    class_map_df["visit_rate"] = class_map_df["visit_rate"].astype(str).str.strip()
+
+    df["actual_visit_hours"] = clean_numeric(df["actual_visit_hours"])
+
+    df = df.merge(
+        class_map_df,
+        on="visit_rate",
+        how="left",
+    )
+
+    return df
+
+
+def build_cost_line_from_shift_costs(
+    shift_costs_df: pd.DataFrame,
+    eh_mapping_df: pd.DataFrame,
+) -> pd.DataFrame:
+    required = {"shift_id", "Rate", "Units", "Rule Name"}
+    missing = required - set(shift_costs_df.columns)
+    if missing:
+        raise ValueError(f"shift_costs.csv missing required columns: {sorted(missing)}")
+
+    df = shift_costs_df.copy()
+
+    df["Rule Name"] = df["Rule Name"].astype(str).str.strip()
+    eh_mapping_df = eh_mapping_df.copy()
+    eh_mapping_df["Rule Name"] = eh_mapping_df["Rule Name"].astype(str).str.strip()
+
+    df["Rate"] = clean_numeric(df["Rate"])
+    df["Units"] = clean_numeric(df["Units"])
+
+    df["$"] = df["Rate"] * df["Units"]
+
+    df = df.merge(
+        eh_mapping_df,
+        on="Rule Name",
+        how="left",
+    )
+
+    df = df.rename(columns={"GL": "GL account"})
+
+    return df
+
+
+# -----------------------------
+# Query replicas
+# -----------------------------
 
 
 def query_job_extract_base(job_df: pd.DataFrame) -> pd.DataFrame:
@@ -67,7 +189,7 @@ def query_job_extract_base(job_df: pd.DataFrame) -> pd.DataFrame:
     df["visit_shift_id"] = pd.to_numeric(df["visit_shift_id"], errors="coerce").astype(
         "Int64"
     )
-    df["actual_visit_hours"] = pd.to_numeric(df["actual_visit_hours"], errors="coerce")
+    df["actual_visit_hours"] = clean_numeric(df["actual_visit_hours"])
 
     df = df[df["visit_shift_id"].notna()].copy()
 
@@ -141,9 +263,9 @@ def query_costline_grouped(cost_df: pd.DataFrame, gl_code: str) -> pd.DataFrame:
     df = df[df["GL account"] == gl_text].copy()
 
     df["shift_id"] = pd.to_numeric(df["shift_id"], errors="coerce").astype("Int64")
-    df["$"] = pd.to_numeric(df["$"], errors="coerce")
+    df["$"] = clean_numeric(df["$"])
     if "Rate" in df.columns:
-        df["Rate"] = pd.to_numeric(df["Rate"], errors="coerce")
+        df["Rate"] = clean_numeric(df["Rate"])
 
     df = df[["shift_id", "$"]].copy()
 
@@ -252,8 +374,8 @@ def query_costline_phase2_raw(
     df = df[df["GL account"] == gl_text].copy()
 
     df["shift_id"] = pd.to_numeric(df["shift_id"], errors="coerce").astype("Int64")
-    df["$"] = pd.to_numeric(df["$"], errors="coerce")
-    df["Rate"] = pd.to_numeric(df["Rate"], errors="coerce")
+    df["$"] = clean_numeric(df["$"])
+    df["Rate"] = clean_numeric(df["Rate"])
 
     df = df[["shift_id", "$", "Rate"]].copy()
 
@@ -405,17 +527,29 @@ def query_phase2_combined(
     Replica of Final_50001_Phase2_Combined / Final_50010_Phase2_Combined /
     Final_50011_Phase2_Combined.
 
-    Intentionally keeps workbook behavior exactly, including any duplicate rows.
+    Intentionally preserves workbook behavior exactly, including any duplicates.
     """
     return pd.concat([final_phase2, phase2_no12_allocated], ignore_index=True)
 
 
-def build_final_all(
-    job_df: pd.DataFrame, cost_df: pd.DataFrame
+# -----------------------------
+# Pipeline
+# -----------------------------
+
+
+def build_final_all_from_sources(
+    visits_df: pd.DataFrame,
+    shift_costs_df: pd.DataFrame,
+    class_map_df: pd.DataFrame,
+    eh_map_df: pd.DataFrame,
 ) -> dict[str, pd.DataFrame]:
-    """
-    Full workbook replica, returning intermediate outputs plus Final_All.
-    """
+    # Pre-build equivalent source tables
+    class_map_prepared = prepare_class_mapping(class_map_df)
+    eh_map_prepared = prepare_eh_mapping(eh_map_df)
+
+    job_df = build_job_extract_from_visits(visits_df, class_map_prepared)
+    cost_df = build_cost_line_from_shift_costs(shift_costs_df, eh_map_prepared)
+
     # Base queries
     job_extract_base = query_job_extract_base(job_df)
     class_hours_per_shift = query_class_hours_per_shift(job_extract_base)
@@ -497,7 +631,7 @@ def build_final_all(
         final_50011_phase2, phase2_no12_allocated_50011
     )
 
-    # Final append order must match workbook exactly
+    # Final append order exactly matches workbook
     final_all = pd.concat(
         [
             final_50007,
@@ -515,6 +649,8 @@ def build_final_all(
     )
 
     return {
+        "Job_Input_Mapped": job_df,
+        "Cost_Input_Mapped": cost_df,
         "JobExtract_Base": job_extract_base,
         "ClassHoursPerShift": class_hours_per_shift,
         "ShiftGroupFlags": shift_group_flags,
@@ -533,21 +669,40 @@ def build_final_all(
 
 
 def main() -> None:
-    input_file = "FebW1W2 Query.xlsx"
+    visits_csv = "visits_report.csv"
+    shift_costs_csv = "shift_costs.csv"
+    mapping_file = "wages_allocation_mapping.xlsx"
 
-    # Change these if your sheet names differ
-    job_df, cost_df = load_inputs_from_excel(
-        input_file,
-        job_sheet="Job extract",
-        cost_sheet="Cost line",
+    visits_df, shift_costs_df, class_map_df, eh_map_df = load_source_files(
+        visits_csv_path=visits_csv,
+        shift_costs_csv_path=shift_costs_csv,
+        mapping_excel_path=mapping_file,
     )
 
-    outputs = build_final_all(job_df, cost_df)
+    outputs = build_final_all_from_sources(
+        visits_df=visits_df,
+        shift_costs_df=shift_costs_df,
+        class_map_df=class_map_df,
+        eh_map_df=eh_map_df,
+    )
 
-    # Main output
-    outputs["Final_All"].to_excel("Final_All_python.xlsx", index=False)
+    outputs["Final_All"].to_excel("shift_costs_allocation.xlsx", index=False)
 
-    # Debug workbook with intermediate outputs
+    mapped_job = outputs["Job_Input_Mapped"]
+    mapped_cost = outputs["Cost_Input_Mapped"]
+
+    print("Job rows:", len(mapped_job))
+    print("Cost rows:", len(mapped_cost))
+
+    print("Mapped Class nulls:", mapped_job["Class"].isna().sum())
+    print("Mapped GL account nulls:", mapped_cost["GL account"].isna().sum())
+
+    print("Cost $ summary:")
+    print(mapped_cost["$"].describe())
+
+    print("GL account sample:")
+    print(mapped_cost["GL account"].dropna().value_counts().head(20))
+
     with pd.ExcelWriter("Replicated_Query_Output.xlsx", engine="openpyxl") as writer:
         for name, df in outputs.items():
             df.to_excel(writer, sheet_name=name[:31], index=False)
@@ -555,7 +710,7 @@ def main() -> None:
     print("Done.")
     print(f"Final_All rows: {len(outputs['Final_All'])}")
     print("Files written:")
-    print(" - Final_All_python.xlsx")
+    print(" - shift_costs_allocation.xlsx")
     print(" - Replicated_Query_Output.xlsx")
 
 
