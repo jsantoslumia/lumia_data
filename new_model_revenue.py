@@ -4,6 +4,19 @@ Build separate outputs:
 - shift_costs_allocation.xlsx (from new_model allocation pipeline)
 - visit_revenue.csv (visit-level revenue with DVA/VHC/CHSP claim logic)
 - memberships_sah_purchases.csv (optional SAH purchases)
+
+py -m new_model_revenue \
+  --visits ./input_files/visit_export_feb.csv \
+  --costs ./input_files/shift_costs_feb.csv \
+  --mapping ./wages_allocation_mapping.xlsx \
+  --out-dir ./test_files/test \
+  --out-allocation shift_costs_allocation.xlsx \
+  --out-visit-revenue visit_revenue.csv \
+  --sah-transactions ./input_files/sah_transactions_feb.csv \
+  --out-sah-purchases memberships_sah_purchases.csv \
+  --dva-claims ./dva_claims_expanded.csv \
+  --vhc-claims ./vhc_claims.csv \
+  --chsp-claims ./chsp_dex_report.csv
 """
 
 from __future__ import annotations
@@ -15,7 +28,11 @@ from typing import Dict, List, Optional
 import numpy as np
 import pandas as pd
 
-from new_model import build_final_all_from_sources, load_source_files
+from new_model import (
+    build_final_all_from_sources,
+    load_source_files,
+    prepare_class_mapping,
+)
 
 try:
     from shift_profitability_sah import (
@@ -303,6 +320,7 @@ def build_visit_revenue(
     dva_claims_csv: Optional[str] = None,
     vhc_claims_csv: Optional[str] = None,
     chsp_claims_csv: Optional[str] = None,
+    class_map_df: Optional[pd.DataFrame] = None,
 ) -> pd.DataFrame:
     visits = _read_csv(visits_csv)
 
@@ -356,6 +374,12 @@ def build_visit_revenue(
         visits = _apply_chsp_claim_pricing(
             visits, chsp_claims_csv, membership_scheme_col
         )
+
+    if class_map_df is not None and "visit_rate" in visits.columns:
+        class_lookup = prepare_class_mapping(class_map_df)
+        class_lookup["visit_rate"] = class_lookup["visit_rate"].astype(str).str.strip()
+        visits["visit_rate"] = visits["visit_rate"].astype(str).str.strip()
+        visits = visits.merge(class_lookup, on="visit_rate", how="left")
 
     if exclude_zero_revenue_visits:
         visits = visits.loc[visits["visit_projected_price"] != 0].copy()
@@ -430,6 +454,7 @@ def main() -> int:
         dva_claims_csv=args.dva_claims,
         vhc_claims_csv=args.vhc_claims,
         chsp_claims_csv=args.chsp_claims,
+        class_map_df=class_map_df,
     )
     visit_revenue_path = out_dir / args.out_visit_revenue
     _write_csv(visit_revenue, visit_revenue_path, utf8_bom=args.utf8_bom)
