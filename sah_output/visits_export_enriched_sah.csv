@@ -1,0 +1,1545 @@
+visit_id,helper_name,helper_region,Employee ID,membership_name,attached_to_shift,projected_visit_hours,actual_visit_hours,visit_scheduled_start_time,visit_scheduled_end_time,provider_travel_distance_actual,provider_travel_time_actual_minutes,client_transport_actual,visit_rate,visit_shift_id,overnight_visit_rate,services,visit_status,cancellation_note,visit_tasks_note,membership_community_names,helper_enter_client_transport_at_checkout,helper_enter_client_transport_at_checkout (copy),cancellation_reason,client_transport_note,Date,Payrun,helper_id,visit_projected_price,membership_funder_full_name,visit_rate_external_id,membership_community_name,membership_funding_scheme,membership_custom_funding_scheme_name,membership_id,membership_uuid,visit_shift_id (copy),shift_total_cost,shift_total_revenue,visit_cost_allocated,allocation_method,allocation_ok,allocation_reason,sah_revenue,sah_visit_revenue
+64919824,Jazmin SEBO,NSW,11612124,Doreen HEGGIE,"
+
+  True
+
+",1.0,0.75,29/11/2025 10:15 am,29/11/2025 11:15 am,9.0,11.0,,Assistance with self-care and activities of daily living - Saturday,2573208,,Personal Care,complete,,,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,29/11/2025,,86460,108.75,Services Australia,SERV-0020,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2573208.0,198.23,108.75,135.89,helper_hours_weighted,True,ok,5208.0,107.01
+67989456,Mariana CORDOVA CORONEL DE BANDA,NSW,11578061,Judith TURNER,"
+
+  True
+
+",1.0,1.0,28/11/2025 4:00 pm,28/11/2025 5:00 pm,20.0,23.0,,Assistance with self-care and activities of daily living - Standard,2574131,,Personal Care,complete,,"Today I helped the client bathe, get changed, and reminded her about her medication, and then we had a chat. The client is very happy with my work.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,28/11/2025,,85683,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246358.0,200a7817-acec-4ade-8e39-312ee04272a5,2574131.0,97.05,114.0,92.94,helper_hours_weighted,True,ok,2895.0,137.86
+65663674,Jazmin SEBO,NSW,11612124, Henry FIFE,"
+
+  True
+
+",1.0,1.0,28/11/2025 3:00 pm,28/11/2025 4:00 pm,14.0,19.0,,Assistance with self-care and activities of daily living - Standard,2594285,,Personal Care,complete,,"John did not want anything done, but wished to sit and have a chat. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,28/11/2025,,86460,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,250654.0,af665d0c-b2c7-4779-9c47-7c46468374cc,2594285.0,279.59,114.0,181.19,helper_hours_weighted,True,ok,3359.0,152.68
+68032624,Kayla-Anne HODGE,NSW,10008367,Judith BENNETT ,"
+
+  True
+
+",2.0,2.0,28/11/2025 11:40 am,28/11/2025 1:40 pm,4.0,6.0,,General - Intro -Standard 2+ Hours,2615643,,Domestic Assistance,complete,,"Arrived at Judy’s home and sorted through the boxes. Removed all CDs and placed them neatly underneath the cupboard, then organised and stored the DVDs in the same area. Placed a few additional items into the cupboards as needed. Finished by putting all dishes away.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,28/11/2025,,51341,183.6,Services Australia,SERV-0001,NSW - Central Coast,sah,,263387.0,f56bbf8d-d90c-4c3f-9097-1aaea776a0b9,2615643.0,135.3,183.6,492.08,helper_hours_weighted,True,ok,393.6,393.6
+67104077,Maddisyn WOODS,NSW,12320687,Kenneth HAYWARD,"
+
+  True
+
+",2.0,2.0,28/11/2025 11:15 am,28/11/2025 1:15 pm,25.0,27.0,,General - Standard 2+ Hours,2588466,,Domestic Assistance,complete,,DA attended to,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,28/11/2025,,95651,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,257477.0,593aa0de-e341-4654-ac8d-a25b809242e8,2588466.0,216.98,216.0,190.54,helper_hours_weighted,True,ok,1208.0,402.67
+66956078,Rachel PETHYBRIDGE,NSW,12229436,Rose BOTWOOD,"
+
+  True
+
+",1.0,1.0,28/11/2025 10:00 am,28/11/2025 11:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2591584,,Personal Care,complete,,"Cleaned kitchen
+And main bathroom Rose had attended to her own personal care I helped with drying of her hair and placing rollers in her fringe.
+Vacuumed common area shower,still noticeable clutter in hallway and other areas of the home which I have been decluttering with the permission of Rose and John by just putting items in order and easy for them to find.
+Made a cup of tea for Rose to enjoy whilst I attended to D/A
+Left Rose in a happier frame of mind then what was observed on arrival 
+Rose and John thanked me for all services provided 
+","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,28/11/2025,,94886,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246241.0,3c923c3b-6961-4c24-ac75-3a1b1b1dcb05,2591584.0,79.94,114.0,77.52,helper_hours_weighted,True,ok,2246.0,132.12
+67192088,Enola LAPOD,NSW,10007941,Karen PORTER,"
+
+  True
+
+",3.0,3.0,28/11/2025 9:30 am,28/11/2025 12:30 pm,0.0,0.0,0.0,Accompanied activities - Standard 2+ Hours (inc transport),2571708,,Social Support (Accompanied activity),complete,,"DA, personal care attended, meal prep. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,28/11/2025,,50968,342.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,187210.0,eb36b88e-3885-4dfb-942b-d94eb80d2e83,2571708.0,131.27,342.0,184.84,helper_hours_weighted,True,ok,6131.25,387.24
+67987983,Mariana CORDOVA CORONEL DE BANDA,NSW,11578061,Annette MILLER-STANFORD,"
+
+  True
+
+",1.0,1.0,28/11/2025 9:30 am,28/11/2025 10:30 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2574130,,Personal Care,complete,,"Today I helped the client shower, dressed her, and then took out the rubbish. Afterwards, we chatted for a while and Annette told me that Lumia's Christmas event was lovely and that she enjoyed it very much.","NSW - Central Coast, State - NSW",True,True,,,28/11/2025,,85683,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,242403.0,1a03ab7f-0053-48aa-b830-80f3c9082974,2574130.0,77.78,114.0,92.94,helper_hours_weighted,True,ok,3223.25,130.23
+65501079,Kelly-Louise JACKSON,NSW,11534058,William PHILLIPS,"
+
+  True
+
+",2.0,2.0,28/11/2025 9:00 am,28/11/2025 11:00 am,0.0,0.0,,General - Standard 2+ Hours,2573284,,Domestic Assistance,complete,,"Changed both beds , washed and hung out 2 x bed sheets.
+Mopped all floors, dusted, bought small load of clothes of line and folded.
+Cleaned all kitchen bench tops and cupboard doors inside and outside.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,28/11/2025,,85290,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,256164.0,e8d83246-dc67-493e-b248-af4e0903fb8d,2573284.0,222.71,216.0,268.92,helper_hours_weighted,True,ok,677.0,338.5
+66162471,Karen HAMMOND,NSW,10008510,Priscilla BOARDMAN,"
+
+  True
+
+",3.0,3.0,28/11/2025 9:00 am,28/11/2025 12:00 pm,0.0,0.0,,Assistance with self-care and activities of daily living - Standard 2+ Hours,2570516,,Personal Care,complete,,Assisted Jane with shower dressing and moisturizers to skin. Changed bed linens vacuum and mopped floor polished and dusted furniture,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,28/11/2025,,51511,324.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,212864.0,07a0f05b-e82c-462f-966a-83a69fda7b17,2570516.0,370.62,324.0,376.27,helper_hours_weighted,True,ok,3902.25,360.21
+67225914,Sarah MCELROY,NSW,12320795,Petra PIPPERT,"
+
+  True
+
+",3.0,3.0,28/11/2025 9:00 am,28/11/2025 12:00 pm,0.0,0.0,47.0,Accompanied activities - Intro - Standard 2+ Hours (inc transport),2584810,,Social Support (Accompanied activity),complete,,Took Petra out to Umina beach for the morning,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,From her house to Umina beach and back home ,28/11/2025,,95732,290.7,Services Australia,SERV-0011,NSW - Central Coast,sah,,260014.0,91ba674e-336d-43bc-9746-ce4bc5963348,2584810.0,177.8,290.7,183.85,helper_hours_weighted,True,ok,2528.8,541.89
+67704123,Carol-Lyn BROWN,NSW,10008436,Doreen HEGGIE,"
+
+  True
+
+",2.0,2.0,28/11/2025 8:10 am,28/11/2025 10:10 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard 2+ Hours,2570974,,Personal Care,complete,,"Doreen sitting out the back on my arrival. I made her coffee and 2 x porridge, of which she ate all. Boiled 2 eggs and made curried egg sandwich which I covered and left for lunch/dinner. Left other food and drinks on table. Gave Doreen medication and cigarettes. Cleaned bathroom and collected dirty clothes/ towels etc from around the house and took to laundry. Cleaned kitchen and all surfaces including floor. Tidied bed and bedroom. Made sure tv was on and volume turned up. Left Doreen sitting at table. No issues","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,28/11/2025,,51402,216.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2570974.0,209.57,216.0,325.16,helper_hours_weighted,True,ok,5208.0,285.37
+68052386,Jessica WELDON,NSW,12363696,Heather GREETHEAD,"
+
+  True
+
+",2.0,2.0,28/11/2025 8:00 am,28/11/2025 10:00 am,0.0,0.0,36.0,Accompanied activities - Intro - Standard 2+ Hours (inc transport),2634908,,Social Support (Accompanied activity),complete,,Travelled to wyong hospital for blood tests and xrays,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,Travelled to wyong hospital and back,28/11/2025,,96047,193.8,Services Australia,SERV-0011,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,2634908.0,123.67,193.8,127.81,helper_hours_weighted,True,ok,4982.05,260.5
+66379794,Moamen MAROUF,NSW,10310314,Frank BELL,"
+
+  True
+
+",1.0,1.0,27/11/2025 2:35 pm,27/11/2025 3:35 pm,14.0,18.0,,Physiotherapy - Direct,2638278,,Allied Health - Physiotherapy,complete,,Frank was seen today for physiotherapy service and did all exc program well with no issues ,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,27/11/2025,,51281,180.0,Services Australia,SERV-0034,NSW - Central Coast,hcp,,258386.0,b4c7ed66-8e27-4542-856d-5308925cc22e,2638278.0,110.5,180.0,181.8,helper_hours_weighted,True,ok,2084.0,160.31
+60097743,Maree CONSTANTINOU,NSW,11665706,Barry EVANS,"
+
+  True
+
+",1.0,1.0,27/11/2025 2:00 pm,27/11/2025 3:00 pm,19.0,27.0,,General - Standard,2574046,,Domestic Assistance,complete,,"I completed the below today for Barry;
+- changed bedding
+- wiped down kitchen benches, sink & stove top
+- dusted table tops in dining, lounge & bedrooms
+- cleaned bathroom inc. mirrors + toilet
+- vacuum of all areas
+- mopping of kitchen, bathroom, toilet & laundry
+Barry thanked me & said he'd see me next time.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,27/11/2025,,89507,114.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,254180.0,d1087e2d-b0ce-4d1f-81eb-44ff813534e0,2574046.0,322.93,468.6,128.25,helper_hours_weighted,True,ok,438.0,219.0
+66693216,Nicole FRESSARD,NSW,11476575,Dawn DETTMAR,"
+
+  True
+
+",3.0,3.0,27/11/2025 12:45 pm,27/11/2025 3:45 pm,8.0,8.0,24.0,Accompanied activities - Standard 2+ Hours (inc transport),2574031,,Social Support (Accompanied activity),complete,,"Dawn and I went out to do her food shopping.
+We headed to Blue Haven Aldi, then Woolworths at Lake Munmorah. 
+Packed the car. 
+On the way home we stopped in at the post office.
+Helped bring groceries inside and unpacked.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,27/11/2025,,84740,342.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,203225.0,8c2267f5-8fc5-4b32-ad66-91a471f5f87b,2574031.0,291.95,342.0,403.54,helper_hours_weighted,True,ok,1361.0,408.3
+66416545,Maree CONSTANTINOU,NSW,11665706,Michelle DAVIS,"
+
+  True
+
+",1.5,1.5,27/11/2025 12:00 pm,27/11/2025 1:30 pm,27.0,26.0,,General - Standard,2574046,,Domestic Assistance,complete,," Michelle was pleased to see me. I completed the below today;
+- changed bedding
+- watered orchids
+- swept back patio
+- hung washing out
+- took bin/rubbish out
+- checked mail
+- dusted TV cabinet
+- cleaned bathrooms partially inc. mirrors, bathtub & outer toilet bowls + shower recesses & screens
+- full vacuum
+- mop of hard surfaces inside
+Michelle thanked me & said I'd see her in a fortnight.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,27/11/2025,,89507,171.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,246005.0,0fd922d6-1250-4d57-943d-0cdc80bcd6d5,2574046.0,322.93,468.6,192.37,helper_hours_weighted,True,ok,1679.25,629.72
+67710321,Carol-Lyn BROWN,NSW,10008436,Doreen HEGGIE,"
+
+  True
+
+",2.0,2.0,27/11/2025 11:05 am,27/11/2025 1:05 pm,2.0,4.0,,Assistance with self-care and activities of daily living - Standard 2+ Hours,2570973,,Personal Care,complete,,"Attended Doreen. Doreen on the front verandah on my arrival. We went in and made porridge and coffee. Assisted Doreen to have a wash and put a new pad on and cooler clothes as it’s very hot. Went to Cole’s for groceries, put groceries away and cleaned kitchen.  Did a load of washing and hung out. Wiped over bathroom. Gave Doreen last packet of cigarettes. Gave medication. Heated up Dim sims and left on table with other food and drinks.
+Checked tv was set and ready, Doreen sitting at kitchen table on my leaving and appeared in good spirits. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,27/11/2025,,51402,216.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2570973.0,189.77,216.0,325.16,helper_hours_weighted,True,ok,5208.0,285.37
+66364164,Hazal EREN,NSW,12002969,Frank BELL,"
+
+  True
+
+",2.0,2.0,27/11/2025 11:00 am,27/11/2025 1:00 pm,28.0,33.0,3.0,Accompanied activities - Standard 2+ Hours (inc transport),2573191,,Social Support (Accompanied activity),complete,,Frank and I went to Budgewoi Soccer Club and had lunch,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,27/11/2025,,92750,228.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,258386.0,b4c7ed66-8e27-4542-856d-5308925cc22e,2573191.0,184.12,228.0,179.38,helper_hours_weighted,True,ok,2084.0,320.62
+64953766,Rachel PETHYBRIDGE,NSW,12229436,Annette MILLER-STANFORD,"
+
+  True
+
+",4.0,4.0,27/11/2025 10:30 am,27/11/2025 2:30 pm,0.0,0.0,35.0,Accompanied activities - Standard 2+ Hours (inc transport),2573096,,Social Support (Accompanied activity),complete,,"First meet with Annette a lovely intelligent lady who had many errands to run today
+First to Pharmacy to drop scripts off then to Woy Woy Seafood outlet to purchase seafood to freeze for the festive season from here to Point Claire Aldi where she did quite a large shop fully assisted from Aldi back to pharmacy to pick up medication then to home
+On arrival I packed away groceries and made Annette lunch a cheese and ham sandwich 
+Engaged well throughout support","NSW - Central Coast, State - NSW",True,True,,,27/11/2025,,94886,456.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,242403.0,1a03ab7f-0053-48aa-b830-80f3c9082974,2573096.0,209.16,456.0,310.06,helper_hours_weighted,True,ok,3223.25,520.93
+67208349,Naomi TEXEIRA,NSW,11578062,Heather GREETHEAD,"
+
+  True
+
+",3.0,3.0,27/11/2025 10:15 am,27/11/2025 1:15 pm,0.0,0.0,10.0,Accompanied activities - Standard 2+ Hours (inc transport),2573128,,Social Support (Accompanied activity),complete,,"drove Heather to Woolworths, sat down for a coffee, she bought a dress. Happy upon departure ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,27/11/2025,,86459,342.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,2573128.0,128.18,342.0,229.54,helper_hours_weighted,True,ok,4982.05,390.75
+65490838,Michelle SMITH,NSW,11779036,Patricia CLIMPSON,"
+
+  True
+
+",2.0,2.0,27/11/2025 10:00 am,27/11/2025 12:00 pm,0.0,0.0,,General - Standard 2+ Hours,2573315,,Domestic Assistance,complete,,"
+* cleaned kitchen 
+* Cleaned bathrooms 
+* Put washing
+* Put washing out and once finished hung out
+* Rang Telstra on Trish’s behalf as she could not ring out on her phone. Telstra claimed she had not paid the bill but I took Trish to post office on the 13 Nov. 
+* Telstra said that money went on an old account as they have up dated their billing / payment system so she will get a cheque in the mail. 
+* Trish was to pay the bill again today and the have given her phone access to calling out again.
+* I explained that  for Trish to not be able to call out was not acceptable as she may have needed help from a family member not an ambulance.
+* She is able to call out now as well tested it.
+* I fell I’d like to call the ombudsman about this as  it is not good for Telstra to cut service over one bill unpaid.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,27/11/2025,,90291,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,250486.0,5668326c-a811-498a-81bc-f579c55959ac,2573315.0,166.14,216.0,137.83,helper_hours_weighted,True,ok,1267.0,253.4
+67344665,Melanie BALKEN ,NSW,11778915,Christine TCACIUC,"
+
+  True
+
+",3.0,3.0,27/11/2025 10:00 am,27/11/2025 1:00 pm,0.0,0.0,0.0,Shopping - Standard 2+ Hours,2574132,,"Domestic Assistance, Personal Care",complete,,"PC, and hair washed. Bathroom cleaned, floors mopped and vacuumed. Had a lovely chat. Finished at 12.37. No internet to check out- Optus had gone down for a little while. ","CC - CM - Caitlin Kirkpatrick, NSW - Central Coast",True,True,,,27/11/2025,,90407,324.0,Services Australia,SERV-0003,NSW - Central Coast,hcp,,249771.0,d036c153-9b45-4519-be30-9d9931c3fbfe,2574132.0,124.79,324.0,226.84,helper_hours_weighted,True,ok,1927.0,361.31
+67873161,Maree CONSTANTINOU,NSW,11665706,Susan MCCASKIE,"
+
+  True
+
+",2.0,2.0,27/11/2025 9:30 am,27/11/2025 11:30 am,0.0,0.0,,General - Intro -Standard 2+ Hours,2574046,,Domestic Assistance,complete,,"Today for Sue & John I completed the below;
+- cleaned 2 x bathrooms inc. bathtub
+- dusting of skirting boards throughout
+- clean/dust of Sue's bedroom furniture
+- vacuum of all floors
+- mop of all floors
+Sue thanked me very much & said she'd see me in a fortnight. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,27/11/2025,,89507,183.6,Services Australia,SERV-0001,NSW - Central Coast,sah,,262668.0,5b755c1d-d547-4b66-87ce-5684df02b944,2574046.0,322.93,468.6,256.5,helper_hours_weighted,True,ok,813.6,813.6
+67894483,Sarah MCELROY,NSW,12320795,Petra PIPPERT,"
+
+  True
+
+",3.0,3.0,27/11/2025 9:00 am,27/11/2025 12:00 pm,0.0,0.0,15.0,Accompanied activities - Intro - Standard 2+ Hours (inc transport),2628794,,Social Support (Accompanied activity),complete,,Took Petra shopping for the day,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,27/11/2025,,95732,290.7,Services Australia,SERV-0011,NSW - Central Coast,sah,,260014.0,91ba674e-336d-43bc-9746-ce4bc5963348,2628794.0,146.12,290.7,183.85,helper_hours_weighted,True,ok,2528.8,541.89
+66070140,Sri ASTUTIK ,NSW,11697863,Judith TURNER,"
+
+  True
+
+",1.0,1.0,26/11/2025 4:00 pm,26/11/2025 5:00 pm,22.0,28.0,,Assistance with self-care and activities of daily living - Standard,2623964,,Personal Care,complete,,"Assisted Judy for shower
+Turned the water to right temperature 
+Undressed 
+Put the pad in the bin
+Applied deodorant 
+Applied lotion
+Dressed 
+Incuraged Judy to brush hair and make up
+Hang the towel 
+Witnessed Judy injected with insulin 
+Have a good chat with Judy and Ed","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,26/11/2025,,89888,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246358.0,200a7817-acec-4ade-8e39-312ee04272a5,2623964.0,120.99,114.0,314.21,helper_hours_weighted,True,ok,2895.0,137.86
+67049980,Sarah BURGIN,NSW,10008454, Henry FIFE,"
+
+  True
+
+",1.0,1.0,26/11/2025 3:25 pm,26/11/2025 4:25 pm,21.0,19.0,,Assistance with self-care and activities of daily living - Standard,2573043,,Personal Care,complete,,"greeted john, checked his meds and he had already taken his afternoon meds and there were no days missed, he was eating hot chips on my arrival and is planning to have lamb cutlets for dinner, had a nice chat and watched tv, he started dozing off on my departure. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,26/11/2025,,51427,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,250654.0,af665d0c-b2c7-4779-9c47-7c46468374cc,2573043.0,366.8,114.0,302.66,helper_hours_weighted,True,ok,3359.0,152.68
+67114335,Tara FERRIS-MEYER,NSW,11653998,Annette MILLER-STANFORD,"
+
+  True
+
+",0.75,0.75,26/11/2025 2:00 pm,26/11/2025 2:45 pm,0.0,15.0,17.0,Transport a client - Standard (per trip 0-25km),2594345,,Transport (Direct),complete,,Picked up from Lumia Christmas lunch and dropped home ,"NSW - Central Coast, State - NSW",True,True,,,26/11/2025,,89506,56.25,Services Australia,SERV-0016,NSW - Central Coast,hcp,,242403.0,1a03ab7f-0053-48aa-b830-80f3c9082974,2594345.0,110.77,56.25,46.19,helper_hours_weighted,True,ok,3223.25,97.67
+67244887,Toatepi PALU,NSW,10008414,Heather GREETHEAD,"
+
+  True
+
+",0.75,0.75,26/11/2025 2:00 pm,26/11/2025 2:45 pm,0.0,0.0,25.0,Transport a client - Standard (per trip 0-25km),2599443,,Transport (Direct),complete,,,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,26/11/2025,,51379,56.25,Services Australia,SERV-0016,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,2599443.0,154.98,56.25,187.14,helper_hours_weighted,True,ok,4982.05,97.69
+67249846,Kayla-Anne HODGE,NSW,10008367,Michelle DAVIS,"
+
+  True
+
+",0.5,0.5,26/11/2025 2:00 pm,26/11/2025 2:30 pm,41.0,42.0,17.0,Transport a client - Standard (per trip 0-25km),2419020,,Transport (Direct),complete,,,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,26/11/2025,,51341,37.5,Services Australia,SERV-0016,NSW - Central Coast,hcp,,246005.0,0fd922d6-1250-4d57-943d-0cdc80bcd6d5,2419020.0,414.01,37.5,123.02,helper_hours_weighted,True,ok,1679.25,209.91
+67250395,Karen HAMMOND,NSW,10008510,Priscilla BOARDMAN,"
+
+  True
+
+",0.5,0.5,26/11/2025 2:00 pm,26/11/2025 2:30 pm,0.0,0.0,0.0,Transport a client - Standard (per trip 0-25km),2621635,,Transport (Direct),complete,,"Cleaned Janes house, scrubbed bathroom, kitchen, vacuum and mopped floors..
+Finished at Janes approx 1..","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,26/11/2025,,51511,37.5,Services Australia,SERV-0016,NSW - Central Coast,hcp,,212864.0,07a0f05b-e82c-462f-966a-83a69fda7b17,2621635.0,256.48,317.25,62.71,helper_hours_weighted,True,ok,3902.25,60.03
+67254507,Naomi TEXEIRA,NSW,11578062,Doreen HEGGIE,"
+
+  True
+
+",0.75,0.75,26/11/2025 2:00 pm,26/11/2025 2:45 pm,7.0,25.0,32.0,Transport a client - Standard (per trip 0-25km),2573127,,Transport (Direct),complete,,"Picked up from Christmas Party, Doreen inside happy with her prizes upon departure. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,Tall Timbers Hotel Ourimbah Pickup,26/11/2025,,86459,56.25,Services Australia,SERV-0016,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2573127.0,233.26,56.25,57.38,helper_hours_weighted,True,ok,5208.0,107.01
+67576048,Enola LAPOD,NSW,10007941,Karen PORTER,"
+
+  True
+
+",0.5,0.5,26/11/2025 2:00 pm,26/11/2025 2:30 pm,0.0,0.0,5.0,Transport a client - Standard (per trip 0-25km),2571706,,Transport (Direct),complete,,Forgotten to clock of on this part yesterday. ,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,26/11/2025,,50968,37.5,Services Australia,SERV-0016,NSW - Central Coast,hcp,,187210.0,eb36b88e-3885-4dfb-942b-d94eb80d2e83,2571706.0,157.84,317.25,30.81,helper_hours_weighted,True,ok,6131.25,64.54
+67882890,Michaela SIMPSON,NSW,10008219,Petra PIPPERT,"
+
+  True
+
+",0.5,0.5,26/11/2025 2:00 pm,26/11/2025 2:30 pm,0.0,0.0,11.0,Transport a client - Intro - Standard (per trip 0-25km),2570693,,Transport (Direct),complete,,,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,26/11/2025,,51197,37.5,Services Australia,SERV-0016,NSW - Central Coast,sah,,260014.0,91ba674e-336d-43bc-9746-ce4bc5963348,2570693.0,203.97,37.5,246.29,helper_hours_weighted,True,ok,2528.8,90.31
+62750117,Hazal EREN,NSW,12002969,Irene ARIDAH,"
+
+  True
+
+",2.0,2.0,26/11/2025 12:15 pm,26/11/2025 2:15 pm,9.0,11.0,,General - Standard 2+ Hours,2623910,,Domestic Assistance,complete,,"Light domestic assistance: cleaned bathrooms, kitchen, vacuumed and mopped. Was lovely to meet Irene and Kim.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,26/11/2025,,92750,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,255345.0,89974e9e-6c6c-41d0-8fca-90e789ac8c1f,2623910.0,113.88,216.0,179.38,helper_hours_weighted,True,ok,747.0,373.5
+67724357,Nicole FRESSARD,NSW,11476575,Susanne ROCHE ,"
+
+  True
+
+",2.0,2.0,26/11/2025 12:00 pm,26/11/2025 2:00 pm,18.0,20.0,,General - Intro -Standard 2+ Hours,2594624,,Domestic Assistance,complete,,"Cleaned the bathroom shower toilet
+Wiped over all the surfaces in the living kitchen area
+Made the bed with fresh linen
+Vacuumed and mopped ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,26/11/2025,,84740,183.6,Services Australia,SERV-0001,NSW - Central Coast,sah,,262853.0,5b0a90ef-c93c-45f2-b6eb-683ab3cdbdb0,2594624.0,377.44,297.6,269.03,helper_hours_weighted,True,ok,1058.6,1058.6
+65487437,Enola LAPOD,NSW,10007941,Karen PORTER,"
+
+  True
+
+",2.5,2.5,26/11/2025 11:30 am,26/11/2025 2:00 pm,0.0,0.0,,Group social support - Standard 2+ Hours,2571706,,Group Social Support,complete,,Christmas lunch at ourimbah Tally Hotel. ,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,26/11/2025,,50968,242.25,Services Australia,SERV-0009,NSW - Central Coast,hcp,,187210.0,eb36b88e-3885-4dfb-942b-d94eb80d2e83,2571706.0,157.84,317.25,154.03,helper_hours_weighted,True,ok,6131.25,322.7
+66158524,Jazmin SEBO,NSW,11612124,Barry PICKERING,"
+
+  True
+
+",2.0,2.0,26/11/2025 11:30 am,26/11/2025 1:30 pm,9.0,10.0,,General - Standard 2+ Hours,2573206,,Domestic Assistance,complete,,Domestic assistance; cleaned bathroom and changed bed sheets. Barry did not want more done so we had lovely conversations. ,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,26/11/2025,,86460,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,198484.0,50fd8217-e4fa-4080-a6ac-f089d5093a64,2573206.0,350.12,330.0,362.38,helper_hours_weighted,True,ok,572.0,286.0
+66162492,Karen HAMMOND,NSW,10008510,Priscilla BOARDMAN,"
+
+  True
+
+",2.5,2.5,26/11/2025 11:30 am,26/11/2025 2:00 pm,0.0,0.0,,Group social support - Standard 2+ Hours,2621635,,Group Social Support,complete,,,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,26/11/2025,,51511,242.25,Services Australia,SERV-0009,NSW - Central Coast,hcp,,212864.0,07a0f05b-e82c-462f-966a-83a69fda7b17,2621635.0,256.48,317.25,313.56,helper_hours_weighted,True,ok,3902.25,300.17
+67254446,Sylvia REZK,NSW,10008445,Doreen HEGGIE,"
+
+  True
+
+",1.0,1.0,26/11/2025 11:15 am,26/11/2025 12:15 pm,12.0,15.0,45.0,Transport a client - Standard (per trip 0-25km),2571741,,Transport (Direct),complete,,Greet Doreen and assist her getting dressed. Assist Doreen down stairs and head to Frank. Frank did not wish to attend. Drive to ourimbah.  Assist Doreen to her seat and depart.,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,26/11/2025,,51412,75.0,Services Australia,SERV-0016,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2571741.0,379.2,75.0,222.16,helper_hours_weighted,True,ok,5208.0,142.68
+67219576,Kareena CONNOLLY,NSW,11534062,Rose BOTWOOD,"
+
+  True
+
+",2.0,2.0,26/11/2025 11:00 am,26/11/2025 1:00 pm,0.0,0.0,,General - Standard 2+ Hours,2573292,,Domestic Assistance,complete,,"Assisted rose with da tasks of cleaning bathroom, toilet vacuuming common areas and mopping. Sat and had a chat got to know eachother. Made rose a cup of tea ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,26/11/2025,,85303,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,246241.0,3c923c3b-6961-4c24-ac75-3a1b1b1dcb05,2573292.0,131.27,330.0,105.67,helper_hours_weighted,True,ok,2246.0,264.24
+67249810,Debbie SPENCER,NSW,11028013,Michelle DAVIS,"
+
+  True
+
+",0.5,0.5,26/11/2025 11:00 am,26/11/2025 11:30 am,34.0,45.0,20.0,Transport a client - Standard (per trip 0-25km),2573005,,Transport (Direct),complete,,,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,26/11/2025,,72745,37.5,Services Australia,SERV-0016,NSW - Central Coast,hcp,,246005.0,0fd922d6-1250-4d57-943d-0cdc80bcd6d5,2573005.0,160.63,37.5,193.96,helper_hours_weighted,True,ok,1679.25,209.91
+67250328,Karen HAMMOND,NSW,10008510,Priscilla BOARDMAN,"
+
+  True
+
+",0.5,0.5,26/11/2025 11:00 am,26/11/2025 11:30 am,3.0,4.0,0.0,Transport a client - Standard (per trip 0-25km),2621635,,Transport (Direct),complete,,"Assisted Jane with shower and dressing, creams and moisturizers applied..","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,26/11/2025,,51511,37.5,Services Australia,SERV-0016,NSW - Central Coast,hcp,,212864.0,07a0f05b-e82c-462f-966a-83a69fda7b17,2621635.0,256.48,317.25,62.71,helper_hours_weighted,True,ok,3902.25,60.03
+67575933,Enola LAPOD,NSW,10007941,Karen PORTER,"
+
+  True
+
+",0.5,0.5,26/11/2025 11:00 am,26/11/2025 11:30 am,0.0,0.0,0.0,Transport a client - Standard (per trip 0-25km),2571706,,Transport (Direct),complete,,Late clocked on. Service started as scheduled. Shower attended. Light DA ,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,26/11/2025,,50968,37.5,Services Australia,SERV-0016,NSW - Central Coast,hcp,,187210.0,eb36b88e-3885-4dfb-942b-d94eb80d2e83,2571706.0,157.84,317.25,30.81,helper_hours_weighted,True,ok,6131.25,64.54
+67882840,Sarah MCELROY,NSW,12320795,Petra PIPPERT,"
+
+  True
+
+",0.5,0.5,26/11/2025 11:00 am,26/11/2025 11:30 am,0.0,0.0,9.0,Transport a client - Intro - Standard (per trip 0-25km),2584809,,Transport (Direct),complete,,Took Petra to Xmas party,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,26/11/2025,,95732,37.5,Services Australia,SERV-0016,NSW - Central Coast,sah,,260014.0,91ba674e-336d-43bc-9746-ce4bc5963348,2584809.0,118.56,221.1,30.64,helper_hours_weighted,True,ok,2528.8,90.31
+67099677,Tara FERRIS-MEYER,NSW,11653998,Annette MILLER-STANFORD,"
+
+  True
+
+",1.0,1.0,26/11/2025 10:30 am,26/11/2025 11:30 am,0.0,0.0,17.0,Transport a client - Intro - Standard (per trip 0-25km),2589507,,Transport (Direct),complete,,Taken to tall timbers for Lumia Christmas lunch ,"NSW - Central Coast, State - NSW",True,True,,,26/11/2025,,89506,75.0,Services Australia,SERV-0016,NSW - Central Coast,hcp,,242403.0,1a03ab7f-0053-48aa-b830-80f3c9082974,2589507.0,96.2,189.0,61.59,helper_hours_weighted,True,ok,3223.25,130.23
+67244817,Shannon SAMMONS,NSW,10988718,Heather GREETHEAD,"
+
+  True
+
+",0.5,0.5,26/11/2025 10:30 am,26/11/2025 11:00 am,16.0,19.0,25.0,Transport a client - Standard (per trip 0-25km),2572946,,Transport (Direct),complete,,,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,26/11/2025,,72155,37.5,Services Australia,SERV-0016,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,2572946.0,179.62,37.5,85.42,helper_hours_weighted,True,ok,4982.05,65.12
+62682041,Michelle SMITH,NSW,11779036,Shirley MORRIS,"
+
+  True
+
+",2.0,2.0,26/11/2025 10:00 am,26/11/2025 12:00 pm,0.0,0.0,,General - Standard 2+ Hours,2573314,,Domestic Assistance,complete,,"* washed dishes 
+* Wiped kitchen table
+* Clean the toilet
+* Clean the bathroom and shower
+* Mop and vacuumed ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,26/11/2025,,90291,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,250925.0,522bcc07-71fb-4aec-b2d1-5777ad5e225e,2573314.0,199.52,216.0,137.83,helper_hours_weighted,True,ok,1144.0,286.0
+66398174,Kareena CONNOLLY,NSW,11534062,Rose BOTWOOD,"
+
+  True
+
+",1.0,1.0,26/11/2025 10:00 am,26/11/2025 11:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2573292,,Personal Care,complete,,Assisted with moisturiser. Rose already had a shower before I arrived ,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,26/11/2025,,85303,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246241.0,3c923c3b-6961-4c24-ac75-3a1b1b1dcb05,2573292.0,131.27,330.0,52.84,helper_hours_weighted,True,ok,2246.0,132.12
+67229626,Amy CLAVELL,NSW,12277473,Colleen FITZGERALD,"
+
+  True
+
+",2.0,2.0,26/11/2025 10:00 am,26/11/2025 12:00 pm,0.0,0.0,,General - Standard 2+ Hours,2594773,,Domestic Assistance,complete,,"Changed and washed sheets of two beds hung load of washing out that I did 
+Vacuumed mopped house 
+Cleaned kitchen 
+Cleaned bathroom / toilet ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,26/11/2025,,95305,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,258788.0,f1cfaace-b340-40c7-8007-fd3ab21543af,2594773.0,253.38,216.0,147.18,helper_hours_weighted,True,ok,1431.0,286.2
+67099586,Tara FERRIS-MEYER,NSW,11653998,Annette MILLER-STANFORD,"
+
+  True
+
+",1.0,1.0,26/11/2025 9:30 am,26/11/2025 10:30 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2589507,,Personal Care,complete,,PA,"NSW - Central Coast, State - NSW",True,True,,,26/11/2025,,89506,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,242403.0,1a03ab7f-0053-48aa-b830-80f3c9082974,2589507.0,96.2,189.0,61.59,helper_hours_weighted,True,ok,3223.25,130.23
+67695928,Jazmin SEBO,NSW,11612124,Doreen HEGGIE,"
+
+  True
+
+",1.0,1.0,26/11/2025 9:05 am,26/11/2025 10:05 am,5.0,7.0,,Assistance with self-care and activities of daily living - Standard,2573206,,Personal Care,complete,,Assisted with showering and dressing to get Doreen ready for the Christmas lunch. She took her medications and had a cup of coffee. ,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,26/11/2025,,86460,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2573206.0,350.12,330.0,181.19,helper_hours_weighted,True,ok,5208.0,142.68
+66698528,Nicole FRESSARD,NSW,11476575,Heather GREETHEAD,"
+
+  True
+
+",1.0,1.0,26/11/2025 9:00 am,26/11/2025 10:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2594624,,Personal Care,complete,,"Heather was getting out of the shower on arrival. 
+Assisted with drying and Leg brace on. 
+Applied creams to heels and legs, Massaged in.
+Blow dried hair. 
+Helped Heather pick out an outfit for Christmas party today and organised handbag. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,26/11/2025,,84740,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,2594624.0,377.44,297.6,134.51,helper_hours_weighted,True,ok,4982.05,130.25
+67067209,Sarah MCELROY,NSW,12320795,Petra PIPPERT,"
+
+  True
+
+",2.0,2.0,26/11/2025 9:00 am,26/11/2025 11:00 am,0.0,0.0,,General - Intro -Standard 2+ Hours,2584809,,Domestic Assistance,complete,,"Cleaned the kitchen did 2 loads in dishwasher and hand washed the rest.
+Swept kitchen floor
+Cleaned and mopped toilet and bathroom
+Took the rubbish bins out to the street
+Brought in washing off the line and folded
+Did 2 loads of washing and hung on the line. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,26/11/2025,,95732,183.6,Services Australia,SERV-0001,NSW - Central Coast,sah,,260014.0,91ba674e-336d-43bc-9746-ce4bc5963348,2584809.0,118.56,221.1,122.57,helper_hours_weighted,True,ok,2528.8,361.26
+67395626,Jessica WELDON,NSW,12363696,Robyn WATTERS,"
+
+  True
+
+",2.0,2.0,26/11/2025 9:00 am,26/11/2025 11:00 am,0.0,0.0,,General - Intro -Standard 2+ Hours,2621688,,Domestic Assistance,complete,,"Domestic assistance
+Cleaned kitchen bench and cupboards, shower, basins, mirrors, toilets, dusted loungeroom area, vacuumed and mopped all floors
+Hung out a load of washing
+","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,26/11/2025,,96047,183.6,Services Australia,SERV-0001,NSW - Central Coast,sah,,262442.0,d347d95c-3ff2-4ad2-b037-452fb570cf2a,2621688.0,88.03,183.6,127.81,helper_hours_weighted,True,ok,813.6,813.6
+64446441,Sarah BURGIN,NSW,10008454,Colleen FITZGERALD,"
+
+  True
+
+",3.0,3.0,25/11/2025 1:00 pm,25/11/2025 4:00 pm,2.0,5.0,3.0,Accompanied activities - Standard 2+ Hours (inc transport),2573041,,Social Support (Accompanied activity),complete,,"drove to lakeside shopping centre, went to the bank, then the chemist, then sat down to a coffee and sausage roll, then went to coles for grocery shopping. drove back home and put away the groceries, vaccumed the kitchen and living room, took bin out and made a cup of tea before departure.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,25/11/2025,,51427,342.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,258788.0,f1cfaace-b340-40c7-8007-fd3ab21543af,2573041.0,314.62,342.0,907.97,helper_hours_weighted,True,ok,1431.0,429.3
+66207039,Orina RYAN,NSW,11907698,Peter GUY,"
+
+  True
+
+",2.0,2.0,25/11/2025 11:00 am,25/11/2025 1:00 pm,12.0,0.0,20.0,Accompanied activities - Intro - Standard 2+ Hours (inc transport),2581126,,Social Support (Accompanied activity),complete,,"Today was Peter's shopping day. We travelled to Erina and collected his shopping and going to the bank. . Peter was quite anxious today, he is improving with each outting he does.
+","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,10 km each way to shops and return.,25/11/2025,,91815,193.8,Services Australia,SERV-0011,NSW - Central Coast,sah,,259134.0,28e3a91d-7be3-4e3e-8d0d-59edb316787a,2581126.0,107.83,193.8,209.68,helper_hours_weighted,True,ok,1456.5,364.12
+66643236,Mariana CORDOVA CORONEL DE BANDA,NSW,11578061,Brian DEAMER,"
+
+  True
+
+",3.0,3.0,25/11/2025 11:00 am,25/11/2025 2:00 pm,0.0,0.0,5.0,Accompanied activities - Standard 2+ Hours (inc transport),2574129,,Social Support (Accompanied activity),complete,,"Today we went to Gosford shopping centre because the client wanted to buy some groceries for his home, and then we walked around the shopping centre and chatted. The client told me he was very happy with me. When the client was finished, we returned to his home and I helped him carry the bags.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,25/11/2025,,85683,342.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,219845.0,29ce9545-f16d-45a2-95ba-f16e99c87991,2574129.0,129.74,342.0,278.82,helper_hours_weighted,True,ok,2048.0,384.0
+65731168,Christie WHITEHEAD,NSW,10008371, Henry FIFE,"
+
+  True
+
+",3.0,3.0,25/11/2025 10:25 am,25/11/2025 1:25 pm,16.0,20.0,0.0,Accompanied activities - Standard 2+ Hours (inc transport),2570558,,Social Support (Accompanied activity),complete,,"John did not want to go anywhere today in the heat. We mainly chatted about his up coming trip away to Forbes with his partner, Christmas, health and family. John said he was happy to hear from his daughter that his lawns have been organised to get done soon. John appeared in good spirits.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,25/11/2025,,51333,342.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,250654.0,af665d0c-b2c7-4779-9c47-7c46468374cc,2570558.0,204.26,342.0,409.81,helper_hours_weighted,True,ok,3359.0,458.05
+67655989,Carol-Lyn BROWN,NSW,10008436,Doreen HEGGIE,"
+
+  True
+
+",2.0,2.0,25/11/2025 10:15 am,25/11/2025 12:15 pm,9.0,12.0,21.0,Accompanied activities - Standard 2+ Hours (inc transport),2570970,,Social Support (Accompanied activity),complete,,"Attended Doreen. Assisted Doreen in showering, helped her to dress and then we went for a drive to kill time for cleaner to clean and get lunch. Doreen ate hot chips and a dim sim. We drove to Soldiers beach to look at the ocean which Doreen enjoyed. On returning I left Doreen food out for dinner and snacks. Doreen took medication this morning. No issues. Doreen appeared well on my leaving and was going to watch tv. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,25/11/2025,,51402,228.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2570970.0,239.18,228.0,325.16,helper_hours_weighted,True,ok,5208.0,285.37
+66187744,Tracey MORGAN,NSW,10008244,Christine TCACIUC,"
+
+  True
+
+",1.0,1.0,25/11/2025 10:10 am,25/11/2025 11:10 am,3.0,6.0,,Assistance with self-care and activities of daily living - Standard,2570448,,Personal Care,complete,,"Christina’s husband greeted
+We chatted Christine was happy 
+I showered her 
+She was happy with my service 
+She was in good spirits ","CC - CM - Caitlin Kirkpatrick, NSW - Central Coast",True,True,,,25/11/2025,,51226,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,249771.0,d036c153-9b45-4519-be30-9d9931c3fbfe,2570448.0,97.84,114.0,156.34,helper_hours_weighted,True,ok,1927.0,120.44
+64073464,Maree CONSTANTINOU,NSW,11665706,Patricia MITCHELL,"
+
+  True
+
+",1.5,1.5,25/11/2025 9:00 am,25/11/2025 10:30 am,0.0,0.0,,General - Standard,2574043,,Domestic Assistance,complete,,"Today I completed the below for Patricia & Keith;
+- clean of 2.5 bathrooms inc. bath & mirrors
+- vacuum upstairs & downstairs inc. staircase
+- mop of bathrooms, toilet & laundry
+- removed cobwebs from back doors
+- took dead pot plant from indoors to outdoors
+Clients were happy, thanked me & said they'd like to have me back.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,25/11/2025,,89507,171.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,247168.0,621b5c0e-0c78-4511-9a31-c59efbfadc52,2574043.0,215.17,171.0,192.37,helper_hours_weighted,True,ok,657.0,328.5
+66886947,Sarah BURGIN,NSW,10008454, Henry FIFE,"
+
+  True
+
+",1.0,1.0,24/11/2025 3:25 pm,24/11/2025 4:25 pm,16.0,20.0,,Assistance with self-care and activities of daily living - Standard,2573039,,Personal Care,complete,,"john already had his meds and made himself lunch, sat and watched tv with him and chatted, his partner came over and we chatted some more ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,24/11/2025,,51427,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,250654.0,af665d0c-b2c7-4779-9c47-7c46468374cc,2573039.0,342.86,114.0,302.66,helper_hours_weighted,True,ok,3359.0,152.68
+67562929,Mariana CORDOVA CORONEL DE BANDA,NSW,11578061,Judith TURNER,"
+
+  True
+
+",1.0,1.0,24/11/2025 2:00 pm,24/11/2025 3:00 pm,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2619079,,Personal Care,complete,,No.,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,24/11/2025,,85683,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246358.0,200a7817-acec-4ade-8e39-312ee04272a5,2619079.0,268.09,456.0,92.94,helper_hours_weighted,True,ok,2895.0,137.86
+67067215,Michelle SMITH,NSW,11779036,Petra PIPPERT,"
+
+  True
+
+",2.0,2.0,24/11/2025 12:30 pm,24/11/2025 2:30 pm,18.0,20.0,,General - Intro -Standard 2+ Hours,2573312,,Domestic Assistance,complete,,"Petra
+* started cleaning in the kitchen
+* Did 3 loads in some bench dish washer
+* Put a load of washing on and hung outside once finished
+* cleaned bench and sink in kitchen 
+* Cleared kitchen table
+* Plan to do hallway and bathroom next visit And also clean out fridge","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,24/11/2025,,90291,183.6,Services Australia,SERV-0001,NSW - Central Coast,sah,,260014.0,91ba674e-336d-43bc-9746-ce4bc5963348,2573312.0,192.58,183.6,137.83,helper_hours_weighted,True,ok,2528.8,361.26
+67562901,Mariana CORDOVA CORONEL DE BANDA,NSW,11578061,Judith TURNER,"
+
+  True
+
+",2.0,2.0,24/11/2025 12:00 pm,24/11/2025 2:00 pm,20.0,11.0,30.0,Accompanied activities - Standard 2+ Hours (inc transport),2619079,,Social Support (Accompanied activity),complete,,"Today we went to the shopping centre in Woy Woy and then to a café for a coffee. We chatted for a while and then went to Coles because Judith wanted to buy some chocolate and a newspaper. Then we went back to her house to help her shower and remind her that she needed to take her insulin, which she did. Judith told me that she is very happy with my work and my company. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,24/11/2025,,85683,228.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,246358.0,200a7817-acec-4ade-8e39-312ee04272a5,2619079.0,268.09,456.0,185.88,helper_hours_weighted,True,ok,2895.0,275.71
+66667930,Rachel PETHYBRIDGE,NSW,12229436,Brian DEAMER,"
+
+  True
+
+",2.0,2.0,24/11/2025 11:30 am,24/11/2025 1:30 pm,15.0,20.0,,General - Standard 2+ Hours,2573095,,Domestic Assistance,complete,,"Domestic assistance 
+Vaccines
+Changed bed linen
+Cleaned kitchen
+Tidy lounge room
+Very quietly spoken gentleman asked if SW would be assisting again informed Brian that I will be back next Monday at the same time he was happy with the same","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,24/11/2025,,94886,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,219845.0,29ce9545-f16d-45a2-95ba-f16e99c87991,2573095.0,163.7,330.0,155.03,helper_hours_weighted,True,ok,2048.0,256.0
+64952693,Enola LAPOD,NSW,10007941,Karen PORTER,"
+
+  True
+
+",4.0,4.0,24/11/2025 11:15 am,24/11/2025 3:15 pm,0.0,0.0,,Assistance with self-care and activities of daily living - Standard 2+ Hours,2571705,,Personal Care,complete,,"DA completed, personal care. Outing","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,24/11/2025,,50968,432.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,187210.0,eb36b88e-3885-4dfb-942b-d94eb80d2e83,2571705.0,174.51,432.0,246.45,helper_hours_weighted,True,ok,6131.25,516.32
+66020040,Carol-Lyn BROWN,NSW,10008436,Doreen HEGGIE,"
+
+  True
+
+",1.0,1.0,24/11/2025 10:15 am,24/11/2025 11:15 am,9.0,11.0,,Assistance with self-care and activities of daily living - Standard,2570969,,Personal Care,complete,,"Doreen up when I arrived. Made Doreen coffee and porridge and gave medication. Put some clothes/ linen in to soak, washed and dried dishes, wiped over bathroom. Left food and drinks on table for lunch/ dinner. No issues. Doreen appeared in good spirits in my leaving. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,24/11/2025,,51402,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2570969.0,159.13,114.0,162.58,helper_hours_weighted,True,ok,5208.0,142.68
+67568151,Rachel PETHYBRIDGE,NSW,12229436,Rose BOTWOOD,"
+
+  True
+
+",1.0,1.0,24/11/2025 10:00 am,24/11/2025 11:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2573095,,Personal Care,complete,,"Rose was getting out the shower on arrival I assisted with completing personal care
+Made bed
+Tidy room
+Massage legs and arms and hands attended to hair made Rose a cup of tea chatted with Rose and John
+Met Rose daughter Lorraine ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,24/11/2025,,94886,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246241.0,3c923c3b-6961-4c24-ac75-3a1b1b1dcb05,2573095.0,163.7,330.0,77.52,helper_hours_weighted,True,ok,2246.0,132.12
+63591925,Mariana CORDOVA CORONEL DE BANDA,NSW,11578061,Annette MILLER-STANFORD,"
+
+  True
+
+",1.0,1.0,24/11/2025 9:30 am,24/11/2025 10:30 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2619079,,Personal Care,complete,,"Today I helped the client bathe, get changed, and applied cream to specific areas on her legs and arms. Then I took out the rubbish and hung up the washing.","NSW - Central Coast, State - NSW",True,True,,,24/11/2025,,85683,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,242403.0,1a03ab7f-0053-48aa-b830-80f3c9082974,2619079.0,268.09,456.0,92.94,helper_hours_weighted,True,ok,3223.25,130.23
+62018525,Karen HAMMOND,NSW,10008510,Priscilla BOARDMAN,"
+
+  True
+
+",1.0,1.0,24/11/2025 9:00 am,24/11/2025 10:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2570511,,Personal Care,complete,,"Assisted Jane with shower and grooming, cleaned bathroom and kitchen, mopped and vacuumed floors, swept porch, removed rubbish..","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,24/11/2025,,51511,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,212864.0,07a0f05b-e82c-462f-966a-83a69fda7b17,2570511.0,182.78,114.0,125.42,helper_hours_weighted,True,ok,3902.25,120.07
+66698514,Nicole FRESSARD,NSW,11476575,Heather GREETHEAD,"
+
+  True
+
+",3.0,3.0,24/11/2025 9:00 am,24/11/2025 12:00 pm,0.0,0.0,,Assistance with self-care and activities of daily living - Standard 2+ Hours,2574026,,Personal Care,complete,,"P/C 
+Applied creams to back of heels. 
+Assisted putting leg brace and pants on. 
+Went for a walk around the Village, Checked the mailbox. 
+D/A
+Cleaned bathroom, shower, toilet
+Wiped over all surfaces in the kitchen and living area. 
+Vacuumed and mopped. 
+Washed the dishes. 
+Taken rubbish out. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,24/11/2025,,84740,324.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,2574026.0,271.96,324.0,403.54,helper_hours_weighted,True,ok,4982.05,390.75
+66505026,Enola LAPOD,NSW,10007941,Karen PORTER,"
+
+  True
+
+",3.0,3.0,22/11/2025 9:30 am,22/11/2025 12:30 pm,0.0,0.0,0.0,Accompanied activities - Saturday,2591529,,Social Support (Accompanied activity),complete,,"Shower attended and all other personal care. Tidied and cleaned kitchen , dishes. Laundry attended. Cleaned bathroom and toilet. Tidied up around the house. Cleaned pet litters. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,22/11/2025,,50968,435.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,187210.0,eb36b88e-3885-4dfb-942b-d94eb80d2e83,2591529.0,183.14,435.0,184.84,helper_hours_weighted,True,ok,6131.25,387.24
+64880195,Mariana CORDOVA CORONEL DE BANDA,NSW,11578061,Judith TURNER,"
+
+  True
+
+",1.0,1.0,21/11/2025 4:00 pm,21/11/2025 5:00 pm,35.0,44.0,,Assistance with self-care and activities of daily living - Standard,2536042,,Personal Care,complete,,"Today I helped the client bathe and change her clothes. She was happy because her son had come to visit her. Before finishing, I reminded her that she had to inject her insulin, and she did so.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,21/11/2025,,85683,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246358.0,200a7817-acec-4ade-8e39-312ee04272a5,2536042.0,97.05,114.0,92.94,helper_hours_weighted,True,ok,2895.0,137.86
+66199881,Sarah BURGIN,NSW,10008454, Henry FIFE,"
+
+  True
+
+",1.0,1.0,21/11/2025 3:35 pm,21/11/2025 4:35 pm,15.0,18.0,,Assistance with self-care and activities of daily living - Standard,2581120,,Personal Care,complete,,"greeted john, he had already eaten sandwiches for lunch and had taken his afternoon meds. sat and chatted on the couch, watched a tv show he was watching when i arrived, ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,21/11/2025,,51427,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,250654.0,af665d0c-b2c7-4779-9c47-7c46468374cc,2581120.0,152.57,114.0,302.66,helper_hours_weighted,True,ok,3359.0,152.68
+65887323,Hazal EREN,NSW,12002969,Mavourneen ELVIN,"
+
+  True
+
+",2.0,2.0,21/11/2025 1:00 pm,21/11/2025 3:00 pm,26.0,30.0,,General - Standard 2+ Hours,2581579,,Domestic Assistance,complete,,Helped Mavourneed put new sheets on her bed. Cleaned bathroom. Vacuumed and mopped the house.,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,21/11/2025,,92750,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,256622.0,76e6644c-332f-45fe-8f36-34c17522f1f8,2581579.0,98.64,216.0,179.38,helper_hours_weighted,True,ok,1026.0,373.09
+63863284,Sri ASTUTIK ,NSW,11697863,Elizabeth CAPORALE,"
+
+  True
+
+",1.0,1.0,21/11/2025 12:45 pm,21/11/2025 1:45 pm,20.0,27.0,,General - Standard,2513112,,Domestic Assistance,complete,,"Cleaned the bathroom 
+Vacuumed the floors 
+Mopped the floors 
+Polished the furnitures 
+She asked if I could stay more longer today, I asked her to ring the office ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,21/11/2025,,89888,114.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,251687.0,f833740c-31f2-4445-b302-7bee23638ec2,2513112.0,330.88,114.0,314.21,helper_hours_weighted,True,ok,718.0,359.0
+62683169,Michelle SMITH,NSW,11779036,Judith TURNER,"
+
+  True
+
+",2.0,2.0,21/11/2025 10:00 am,21/11/2025 12:00 pm,0.0,0.0,,General - Standard 2+ Hours,2535206,,Domestic Assistance,complete,,"Judith
+Clean both bathrooms 
+Vacuumed throughout 
+Cleaned kitchen 
+Moped the floor 
+Had a nice chat
+Code 2122#","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,21/11/2025,,90291,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,246358.0,200a7817-acec-4ade-8e39-312ee04272a5,2535206.0,79.37,216.0,137.83,helper_hours_weighted,True,ok,2895.0,275.71
+66568494,Kayla-Anne HODGE,NSW,10008367,Rose BOTWOOD,"
+
+  True
+
+",1.0,1.0,21/11/2025 10:00 am,21/11/2025 11:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2534061,,Personal Care,complete,,"Upon arrival, the client appeared surprised and stated she was not aware that support was scheduled for today. She presented as visibly upset and reported experiencing ongoing family issues, which had left her feeling down and unmotivated.
+
+The client declined a shower, advising she had showered yesterday and did not feel up to it today. She expressed feeling hopeless and low in energy.
+
+I remained with the client for the duration of the scheduled hour to provide emotional support and conversation. Throughout our discussion, the client’s mood appeared to improve. She stated that talking helped her feel much better and happier, and expressed that she “just needed someone to talk to.”
+
+No further concerns noted at the end of the shift.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,21/11/2025,,51341,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246241.0,3c923c3b-6961-4c24-ac75-3a1b1b1dcb05,2534061.0,163.85,114.0,246.04,helper_hours_weighted,True,ok,2246.0,132.12
+67358207,Nicole FRESSARD,NSW,11476575,Heather GREETHEAD,"
+
+  True
+
+",1.0,1.0,21/11/2025 10:00 am,21/11/2025 11:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2535941,,Personal Care,complete,,"Applied cream to heels and legs.
+Assisted with leg brace and pants on. 
+Heather did her leg exercises. 
+","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,21/11/2025,,84740,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,2535941.0,235.77,114.0,134.51,helper_hours_weighted,True,ok,4982.05,130.25
+62019187,Mariana CORDOVA CORONEL DE BANDA,NSW,11578061,Annette MILLER-STANFORD,"
+
+  True
+
+",1.0,1.0,21/11/2025 9:30 am,21/11/2025 10:30 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2536041,,Personal Care,complete,,"Today I helped the client bathe, wash her hair, get changed, dry her hair and apply a cream recommended by the doctor to her legs and arms. I also took out the rubbish and then we had a chat. She is quite calm and happy with my work.","NSW - Central Coast, State - NSW",True,True,,,21/11/2025,,85683,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,242403.0,1a03ab7f-0053-48aa-b830-80f3c9082974,2536041.0,171.95,114.0,92.94,helper_hours_weighted,True,ok,3223.25,130.23
+66162469,Karen HAMMOND,NSW,10008510,Priscilla BOARDMAN,"
+
+  True
+
+",3.0,3.0,21/11/2025 9:00 am,21/11/2025 12:00 pm,0.0,0.0,,Assistance with self-care and activities of daily living - Standard 2+ Hours,2532410,,Personal Care,complete,,"Assisted Jane with cleaning bathroom kitchen, vacuumed and mopped floors, dusted furniture..
+Jane did not require any extra assistance from me today..","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,21/11/2025,,51511,324.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,212864.0,07a0f05b-e82c-462f-966a-83a69fda7b17,2532410.0,370.62,324.0,376.27,helper_hours_weighted,True,ok,3902.25,360.21
+67225913,Sarah MCELROY,NSW,12320795,Petra PIPPERT,"
+
+  True
+
+",3.0,3.0,21/11/2025 9:00 am,21/11/2025 12:00 pm,0.0,0.0,10.0,Accompanied activities - Intro - Standard 2+ Hours (inc transport),2584330,,Social Support (Accompanied activity),complete,,"Took macky(dog) for walk whilst Petra got ready to go out and and do some shopping.
+Took her out shopping and then took her home and brought in the bags.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,21/11/2025,,95732,290.7,Services Australia,SERV-0011,NSW - Central Coast,sah,,260014.0,91ba674e-336d-43bc-9746-ce4bc5963348,2584330.0,141.17,290.7,183.85,helper_hours_weighted,True,ok,2528.8,541.89
+64919835,Carol-Lyn BROWN,NSW,10008436,Doreen HEGGIE,"
+
+  True
+
+",2.0,2.0,21/11/2025 8:40 am,21/11/2025 10:40 am,0.0,0.0,0.0,Accompanied activities - Standard 2+ Hours (inc transport),2244649,,Social Support (Accompanied activity),complete,,"Attended Doreen. Showered and dressed her ready to go out for lunch with daughter. Made porridge for breakfast and coffee. Gave medication. Changed bed as was wet again. Put a load of washing on. Cleaned kitchen, washed ashtrays, mopped kitchen/ dining floor, accepted and put away meals on wheels delivery, folded some laundry. Left Doreen on her bed, ready to go out with her daughter. No issues","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,21/11/2025,,51402,228.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2244649.0,228.0,228.0,325.16,helper_hours_weighted,True,ok,5208.0,285.37
+66745400,Orina RYAN,NSW,11907698,Peter GUY,"
+
+  True
+
+",1.0,1.0,20/11/2025 3:15 pm,20/11/2025 4:15 pm,0.0,0.0,,General - Intro - Standard,2535003,,Domestic Assistance,complete,,"I cleaned Peter's home after sometime in hospital.
+* I polished the sideboard and cabinet.
+* Vacummed the bedrooms, lounge room, dinning room and Kitchen.
+* Mopped the Lounge, Dinning room shower, bathroom  and Kitchen.and 
+* I cleaned the shower , sink and toilet.
+Completed a general clean of the Kitchen, too.
+I finished having a coffee and chat to help his anxious feelings. 
+","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,20/11/2025,,91815,96.9,Services Australia,SERV-0001,NSW - Central Coast,sah,,259134.0,28e3a91d-7be3-4e3e-8d0d-59edb316787a,2535003.0,297.5,290.7,104.84,helper_hours_weighted,True,ok,1456.5,182.06
+65230374,Orina RYAN,NSW,11907698,Peter GUY,"
+
+  True
+
+",2.0,2.0,20/11/2025 1:15 pm,20/11/2025 3:15 pm,7.0,9.0,4.0,Accompanied activities - Intro - Standard 2+ Hours (inc transport),2535003,,Social Support (Accompanied activity),complete,,"Today Peter was not feeling confident about shopping in Erina. We discussed a better option for Kincumber and everything  required , Shopping and Post Office was completed.
+Peter prefers each fortnight night to be a  Kincumber shop.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,We changed shopping centres today. Only 5 minutes away and 4km in total.,20/11/2025,,91815,193.8,Services Australia,SERV-0011,NSW - Central Coast,sah,,259134.0,28e3a91d-7be3-4e3e-8d0d-59edb316787a,2535003.0,297.5,290.7,209.68,helper_hours_weighted,True,ok,1456.5,364.12
+64512264,Maree CONSTANTINOU,NSW,11665706,Dawn DETTMAR,"
+
+  True
+
+",2.0,2.0,20/11/2025 12:45 pm,20/11/2025 2:45 pm,10.0,13.0,,General - Standard 2+ Hours,2535962,,Domestic Assistance,complete,,"Met Dawn & Ken upon arrival & was asked to complete the following which was done;
+- clean bathroom & toilet inc. mirrors
+- vacuum flooring throughout 
+- mop all hard surfaces & chatted to Dawn while she sat & I mopped
+I asked if there was anything else that needed to be done. She said there wasn't so I finished 40mins early.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,20/11/2025,,89507,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,203225.0,8c2267f5-8fc5-4b32-ad66-91a471f5f87b,2535962.0,283.8,216.0,256.5,helper_hours_weighted,True,ok,1361.0,272.2
+65400599,Michelle SMITH,NSW,11779036,Kay LEHMANN,"
+
+  True
+
+",3.5,3.5,20/11/2025 12:00 pm,20/11/2025 3:30 pm,1.0,2.0,,Accompanied activities - Standard 2+ Hours,2535205,,Social Support (Accompanied activity),complete,,"Took Kay to New San clinic for appointment.
+All well. Drove her home said Kay has rash on her back and needs to apply cream daily. I suggested that Kay may need to call for PC Service.
+Drove her home safe and sound.
+120km round trip ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,20/11/2025,,90291,378.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,229413.0,95683579-e015-4005-90f7-747a2aea60c8,2535205.0,219.36,594.0,241.2,helper_hours_weighted,True,ok,965.0,519.62
+65218744,Amy CLAVELL,NSW,12277473,Frank BELL,"
+
+  True
+
+",2.0,2.0,20/11/2025 11:00 am,20/11/2025 1:00 pm,0.0,0.0,,General - Standard 2+ Hours,2557619,,Domestic Assistance,complete,,"Cleaned bathroom. 
+Cleaned and tidy laundry and laundry toilet 
+Mopped and vacuumed house 
+Did load of washing and hung it out 
+Folded  some clean washing 
+Spent a lot of time in the kitchen washing dishes and putting dishes away cleaned microwave tidy kitchen bench tops and wiped down surfaces 
+Took out rubbish and replaced bag 
+Had lots of lovely chats with Frank 
+
+","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,20/11/2025,,95305,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,258386.0,b4c7ed66-8e27-4542-856d-5308925cc22e,2557619.0,88.03,216.0,147.18,helper_hours_weighted,True,ok,2084.0,320.62
+66398148,Rachel PETHYBRIDGE,NSW,12229436,Rose BOTWOOD,"
+
+  True
+
+",2.0,2.0,20/11/2025 11:00 am,20/11/2025 1:00 pm,0.0,0.0,,General - Standard 2+ Hours,2591583,,Domestic Assistance,complete,,"After attending to Rose personal care needs I cleaned kitchen, did dishes packed them away mopped floor vacuumed and set up dinning tape in sunroom for a afternoon tea that Rose is having with friends
+Rose was very happy with the presentation of the table
+Rose asked if I could check her finger nails, observed to be quite long and sharp I trimmed and filed nails back put hand moisturiser on hands and also legs I combined both set of tasks together depending on request to what Rose wanted done next on her list
+Rose was extremely appreciative of all aspects of care delivery and thanked SW on many occasions 
+Rose had to go shopping with husband John to purchase afternoon tea cakes etc for today and ended support early to do so as guests arriving at 1 pm
+Assisted Rose to the car and left Rose and John in good spirits ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,20/11/2025,,94886,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,246241.0,3c923c3b-6961-4c24-ac75-3a1b1b1dcb05,2591583.0,131.27,330.0,155.03,helper_hours_weighted,True,ok,2246.0,264.24
+65158451,Maddisyn WOODS,NSW,12320687,Christine TCACIUC,"
+
+  True
+
+",3.0,3.0,20/11/2025 10:30 am,20/11/2025 1:30 pm,,,0.0,Shopping - Standard 2+ Hours,2586565,,"Domestic Assistance, Personal Care",complete,,"PC attended to 
+Domestic assistance done, fresh sheets, bathroom and toilet, floors and kitchen","CC - CM - Caitlin Kirkpatrick, NSW - Central Coast",True,True,,,20/11/2025,,95651,324.0,Services Australia,SERV-0003,NSW - Central Coast,hcp,,249771.0,d036c153-9b45-4519-be30-9d9931c3fbfe,2586565.0,177.52,324.0,285.82,helper_hours_weighted,True,ok,1927.0,361.31
+65910488,Carol-Lyn BROWN,NSW,10008436,Doreen HEGGIE,"
+
+  True
+
+",2.0,2.0,20/11/2025 10:10 am,20/11/2025 12:10 pm,8.0,13.0,,Assistance with self-care and activities of daily living - Standard,2244648,,Personal Care,complete,,"Doreen was asleep when I arrived so I began to clean up in the laundry, bathroom and kitchen. Food I left for her on Tuesday morning was still on the table as well as plates scattered with uneaten and half eaten food. I put a load of washing on and washed and dried dishes, cleaned up scattered cigarette butts, cleaned the bathroom of dirty pull ups, towels and face washers and wiped over everything. 
+Doreen woke and I made her coffee and 2x porridge. I cooked 2 bowls with 4 dims in each and left one bowl on the table and one in the fridge. Doreen’s bed was again wet through so I stripped it but there were no more sheets to make it so Doreen’s daughter’s boyfriend, brought around new sheets and took all the washing home to do. I remade the bed. I left Doreen watching tv. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,20/11/2025,,51402,228.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2244648.0,146.03,228.0,325.16,helper_hours_weighted,True,ok,5208.0,285.37
+65506367,Naomi TEXEIRA,NSW,11578062,Heather GREETHEAD,"
+
+  True
+
+",3.0,3.0,20/11/2025 10:00 am,20/11/2025 1:00 pm,0.0,0.0,10.0,Accompanied activities - Standard 2+ Hours (inc transport),2535021,,Social Support (Accompanied activity),complete,,"Took heather to go grocery shopping, heather pleased upon departure. checked in and out late, with heather from 10-1","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,20/11/2025,,86459,342.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,2535021.0,128.18,342.0,229.54,helper_hours_weighted,True,ok,4982.05,390.75
+66054849,Rachel PETHYBRIDGE,NSW,12229436,Rose BOTWOOD,"
+
+  True
+
+",1.0,1.0,20/11/2025 10:00 am,20/11/2025 11:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2591583,,Personal Care,complete,,"On arrival Rose had just finished her shower and was getting dressed SW assisted with this task changed bed linen and put in laundry shoot however Rose wanted the same sheet on when dried tidy up her ensuite which is completely cluttered 
+Made Rose a cup of tea and she enjoyed a biscuit she attended her dental appointment that I made for her on Monday and she needed a filling 
+Rose asked if I could take her B/P which I did the same B/P123/80 nil issues with this Rose wrote results down in her diary 
+","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,20/11/2025,,94886,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246241.0,3c923c3b-6961-4c24-ac75-3a1b1b1dcb05,2591583.0,131.27,330.0,77.52,helper_hours_weighted,True,ok,2246.0,132.12
+62682736,Michelle SMITH,NSW,11779036,Patricia CLIMPSON,"
+
+  True
+
+",2.0,2.0,20/11/2025 9:55 am,20/11/2025 11:55 am,0.0,0.0,,General - Standard 2+ Hours,2535205,,Domestic Assistance,complete,,"* Is very bruised face is quite swollen and big lump on forehead.
+* I cleaned bathroom 
+* I cleaned toilet 
+* Wiped down kitchen 
+* Changed the sheets
+* Put load of washing on
+* Used vanish carpet cleaner in bedroom 
+* Vacuumed throughout 
+* Then mopped all hard floors
+* Put washing out on clothes line
+* I suggested she stay in today due to the heat of the day. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,20/11/2025,,90291,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,250486.0,5668326c-a811-498a-81bc-f579c55959ac,2535205.0,219.36,594.0,137.83,helper_hours_weighted,True,ok,1267.0,253.4
+66541764,Taea MARSHALL,NSW,10008352,Patricia FOWLER,"
+
+  True
+
+",3.0,3.0,20/11/2025 9:00 am,20/11/2025 12:00 pm,0.0,0.0,16.0,Accompanied activities - Intro - Standard 2+ Hours (inc transport),2532423,,Social Support (Accompanied activity),complete,,Patricia and I went shopping at Harris farm and Coles in erina fair. Returned home and carried all shopping upstairs,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,20/11/2025,,51322,290.7,Services Australia,SERV-0011,NSW - Central Coast,sah,,260396.0,77efb492-c050-4ade-b65d-d92dfd890d50,2532423.0,140.63,290.7,169.81,helper_hours_weighted,True,ok,710.7,710.7
+66882881,Orina RYAN,NSW,11907698,Judith TURNER,"
+
+  True
+
+",1.0,1.0,19/11/2025 4:00 pm,19/11/2025 5:00 pm,6.0,9.0,,Assistance with self-care and activities of daily living - Standard,2548782,,Personal Care,complete,,"Personal care assistance with a shower, * * * Assisted  with dressing
+ * Washed and tidied kitchen.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,19/11/2025,,91815,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246358.0,200a7817-acec-4ade-8e39-312ee04272a5,2548782.0,99.21,114.0,104.84,helper_hours_weighted,True,ok,2895.0,137.86
+67049979,Sarah BURGIN,NSW,10008454, Henry FIFE,"
+
+  True
+
+",1.0,1.0,19/11/2025 3:25 pm,19/11/2025 4:25 pm,15.0,4.0,,Assistance with self-care and activities of daily living - Standard,2534934,,Personal Care,complete,,"prompted to take afternoon medications, john had already eaten before i arrived so he declined any food to be made, had a nice chat and watched a tv show he was enjoying","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,19/11/2025,,51427,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,250654.0,af665d0c-b2c7-4779-9c47-7c46468374cc,2534934.0,312.67,114.0,302.66,helper_hours_weighted,True,ok,3359.0,152.68
+64020673,Sky FORTIER,NSW,11776512,Margaret MOLLOY,"
+
+  True
+
+",2.0,2.0,19/11/2025 11:00 am,19/11/2025 1:00 pm,0.0,0.0,0.0,Shopping - Standard 2+ Hours,2536044,,Domestic Assistance,complete,,"● Stript and made beds
+● Dusted
+● Polished some draws, and kitchen table
+● Wipped down kitchen
+● Clean bathrooms
+● Vaccumed
+● Mopped","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,19/11/2025,,90409,216.0,Services Australia,SERV-0003,NSW - Central Coast,hcp,,255491.0,48812c65-1e97-441d-b8c7-6e3f149ae379,2536044.0,79.37,216.0,107.9,helper_hours_weighted,True,ok,677.0,338.5
+65487436,Enola LAPOD,NSW,10007941,Karen PORTER,"
+
+  True
+
+",3.0,3.0,19/11/2025 11:00 am,19/11/2025 2:00 pm,0.0,0.0,0.0,Accompanied activities - Standard 2+ Hours (inc transport),2533572,,Social Support (Accompanied activity),complete,,"Service started and ended as scheduled. Personal care attended, all floors cleaned n mopped. Tidied up and cleaned kitchen, bathroom , toilet cleaned. Cleared up the hall way . ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,19/11/2025,,50968,342.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,187210.0,eb36b88e-3885-4dfb-942b-d94eb80d2e83,2533572.0,131.27,342.0,184.84,helper_hours_weighted,True,ok,6131.25,387.24
+66100445,Amy CLAVELL,NSW,12277473,Heather GREETHEAD,"
+
+  True
+
+",2.0,2.0,19/11/2025 10:30 am,19/11/2025 12:30 pm,0.0,0.0,,Accompanied activities - Standard 2+ Hours,2548792,,Social Support (Accompanied activity),complete,,Took heather to her doctors appointment waited for her to finish then took heather back home. At heathers home I helped her put on more comfortable pants ,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,19/11/2025,,95305,216.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,2548792.0,88.03,216.0,147.18,helper_hours_weighted,True,ok,4982.05,260.5
+62682040,Michelle SMITH,NSW,11779036,Shirley MORRIS,"
+
+  True
+
+",2.0,2.0,19/11/2025 10:00 am,19/11/2025 12:00 pm,0.0,0.0,,General - Standard 2+ Hours,2535204,,Domestic Assistance,complete,,"* I’ve cleaning the dishes
+* Scraped out the bath
+* Made up Shirley’s bed
+* Clean the toilet
+* Clean the bathroom and shower
+* Mop the floors
+* And vacuumed
+* Still having problems with the ramp to get out off the house with scooter ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,19/11/2025,,90291,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,250925.0,522bcc07-71fb-4aec-b2d1-5777ad5e225e,2535204.0,201.49,216.0,137.83,helper_hours_weighted,True,ok,1144.0,286.0
+66162486,Karen HAMMOND,NSW,10008510,Priscilla BOARDMAN,"
+
+  True
+
+",4.0,4.0,19/11/2025 10:00 am,19/11/2025 2:00 pm,3.0,0.0,7.0,Accompanied activities - Standard 2+ Hours (inc transport),2532409,,Social Support (Accompanied activity),complete,,"Assisted Jane with shower and creams..
+Tidied bathroom, vacuumed and mopped floors..
+Took Jane to Nutritionist app and then grocery shopping..
+Groceries carried inside..","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,19/11/2025,,51511,456.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,212864.0,07a0f05b-e82c-462f-966a-83a69fda7b17,2532409.0,264.91,456.0,501.69,helper_hours_weighted,True,ok,3902.25,480.28
+64953832,Tara FERRIS-MEYER,NSW,11653998,Annette MILLER-STANFORD,"
+
+  True
+
+",3.0,3.0,19/11/2025 9:30 am,19/11/2025 12:30 pm,0.0,0.0,,Assistance with self-care and activities of daily living - Standard 2+ Hours,2518478,,Personal Care,complete,,PA / DA,"NSW - Central Coast, State - NSW",True,True,,,19/11/2025,,89506,324.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,242403.0,1a03ab7f-0053-48aa-b830-80f3c9082974,2518478.0,118.28,324.0,184.76,helper_hours_weighted,True,ok,3223.25,390.7
+66698522,Nicole FRESSARD,NSW,11476575,Heather GREETHEAD,"
+
+  True
+
+",1.0,1.0,19/11/2025 9:00 am,19/11/2025 10:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2535939,,Personal Care,complete,,"Applied creams to heels. 
+Walked around the village, Checked the mail. 
+Taken towels and bathroom mats off the line. 
+Chatted with Heather was in better spirits on departure ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,19/11/2025,,84740,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,2535939.0,242.38,114.0,134.51,helper_hours_weighted,True,ok,4982.05,130.25
+64614538,Jazmin SEBO,NSW,11612124,Doreen HEGGIE,"
+
+  True
+
+",1.0,1.0,19/11/2025 8:30 am,19/11/2025 9:30 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2535090,,Personal Care,complete,,Doreen was awake when I arrived. I had to change the bed sheets. I made her a cup of coffee and assisted with showering. I also gave her the medication. We had lovely chats per usual!,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,19/11/2025,,86460,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2535090.0,276.16,114.0,181.19,helper_hours_weighted,True,ok,5208.0,142.68
+64952614,Anulal VARICKATHARAPPEL,NSW, 11396786,Karen PORTER,"
+
+  True
+
+",1.0,1.0,19/11/2025 8:05 am,19/11/2025 9:05 am,2.0,5.0,,Registered Nurse - Standard,2535878,,Registered Nurse,complete,,"Karan was seen this morning for her routine skin integrity and wellbeing review. She was alert, relaxed, and cooperative throughout the visit.
+
+On assessment, the skin remained intact with mild redness and small amount of swelling was noted on the left leg, though overall lower-limb oedema has improved compared to previous visits. No open wounds were present, and her skin condition appeared generally healthy and well maintained.
+
+Karan seen neurologist last week for ongoing sciatic. And a/w for the bone scan on December. 
+
+Vital Signs are BP: 186/83 mmHg.Pulse: 68 bpm
+SpO₂: 95%.Temperature: 36.2°C.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,19/11/2025,,82357,160.0,Services Australia,SERV-0023,NSW - Central Coast,hcp,,187210.0,eb36b88e-3885-4dfb-942b-d94eb80d2e83,2535878.0,689.2,160.0,803.56,helper_hours_weighted,True,ok,6131.25,129.08
+64177038,Moamen MAROUF,NSW,10310314,Brian DEAMER,"
+
+  True
+
+",1.0,1.0,18/11/2025 12:10 pm,18/11/2025 1:10 pm,23.0,29.0,,Physiotherapy - Direct,2554122,,Allied Health - Physiotherapy,complete,,Brain was seen today for physiotherapy service and did all exc program well with no issues.,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,18/11/2025,,51281,180.0,Services Australia,SERV-0034,NSW - Central Coast,hcp,,219845.0,29ce9545-f16d-45a2-95ba-f16e99c87991,2554122.0,166.65,180.0,181.8,helper_hours_weighted,True,ok,2048.0,128.0
+66782819,Jazmin SEBO,NSW,11612124,Kenneth HAYWARD,"
+
+  True
+
+",2.0,2.0,18/11/2025 11:15 am,18/11/2025 1:15 pm,8.0,9.0,,General - Standard 2+ Hours,2558062,,Domestic Assistance,complete,,"Domestic assistance; cleaning bathroom, vacuuming and mopping the floors, wiping bench tops. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,18/11/2025,,86460,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,257477.0,593aa0de-e341-4654-ac8d-a25b809242e8,2558062.0,305.33,216.0,362.38,helper_hours_weighted,True,ok,1208.0,402.67
+62681826,Christie WHITEHEAD,NSW,10008371, Henry FIFE,"
+
+  True
+
+",2.0,2.0,18/11/2025 10:30 am,18/11/2025 12:30 pm,16.0,20.0,,General - Standard 2+ Hours,2532453,,Domestic Assistance,complete,,"I hung out a load of washing that John had washed, made the bed with fresh linen, washed the linen and hung them out. I made a couple of calls to the office with John to check back in about garden care as he still has not heard back yet and to let the office know when he is going away next month to cancel those services on the dates he will be away. We mainly chatted for the rest of the service along with his partner who was also visiting.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,18/11/2025,,51333,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,250654.0,af665d0c-b2c7-4779-9c47-7c46468374cc,2532453.0,257.74,216.0,273.2,helper_hours_weighted,True,ok,3359.0,305.36
+64676041,Shannon SAMMONS,NSW,10988718,Christine TCACIUC,"
+
+  True
+
+",1.0,1.0,18/11/2025 10:15 am,18/11/2025 11:15 am,5.0,9.0,,Assistance with self-care and activities of daily living - Standard,2534837,,Personal Care,complete,,PC attended to ,"CC - CM - Caitlin Kirkpatrick, NSW - Central Coast",True,True,,,18/11/2025,,72155,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,249771.0,d036c153-9b45-4519-be30-9d9931c3fbfe,2534837.0,101.65,114.0,170.84,helper_hours_weighted,True,ok,1927.0,120.44
+64919792,Carol-Lyn BROWN,NSW,10008436,Doreen HEGGIE,"
+
+  True
+
+",2.0,2.0,18/11/2025 10:15 am,18/11/2025 12:15 pm,9.0,12.0,5.0,Accompanied activities - Standard 2+ Hours (inc transport),2244646,,Social Support (Accompanied activity),complete,,"Arrived to find the kitchen a mess and the house smelling of faeces. Found Doreen sitting out the back with no pants or pull up on. Doreen had also run out of cigarettes but did not mention this. Showered Doreen and made her porridge and coffee. Disinfectant wiped over bathroom, Doreen’s seat and table inside and out. Put many cups, food containers and plates With half eaten food left on the table and next to the bed in the sink to soak. Stripped bed and remade, put washing on, drove to Cole’s for groceries, left food and drinks out for Doreen. I gave Doreen her medication and the last 2 packets of cigarettes. 
+Doreen going to watch tv on my leaving. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,18/11/2025,,51402,228.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2244646.0,272.36,228.0,325.16,helper_hours_weighted,True,ok,5208.0,285.37
+62668278,Sky FORTIER,NSW,11776512,Kay LEHMANN,"
+
+  True
+
+",1.5,1.5,18/11/2025 10:00 am,18/11/2025 11:30 am,0.0,0.0,,General - Standard,2536043,,Domestic Assistance,complete,,"● Make bed
+● Vaccumed whole house
+● Mopped whole house
+● Wipped down kitchen bench
+● Clean bathroom
+● Scrubbed bathroom floor
+● Had a chat","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,18/11/2025,,90409,171.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,229413.0,95683579-e015-4005-90f7-747a2aea60c8,2536043.0,77.49,171.0,80.92,helper_hours_weighted,True,ok,965.0,222.69
+66426552,Mariana CORDOVA CORONEL DE BANDA,NSW,11578061,Judith TURNER,"
+
+  True
+
+",1.0,1.0,17/11/2025 3:30 pm,17/11/2025 4:30 pm,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2560788,,Personal Care,complete,,"I asked the client if she wanted me to assist her in the shower, but she told me she preferred to stay in the living room chatting,  then remind her that she needed to take her insulin. Judith was calm and happy.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,17/11/2025,,85683,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246358.0,200a7817-acec-4ade-8e39-312ee04272a5,2560788.0,189.99,342.0,92.94,helper_hours_weighted,True,ok,2895.0,137.86
+66035050,Sarah BURGIN,NSW,10008454, Henry FIFE,"
+
+  True
+
+",1.0,1.0,17/11/2025 3:25 pm,17/11/2025 4:25 pm,2.0,4.0,,Assistance with self-care and activities of daily living - Standard,2534930,,"Personal Care, Late Cancellation",complete,,,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,17/11/2025,,51427,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,250654.0,af665d0c-b2c7-4779-9c47-7c46468374cc,2534930.0,346.84,114.0,302.66,helper_hours_weighted,True,ok,3359.0,152.68
+66426505,Mariana CORDOVA CORONEL DE BANDA,NSW,11578061,Judith TURNER,"
+
+  True
+
+",2.0,2.0,17/11/2025 1:30 pm,17/11/2025 3:30 pm,20.0,11.0,20.0,Accompanied activities - Standard 2+ Hours (inc transport),2560788,,Social Support (Accompanied activity),complete,,"We went to the shopping centre in Woy Woy to buy a few things, then we went to the café because the client wanted to have a coffee and we chatted. Judith told me that her knees were hurting a little.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,17/11/2025,,85683,228.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,246358.0,200a7817-acec-4ade-8e39-312ee04272a5,2560788.0,189.99,342.0,185.88,helper_hours_weighted,True,ok,2895.0,275.71
+56730160,Melanie BALKEN ,NSW,11778915,Brian DEAMER,"
+
+  True
+
+",2.0,2.0,17/11/2025 11:30 am,17/11/2025 1:30 pm,2.0,4.0,,General - Standard 2+ Hours,2548861,,Domestic Assistance,complete,,"My earlier client was in hospital so I popped into Brian’s to see if I could start early- this was not a problem- changed his sheets, wiped over kitchen and washed up dishes. Vacuumed and cleaned bathroom. Didn’t take long at all. I offered to do more but he said it was good and ok to leave early. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,17/11/2025,,90407,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,219845.0,29ce9545-f16d-45a2-95ba-f16e99c87991,2548861.0,185.42,216.0,151.23,helper_hours_weighted,True,ok,2048.0,256.0
+64952692,Enola LAPOD,NSW,10007941,Karen PORTER,"
+
+  True
+
+",4.0,4.0,17/11/2025 11:15 am,17/11/2025 3:15 pm,0.0,0.0,,Assistance with self-care and activities of daily living - Standard 2+ Hours,2533571,,Personal Care,complete,,"Personal care, DA completed. Meal prep. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,17/11/2025,,50968,432.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,187210.0,eb36b88e-3885-4dfb-942b-d94eb80d2e83,2533571.0,174.51,432.0,246.45,helper_hours_weighted,True,ok,6131.25,516.32
+64921557,Nicole FRESSARD,NSW,11476575,Heather GREETHEAD,"
+
+  True
+
+",3.0,3.0,17/11/2025 10:45 am,17/11/2025 1:45 pm,12.0,14.0,,Assistance with self-care and activities of daily living - Standard 2+ Hours,2535937,,Personal Care,complete,,"Applied creams to heels and legs
+Assisted with leg brace on
+
+Cleaned the bathroom, toilet and shower 
+Wiped over all surfaces in the kitchen and living area
+Made bed with fresh linen
+Took the clothes off the line and put away
+Washed up the dishes 
+Vacuumed and mopped 
+Rubbish taken out 
+
+Help Heather put up some Christmas decorations and lights on the tree
+Sat and had a cuppa and a chat with Heather as she was feeling down today. 
+
+","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,17/11/2025,,84740,324.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,2535937.0,238.42,324.0,403.54,helper_hours_weighted,True,ok,4982.05,390.75
+65912015,Carol-Lyn BROWN,NSW,10008436,Doreen HEGGIE,"
+
+  True
+
+",1.0,1.0,17/11/2025 10:10 am,17/11/2025 11:10 am,9.0,13.0,,Assistance with self-care and activities of daily living - Standard,2244645,,Personal Care,complete,,"Attended Doreen. Doreen changed and dressed when I arrived. I applied voltaren to leg as well as moisturised legs. I made coffee and porridge for Doreen as well as left her food and drinks for lunch. Gave her medication and a new packet of cigarettes. Some DA complete including a load of washing put on. No issues. 
+Doreen going to watch tv after my leaving. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,17/11/2025,,51402,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2244645.0,155.91,114.0,162.58,helper_hours_weighted,True,ok,5208.0,142.68
+66394405,Rachel PETHYBRIDGE,NSW,12229436,Rose BOTWOOD,"
+
+  True
+
+",1.0,1.0,17/11/2025 9:45 am,17/11/2025 10:45 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2534988,,Personal Care,complete,,Rosa showered and was getting dressed on time of support I assisted with dressing ,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,17/11/2025,,94886,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246241.0,3c923c3b-6961-4c24-ac75-3a1b1b1dcb05,2534988.0,186.27,114.0,77.52,helper_hours_weighted,True,ok,2246.0,132.12
+63591923,Mariana CORDOVA CORONEL DE BANDA,NSW,11578061,Annette MILLER-STANFORD,"
+
+  True
+
+",1.0,1.0,17/11/2025 9:30 am,17/11/2025 10:30 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2536040,,Personal Care,complete,,"Today I helped the client bathe, get changed, and applied cream to specific areas on her legs and arms. Then I took out the rubbish and hung up the washing.","NSW - Central Coast, State - NSW",True,True,,,17/11/2025,,85683,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,242403.0,1a03ab7f-0053-48aa-b830-80f3c9082974,2536040.0,77.78,114.0,92.94,helper_hours_weighted,True,ok,3223.25,130.23
+62018524,Karen HAMMOND,NSW,10008510,Priscilla BOARDMAN,"
+
+  True
+
+",1.0,1.0,17/11/2025 9:00 am,17/11/2025 10:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2532405,,Personal Care,complete,,Assisted gene with showering and all the usual duties around the house,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,17/11/2025,,51511,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,212864.0,07a0f05b-e82c-462f-966a-83a69fda7b17,2532405.0,182.78,114.0,125.42,helper_hours_weighted,True,ok,3902.25,120.07
+65801393,Jazmin SEBO,NSW,11612124,Doreen HEGGIE,"
+
+  True
+
+",1.0,1.0,15/11/2025 10:15 am,15/11/2025 11:15 am,9.0,12.0,,Assistance with self-care and activities of daily living - Saturday,2501698,,Personal Care,complete,,"I assisted Doreen with showering and dressing, I made her a cup of coffee, gave her a rice pudding and her medication and then tucked her in, because she wanted to go to bed. We had lovely conversation:)","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,15/11/2025,,86460,145.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2501698.0,137.76,145.0,181.19,helper_hours_weighted,True,ok,5208.0,142.68
+64952663,Enola LAPOD,NSW,10007941,Karen PORTER,"
+
+  True
+
+",3.0,3.0,15/11/2025 9:30 am,15/11/2025 12:30 pm,0.0,0.0,0.0,Accompanied activities - Saturday 2+ Hours (inc transport),2560657,,Social Support (Accompanied activity),complete,,"Shower attended, Bathroom and toilet cleaned , disinfected . Laundry attended, sorted out clothings , folded. Tidied and cleaned kitchen. Laundry attended. Floors cleaned then mopped. Stayed back to finished off the task after client left . Client requested. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,15/11/2025,,50968,435.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,187210.0,eb36b88e-3885-4dfb-942b-d94eb80d2e83,2560657.0,183.14,435.0,184.84,helper_hours_weighted,True,ok,6131.25,387.24
+64880190,Mariana CORDOVA CORONEL DE BANDA,NSW,11578061,Judith TURNER,"
+
+  False
+
+",1.0,1.0,14/11/2025 4:00 pm,14/11/2025 5:00 pm,35.0,44.0,,Assistance with self-care and activities of daily living - Standard,,,Personal Care,complete,,"Today I helped the client bathe, get changed, and reminded her about her medication, and then we had a chat. The client is very happy with my work.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,14/11/2025,,85683,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246358.0,200a7817-acec-4ade-8e39-312ee04272a5,,0.0,0.0,0.0,helper_hours_weighted,False,missing_shift_id,2895.0,137.86
+66199878,Sarah BURGIN,NSW,10008454, Henry FIFE,"
+
+  True
+
+",1.0,1.0,14/11/2025 3:35 pm,14/11/2025 4:35 pm,15.0,18.0,,Assistance with self-care and activities of daily living - Standard,2501540,,Personal Care,complete,,"greeted john, asked him if he’d like anything to eat but he politely refused saying he’s been eating all afternoon and had just had something to eat, checked his webster pack and noticed he hadn’t taken his afternoon meds, prompted him to take them and he did. john hasn’t taken his meds from last night. sat and chatted with john for remainder of shift. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,14/11/2025,,51427,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,250654.0,af665d0c-b2c7-4779-9c47-7c46468374cc,2501540.0,358.22,114.0,302.66,helper_hours_weighted,True,ok,3359.0,152.68
+64995319,Jazmin SEBO,NSW,11612124,Kenneth HAYWARD,"
+
+  True
+
+",2.0,2.0,14/11/2025 12:30 pm,14/11/2025 2:30 pm,29.0,36.0,,General - Standard 2+ Hours,2501697,,Domestic Assistance,complete,,,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,14/11/2025,,86460,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,257477.0,593aa0de-e341-4654-ac8d-a25b809242e8,2501697.0,278.97,216.0,362.38,helper_hours_weighted,True,ok,1208.0,402.67
+61684820,Hazal EREN,NSW,12002969,William PHILLIPS,"
+
+  True
+
+",2.0,2.0,14/11/2025 12:15 pm,14/11/2025 2:15 pm,7.0,10.0,,General - Standard 2+ Hours,2501687,,Domestic Assistance,complete,,Met Barry and Beryl. Changed sheets and put them in the wash. Put fresh sheets on. Cleaned bathroom and toilet. Beryl requested for me to clean out the fridge. Then folded dry sheets. ,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,14/11/2025,,92750,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,256164.0,e8d83246-dc67-493e-b248-af4e0903fb8d,2501687.0,172.91,216.0,179.38,helper_hours_weighted,True,ok,677.0,338.5
+66392867,Mariana CORDOVA CORONEL DE BANDA,NSW,11578061,Rose BOTWOOD,"
+
+  True
+
+",1.0,1.0,14/11/2025 10:35 am,14/11/2025 11:35 am,13.0,4.0,,Assistance with self-care and activities of daily living - Standard,2502680,,Personal Care,complete,,"When I arrived, the client told me that she did not need help bathing, as she had already done so yesterday. She told me that she needed help vacuuming and cleaning the kitchen. I explained that I was scheduled to assist her with personal care today, but she said she did not need that. So I explained that I couldn't perform those domestic tasks at the moment and that they would probably send someone else to help her with those tasks. I also told her that if she wanted, I could help her wash her dishes, but she told me she had already done that. So I listened to her as she told me various things about her home and her daughter. She seemed quite calm, and then she told me I could leave. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,14/11/2025,,85683,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246241.0,3c923c3b-6961-4c24-ac75-3a1b1b1dcb05,2502680.0,202.63,228.0,92.94,helper_hours_weighted,True,ok,2246.0,132.12
+65390675,Amy CLAVELL,NSW,12277473,Irene KALOUDIS,"
+
+  True
+
+",2.0,2.0,14/11/2025 10:30 am,14/11/2025 12:30 pm,0.0,0.0,,General - Intro -Standard 2+ Hours,2548791,,Domestic Assistance,complete,,"Dusted, wiped down furniture and vacuumed in clients room 
+Cleaned, dusted, disinfected clients bathroom shower/ toilet mirror  
+Vacuumed and mopped clients side of house 
+Vacuumed kitchen and lounge room and dinning room ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,14/11/2025,,95305,183.6,Services Australia,SERV-0001,NSW - Central Coast,sah,,259255.0,6f3f1a0b-5f25-4f0e-9adb-64480d7f2f5c,2548791.0,88.03,183.6,147.18,helper_hours_weighted,True,ok,1023.6,1023.6
+64300595,Nicole FRESSARD,NSW,11476575,Heather GREETHEAD,"
+
+  False
+
+",1.0,1.0,14/11/2025 10:00 am,14/11/2025 11:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,,,Personal Care,complete,,"Applied cream to heels and legs
+Leg brace and shoes on 
+Walked around the village","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,14/11/2025,,84740,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,,0.0,0.0,0.0,helper_hours_weighted,False,missing_shift_id,4982.05,130.25
+65895826,Shannon SAMMONS,NSW,10988718,Frank BELL,"
+
+  True
+
+",2.0,2.0,14/11/2025 9:45 am,14/11/2025 11:45 am,0.0,0.0,30.0,Accompanied activities - Standard 2+ Hours (inc transport),2543778,,Social Support (Accompanied activity),complete,,Transported to medical appointment and home again. ,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,14/11/2025,,72155,228.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,258386.0,b4c7ed66-8e27-4542-856d-5308925cc22e,2543778.0,201.16,228.0,341.68,helper_hours_weighted,True,ok,2084.0,320.62
+62019186,Mariana CORDOVA CORONEL DE BANDA,NSW,11578061,Annette MILLER-STANFORD,"
+
+  True
+
+",1.0,1.0,14/11/2025 9:30 am,14/11/2025 10:30 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2502680,,Personal Care,complete,,"Annette/ MONDAY
+
+
+Today I helped the client bathe, change her clothes, and applied cream to specific areas of her legs and arms. Then I helped her hang up the laundry and tidy up the dishes. The client was calm.","NSW - Central Coast, State - NSW",True,True,,,14/11/2025,,85683,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,242403.0,1a03ab7f-0053-48aa-b830-80f3c9082974,2502680.0,202.63,228.0,92.94,helper_hours_weighted,True,ok,3223.25,130.23
+66162467,Karen HAMMOND,NSW,10008510,Priscilla BOARDMAN,"
+
+  True
+
+",3.0,3.0,14/11/2025 9:00 am,14/11/2025 12:00 pm,0.0,0.0,,Assistance with self-care and activities of daily living - Standard 2+ Hours,2498954,,Personal Care,complete,,"Assisted Jane with shower and creams,  tidied unit, scrubbed bathroom,  wiped over kitchen, vacuum and mopped floors, dusting done. Jane didn't want any extra assistance today ..","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,14/11/2025,,51511,324.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,212864.0,07a0f05b-e82c-462f-966a-83a69fda7b17,2498954.0,372.77,324.0,376.27,helper_hours_weighted,True,ok,3902.25,360.21
+64502988,Carol-Lyn BROWN,NSW,10008436,Doreen HEGGIE,"
+
+  True
+
+",2.0,2.0,14/11/2025 8:10 am,14/11/2025 10:10 am,13.0,0.0,0.0,Accompanied activities - Standard 2+ Hours (inc transport),2499446,,Social Support (Accompanied activity),complete,,"Doreen up when I arrived. I made her coffee and 2 sachets of porridge, gave her medication and a new packet of cigarettes. Made Doreen a sandwich and cooked up some dim sims to leave for her. Did a load of laundry after collecting wet and dirty clothes from around the house. Cleaned the bathroom and kitchen, as well as tried to tidy her room. I left Doreen with fruit, snacks and drinks as well. Doreen was going to watch tv after I left. No issues","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,14/11/2025,,51402,228.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2499446.0,209.57,228.0,325.16,helper_hours_weighted,True,ok,5208.0,285.37
+60097742,Maree CONSTANTINOU,NSW,11665706,Barry EVANS,"
+
+  True
+
+",1.0,1.0,13/11/2025 2:00 pm,13/11/2025 3:00 pm,19.0,30.0,,General - Standard,2552176,,Domestic Assistance,complete,,"I began 10mins late & finished 10mins later. I phoned Barry with courtesy call to advise I was running behind a little from previous client. He was understanding. I completed the below today;
+- changed bedding
+- wiped down kitchen benches, sink & stove top
+- dusted table tops in dining, lounge & bedrooms
+- cleaned bathroom inc. mirrors + toilet
+- vacuum of all areas
+- mopping of kitchen, bathroom, toilet & laundry
+Barry thanked me & said he'd see me next time.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,13/11/2025,,89507,114.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,254180.0,d1087e2d-b0ce-4d1f-81eb-44ff813534e0,2552176.0,242.57,285.0,128.25,helper_hours_weighted,True,ok,438.0,219.0
+65552598,Nicole FRESSARD,NSW,11476575,Dawn DETTMAR,"
+
+  True
+
+",3.0,3.0,13/11/2025 12:45 pm,13/11/2025 3:45 pm,8.0,9.0,25.0,Accompanied activities - Standard 2+ Hours (inc transport),2502580,,Social Support (Accompanied activity),complete,,"Dawn and I went out to do her weekly food shopping. 
+We headed to Blue Haven Aldi, then Woolworths at Lake Munmorah. Dawn wanted to stop and have a coffee before heading home. 
+Helped bring groceries inside and unpacked. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,13/11/2025,,84740,342.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,203225.0,8c2267f5-8fc5-4b32-ad66-91a471f5f87b,2502580.0,319.3,342.0,403.54,helper_hours_weighted,True,ok,1361.0,408.3
+62675209,Maree CONSTANTINOU,NSW,11665706,Michelle DAVIS,"
+
+  True
+
+",1.5,1.5,13/11/2025 12:00 pm,13/11/2025 1:30 pm,27.0,33.0,,General - Standard,2552176,,Domestic Assistance,complete,,"Michelle was very particular with her instructions & how she likes things done. I completed the below today;
+- changed bedding
+- collected piles of leaves outside
+- swept back patio
+- hung washing out
+- took bin/rubbish out
+- checked mail
+- dusted TV cabinet 
+- cleaned bathrooms partially inc. mirrors, bathtub & outer toilet bowls + shower recesses.
+- full vacuum 
+- mop of hard surfaces inside
+Michelle said it was a pleasant experience having me there to help & was thankful.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,13/11/2025,,89507,171.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,246005.0,0fd922d6-1250-4d57-943d-0cdc80bcd6d5,2552176.0,242.57,285.0,192.37,helper_hours_weighted,True,ok,1679.25,629.72
+65218634,Hazal EREN,NSW,12002969,Frank BELL,"
+
+  True
+
+",3.0,3.0,13/11/2025 11:15 am,13/11/2025 2:15 pm,12.0,16.0,17.0,Accompanied activities - Standard 2+ Hours (inc transport),2501686,,Social Support (Accompanied activity),complete,,Frank and I went to soldiers beach and got some coffee together :),"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,13/11/2025,,92750,342.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,258386.0,b4c7ed66-8e27-4542-856d-5308925cc22e,2501686.0,284.39,342.0,269.07,helper_hours_weighted,True,ok,2084.0,480.92
+65386980,Carol-Lyn BROWN,NSW,10008436,Doreen HEGGIE,"
+
+  True
+
+",2.0,2.0,13/11/2025 11:15 am,13/11/2025 1:15 pm,2.0,4.0,,Assistance with self-care and activities of daily living - Standard 2+ Hours,2499445,,Personal Care,complete,,"Attended Doreen. Doreen was asleep in bed when I arrived again so I decided to leave her asleep and clean. On Doreen’s waking I made her coffee and porridge and gave her, her medication. I took out a pack of cigarettes for Doreen also. I gave Doreen a wash and new pad. I did a load of washing and hung it out, sorted some clothes, cleaned the kitchen and dining table. I left Doreen with food and drinks on the table so she can see them. 
+Doreen was going in to watch tv as I was leaving. No issues. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,13/11/2025,,51402,216.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2499445.0,256.83,216.0,325.16,helper_hours_weighted,True,ok,5208.0,285.37
+64921529,Zara CHRISTENSEN,NSW,11653996,Heather GREETHEAD,"
+
+  True
+
+",3.0,3.0,13/11/2025 10:15 am,13/11/2025 1:15 pm,0.0,0.0,12.0,Accompanied activities - Standard 2+ Hours (inc transport),2528617,,Social Support (Accompanied activity),complete,,"I visited Heather, we chatted for a while and Heather mentioned that she didn’t realise it was me today as she hadn’t been notified.
+We took off to Lake Munmorrah shops heading to Woolies, News agency and we sat, got a drink and chatted for a while. We then headed back to her village, we stopped and I checked her mailbox for letters. Then once returned home I helped Heather with putting away groceries, started assembling her Christmas tree ornaments and then she said I could leave when she was getting a phone call from her cousin. 
+She was a lovely chatty lady, and she said it would be nice to see me again and I agreed.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,To Lake Munmorrah shops and back ,13/11/2025,,89490,342.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,2528617.0,130.16,342.0,157.17,helper_hours_weighted,True,ok,4982.05,390.75
+65158450,Melanie BALKEN ,NSW,11778915,Christine TCACIUC,"
+
+  True
+
+",3.0,3.0,13/11/2025 10:00 am,13/11/2025 1:00 pm,0.0,0.0,0.0,Shopping - Standard 2+ Hours,2502683,,"Domestic Assistance, Personal Care",complete,,"Mopped, vacuumed, wiped down shower, cleaned bathrooms. Showered client. Also had a lovely chat. ","CC - CM - Caitlin Kirkpatrick, NSW - Central Coast",True,True,,,13/11/2025,,90407,324.0,Services Australia,SERV-0003,NSW - Central Coast,hcp,,249771.0,d036c153-9b45-4519-be30-9d9931c3fbfe,2502683.0,124.79,324.0,226.84,helper_hours_weighted,True,ok,1927.0,361.31
+65490834,Michelle SMITH,NSW,11779036,Patricia CLIMPSON,"
+
+  True
+
+",2.0,2.0,13/11/2025 10:00 am,13/11/2025 12:00 pm,0.0,0.0,,General - Standard 2+ Hours,2501814,,Domestic Assistance,complete,,"
+* put a  loud af washing on and once finished hung it to dry.
+* Took washing off the line
+* Took rubbish and recycling out to the bin
+* Vacuumed throughout
+* Wipe down kitchen
+* Did a few dishes
+* Then mopped floor
+* After finishing the jobs  Trish asked for a lift to post office in Woy Woy 
+","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,13/11/2025,,90291,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,250486.0,5668326c-a811-498a-81bc-f579c55959ac,2501814.0,79.37,216.0,137.83,helper_hours_weighted,True,ok,1267.0,253.4
+62024251,Orina RYAN,NSW,11907698,Judith TURNER,"
+
+  True
+
+",1.0,1.0,12/11/2025 4:00 pm,12/11/2025 5:00 pm,13.0,16.0,,Assistance with self-care and activities of daily living - Standard,2505524,,Personal Care,complete,,,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,12/11/2025,,91815,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246358.0,200a7817-acec-4ade-8e39-312ee04272a5,2505524.0,179.29,114.0,104.84,helper_hours_weighted,True,ok,2895.0,137.86
+65505933,Christie WHITEHEAD,NSW,10008371, Henry FIFE,"
+
+  True
+
+",1.0,1.0,12/11/2025 3:25 pm,12/11/2025 4:25 pm,12.0,15.0,,Assistance with self-care and activities of daily living - Standard,2498998,,Personal Care,complete,,John appeared in good spirits and said he was full as he had only just eaten. I seen that John’s Webster pack was up to date for today and he said he doesn’t have his night time medication until after dinner at around 6:30pm. We just chatted for this visit.,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,12/11/2025,,51333,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,250654.0,af665d0c-b2c7-4779-9c47-7c46468374cc,2498998.0,326.85,114.0,136.6,helper_hours_weighted,True,ok,3359.0,152.68
+65237906,Jazmin SEBO,NSW,11612124,Barry PICKERING,"
+
+  True
+
+",2.0,2.0,12/11/2025 1:15 pm,12/11/2025 3:15 pm,10.0,12.0,,General - Standard 2+ Hours,2501696,,Domestic Assistance,complete,,,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,12/11/2025,,86460,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,198484.0,50fd8217-e4fa-4080-a6ac-f089d5093a64,2501696.0,236.53,330.0,362.38,helper_hours_weighted,True,ok,572.0,286.0
+60861125,Enola LAPOD,NSW,10007941,Karen PORTER,"
+
+  True
+
+",6.0,6.0,12/11/2025 11:00 am,12/11/2025 5:00 pm,0.0,0.0,169.0,Accompanied activities - Standard 2+ Hours (inc transport),2500190,,Social Support (Accompanied activity),complete,,Drove to Royal North shore  hospital for Neurologist appointment.   ,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,We got lost on the way had to drive through The city to make a turn through Harbour bridge. ,12/11/2025,,50968,684.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,187210.0,eb36b88e-3885-4dfb-942b-d94eb80d2e83,2500190.0,471.54,798.0,369.68,helper_hours_weighted,True,ok,6131.25,774.47
+66099013,Amy CLAVELL,NSW,12277473,Heather GREETHEAD,"
+
+  True
+
+",2.0,2.0,12/11/2025 10:45 am,12/11/2025 12:45 pm,0.0,0.0,4.0,Accompanied activities - Standard 2+ Hours (inc transport),2548789,,Social Support (Accompanied activity),complete,,Took heather to her appointment then back home helped heather with some folding and Christmas decorations ,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,12/11/2025,,95305,228.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,2548789.0,91.99,228.0,147.18,helper_hours_weighted,True,ok,4982.05,260.5
+62682039,Michelle SMITH,NSW,11779036,Shirley MORRIS,"
+
+  True
+
+",2.0,2.0,12/11/2025 10:00 am,12/11/2025 12:00 pm,0.0,0.0,,General - Standard 2+ Hours,2501813,,Domestic Assistance,complete,,"* washed dishes 
+* Wiped kitchen table
+* Clean the toilet
+* Clean the bathroom and shower
+* Mop the floors
+* And vacuumed
+* Shirley is still wanting to move out of the cottage to somewhere in the entrance area. She is unhappy with the ramp “ideas that the gentleman came with wanting to concrete a lot of the yard being that she is renting does not want to spend much on the house.
+* Shirley and I looked on Amazon and found a portable ramp that would work was wondering if you guys could look at that. 
+","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,12/11/2025,,90291,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,250925.0,522bcc07-71fb-4aec-b2d1-5777ad5e225e,2501813.0,79.37,216.0,137.83,helper_hours_weighted,True,ok,1144.0,286.0
+64953985,Hazal EREN,NSW,12002969,Colleen FITZGERALD,"
+
+  True
+
+",2.0,2.0,12/11/2025 10:00 am,12/11/2025 12:00 pm,0.0,0.0,,General - Standard 2+ Hours,2501685,,Domestic Assistance,complete,,Domestic assistance: stripped bed and washed. Remade bed with fresh sheets. Vacuumed and mopped. Hung out washing. Cleaned kitchen and Colleen requested for me to clean the cutlery draw. Colleen seemed happy :),"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,12/11/2025,,92750,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,258788.0,f1cfaace-b340-40c7-8007-fd3ab21543af,2501685.0,79.37,216.0,179.38,helper_hours_weighted,True,ok,1431.0,286.2
+66093370,Enola LAPOD,NSW,10007941,Karen PORTER,"
+
+  True
+
+",1.0,1.0,12/11/2025 10:00 am,12/11/2025 11:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2500190,,Personal Care,complete,,Showered attended. Preparing to go to Royal North shore hospital. ,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,12/11/2025,,50968,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,187210.0,eb36b88e-3885-4dfb-942b-d94eb80d2e83,2500190.0,471.54,798.0,61.61,helper_hours_weighted,True,ok,6131.25,129.08
+66162481,Karen HAMMOND,NSW,10008510,Priscilla BOARDMAN,"
+
+  True
+
+",4.0,4.0,12/11/2025 10:00 am,12/11/2025 2:00 pm,3.0,0.0,6.0,Accompanied activities - Standard 2+ Hours (inc transport),2498952,,Social Support (Accompanied activity),complete,,.,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,12/11/2025,,51511,456.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,212864.0,07a0f05b-e82c-462f-966a-83a69fda7b17,2498952.0,263.92,456.0,501.69,helper_hours_weighted,True,ok,3902.25,480.28
+66182155,Melanie BALKEN ,NSW,11778915,Rose BOTWOOD,"
+
+  True
+
+",1.0,1.0,12/11/2025 10:00 am,12/11/2025 11:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2502681,,Personal Care,complete,,Full DA today. Had a little chat with Rose- she is concerned about her daughter. ,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,12/11/2025,,90407,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246241.0,3c923c3b-6961-4c24-ac75-3a1b1b1dcb05,2502681.0,191.65,114.0,75.61,helper_hours_weighted,True,ok,2246.0,132.12
+64953765,Tara FERRIS-MEYER,NSW,11653998,Annette MILLER-STANFORD,"
+
+  True
+
+",4.0,4.0,12/11/2025 9:30 am,12/11/2025 1:30 pm,0.0,0.0,15.0,Accompanied activities - Standard 2+ Hours (inc transport),2502590,,Social Support (Accompanied activity),complete,,"PA
+SHOPPING ","NSW - Central Coast, State - NSW",True,True,,,12/11/2025,,89506,456.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,242403.0,1a03ab7f-0053-48aa-b830-80f3c9082974,2502590.0,172.04,456.0,246.35,helper_hours_weighted,True,ok,3223.25,520.93
+63850231,Jazmin SEBO,NSW,11612124,Doreen HEGGIE,"
+
+  True
+
+",1.0,1.0,12/11/2025 9:05 am,12/11/2025 10:05 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2501696,,Personal Care,complete,,I spoke to Doreen’s daughter and she kindly asked me to pick some stuff up from the shops. She told me to just get Doreen changed into a fresh set of clothes. I gave her breakfast and she took her medication. We had lovely chats.,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,12/11/2025,,86460,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2501696.0,236.53,330.0,181.19,helper_hours_weighted,True,ok,5208.0,142.68
+64300581,Nicole FRESSARD,NSW,11476575,Heather GREETHEAD,"
+
+  True
+
+",1.0,1.0,12/11/2025 9:00 am,12/11/2025 10:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2502578,,Personal Care,complete,,"Applied creams to heels and legs 
+Assisted with leg brace and shoes on 
+Walked around the village, Heather had a chat and caught up with some friends along the way 
+Rubbish taken out ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,12/11/2025,,84740,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,2502578.0,149.96,114.0,134.51,helper_hours_weighted,True,ok,4982.05,130.25
+62485086,Anulal VARICKATHARAPPEL,NSW, 11396786,Karen PORTER,"
+
+  True
+
+",1.0,1.0,12/11/2025 8:25 am,12/11/2025 9:25 am,16.0,23.0,,Registered Nurse - Standard,2412565,,Registered Nurse,complete,,"Karan was attended this morning for her routine skin integrity and wellbeing review. She was alert, calm, and cooperative throughout the visit.
+
+Moisturiser was applied to both lower legs to maintain skin hydration. On assessment, the skin appeared intact with no signs of redness, oedema, or breakdown. Swelling in the lower limbs has improved compared to previous visits. There were no open wounds observed, and the overall skin condition appeared healthy and well-maintained.
+
+Karan reported ongoing sciatic nerve pain but mentioned that she has an appointment with a neurologist today for further assessment and management.
+
+Vital Signs 
+BP: 145/85 mmHg
+Pulse: 69 bpm
+SpO₂: 96%
+Temperature: 36.2°C","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,12/11/2025,,82357,160.0,Services Australia,SERV-0023,NSW - Central Coast,hcp,,187210.0,eb36b88e-3885-4dfb-942b-d94eb80d2e83,2412565.0,723.74,160.0,803.56,helper_hours_weighted,True,ok,6131.25,129.08
+64953979,Carrol SHEARMAN,NSW,10008443,Colleen FITZGERALD,"
+
+  True
+
+",3.0,3.0,11/11/2025 1:00 pm,11/11/2025 4:00 pm,10.0,15.0,5.0,Accompanied activities - Standard 2+ Hours (inc transport),2548700,,Social Support (Accompanied activity),complete,,Greeted Colleen who was ready to leave for Lakeside shopping plaza to grocery shop. Colleen also enjoyed a sit down lunch. Returned home I put the shopping away made Colleen a cup of tea and folded the washing. Colleen appeared happy and well. I was unable to clock on and off due to accidently leaving my phone at home shift was 1pm to 4pm,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,11/11/2025,,51410,342.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,258788.0,f1cfaace-b340-40c7-8007-fd3ab21543af,2548700.0,245.89,342.0,296.91,helper_hours_weighted,True,ok,1431.0,429.3
+65713941,Mariana CORDOVA CORONEL DE BANDA,NSW,11578061,Brian DEAMER,"
+
+  True
+
+",3.0,3.0,11/11/2025 11:00 am,11/11/2025 2:00 pm,0.0,0.0,16.0,Accompanied activities - Standard 2+ Hours (inc transport),2502678,,Social Support (Accompanied activity),complete,,"Mr Brian is very kind. We chatted for a while and then went to Erina, where he bought a few things before we returned to his house. The client told me that he had woken up feeling a little dizzy.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,11/11/2025,,85683,342.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,219845.0,29ce9545-f16d-45a2-95ba-f16e99c87991,2502678.0,140.63,342.0,278.82,helper_hours_weighted,True,ok,2048.0,384.0
+65230542,Orina RYAN,NSW,11907698,Peter GUY,"
+
+  True
+
+",3.0,3.0,11/11/2025 10:30 am,11/11/2025 1:30 pm,0.0,0.0,20.0,Accompanied activities - Standard 2+ Hours (inc transport),2509819,,Social Support (Accompanied activity),complete,,"Today I met the lovely Peter, he has been unwell for sometime with mental health issues.  Please note you need to be careful with patient s and understanding. He has a book he uses for his everyday tasks and refers to it  Peter suffers anxiety and OCD.  A very independent person that sometimes needs reminding or prompting for things he needs to focus on. 
+
+Today he requested shopping at Erina at Woolworths for groceries. 
+Completing a form for Lumia Care, 
+Going  to his bank for cash, he had  lost his visa and wallet at home. Peter had a bank statement to refer to and received his cash.
+We visited Tea2 for his favourite tea then enjoyed a coffee together.
+
+I feel Peter was a little overwhelmed in the beginning although he warmed up knowing he had a support person with him.  I called the office requesting a longer time to complete his tasks. 
+I then returned him home , brought his bags into the house then left. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,10km each way travel to Erina,11/11/2025,,91815,342.0,Services Australia,SERV-0011,NSW - Central Coast,sah,,259134.0,28e3a91d-7be3-4e3e-8d0d-59edb316787a,2509819.0,151.07,342.0,314.52,helper_hours_weighted,True,ok,1456.5,546.19
+65731167,Christie WHITEHEAD,NSW,10008371, Henry FIFE,"
+
+  True
+
+",3.0,3.0,11/11/2025 10:25 am,11/11/2025 1:25 pm,16.0,20.0,0.0,Accompanied activities - Standard 2+ Hours (inc transport),2498997,,Social Support (Accompanied activity),complete,,"I waited for John to arrive. We mainly chatted as John said he was tired and did not want to go anywhere. We did a little more on his family tree but John was having trouble remembering many more names. John asked if I wouldn’t mind leaving a little earlier as he was ready for a nap. Besides being tired, John appeared in good spirits.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,11/11/2025,,51333,342.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,250654.0,af665d0c-b2c7-4779-9c47-7c46468374cc,2498997.0,204.26,342.0,409.81,helper_hours_weighted,True,ok,3359.0,458.05
+64919791,Carol-Lyn BROWN,NSW,10008436,Doreen HEGGIE,"
+
+  True
+
+",2.0,2.0,11/11/2025 10:15 am,11/11/2025 12:15 pm,9.0,12.0,2.0,Accompanied activities - Standard 2+ Hours (inc transport),2499443,,Social Support (Accompanied activity),complete,,"Doreen sitting at kitchen table on my arrival. The cleaner had made her coffee and a sandwich so I completed some DA. Whole bed needed to be changed as saturated. The mattress was wet also. Did 3 loads of washing and hung out as well as tried to air/dry out bed. Had to re-make the bed over a wet mattress. Doreen refused a shower so she washed herself and I helped dry her and dress her. Went to coles for groceries. Made Doreen food for lunch, new coffee and left other snacks visible on the table. 
+Gave Doreen her medication, applied voltaren to leg and gave her a new pack of cigarettes. Doreen was going to watch tv in her room on my leaving. No issues. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,11/11/2025,,51402,228.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2499443.0,152.22,228.0,325.16,helper_hours_weighted,True,ok,5208.0,285.37
+63950340,Tracey MORGAN,NSW,10008244,Christine TCACIUC,"
+
+  True
+
+",1.0,1.0,11/11/2025 10:10 am,11/11/2025 11:10 am,3.0,6.0,,Assistance with self-care and activities of daily living - Standard,2498896,,Personal Care,complete,,"Her husband greeted me at the door
+We sat and chatted 
+I showered Christine 
+Brushed her hair 
+We chatted again 
+She was happy when I left ","CC - CM - Caitlin Kirkpatrick, NSW - Central Coast",True,True,,,11/11/2025,,51226,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,249771.0,d036c153-9b45-4519-be30-9d9931c3fbfe,2498896.0,194.72,114.0,156.34,helper_hours_weighted,True,ok,1927.0,120.44
+64073463,Maree CONSTANTINOU,NSW,11665706,Patricia MITCHELL,"
+
+  True
+
+",1.5,1.5,11/11/2025 9:00 am,11/11/2025 10:30 am,0.0,0.0,,General - Standard,2502601,,Domestic Assistance,complete,,"Nice meet & greet from Patricia & Keith. I completed the below today after being shown around;
+- clean of 2.5 bathrooms inc. bath & mirrors
+- vacuum upstairs & downstairs inc. staircase
+- mop of bathrooms, toilet & laundry
+- wipe down of back sliding door track
+- bin liner replacement 
+Clients seemed happy, thanked me very much & advised to park in driveway next time.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,11/11/2025,,89507,171.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,247168.0,621b5c0e-0c78-4511-9a31-c59efbfadc52,2502601.0,210.06,171.0,192.37,helper_hours_weighted,True,ok,657.0,328.5
+65895744,Sylvia REZK,NSW,10008445,Frank BELL,"
+
+  True
+
+",1.0,1.0,11/11/2025 8:30 am,11/11/2025 9:30 am,0.0,0.0,5.0,Accompanied activities - Standard (inc transport),2500208,,Social Support (Accompanied activity),complete,,Pick up Frank. Pack walker in car and depart to Pathology. Appointment complete. Have coffee and return home. Bring in bins. ,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,11/11/2025,,51412,114.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,258386.0,b4c7ed66-8e27-4542-856d-5308925cc22e,2500208.0,158.16,114.0,222.16,helper_hours_weighted,True,ok,2084.0,160.31
+65344884,Sarah BURGIN,NSW,10008454, Henry FIFE,"
+
+  True
+
+",1.0,1.0,10/11/2025 2:40 pm,10/11/2025 3:40 pm,16.0,20.0,,Assistance with self-care and activities of daily living - Standard,2501534,,Personal Care,complete,,"greeted john, sat and chatted while watching a tv show he was interested in. asked him if he had taken his meds, he had and was planning to go to the chemist after i left to refill his mediation pack, asked him if i could make him
+anything but he refused saying he wasn’t
+hungry and had only just eaten lunch not too long ago, got him a glass of water instead.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,10/11/2025,,51427,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,250654.0,af665d0c-b2c7-4779-9c47-7c46468374cc,2501534.0,312.67,114.0,302.66,helper_hours_weighted,True,ok,3359.0,152.68
+62656542,Moamen MAROUF,NSW,10310314,Priscilla BOARDMAN,"
+
+  True
+
+",1.0,1.0,10/11/2025 11:30 am,10/11/2025 12:30 pm,19.0,4.0,,Physiotherapy - Direct,2500336,,Allied Health - Physiotherapy,complete,,Jane was seen today for physiotherapy service and did all exc program well with no issues or complaints. Jane using 1 kg dumbbells and did strengthening exercises for upper limb. Followed by strengthening exercises for legs and finishing with standing balance exercises.,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,10/11/2025,,51281,180.0,Services Australia,SERV-0034,NSW - Central Coast,hcp,,212864.0,07a0f05b-e82c-462f-966a-83a69fda7b17,2500336.0,142.69,180.0,181.8,helper_hours_weighted,True,ok,3902.25,120.07
+64240592,Milika GREGSON,NSW,11191864,Brian DEAMER,"
+
+  True
+
+",2.0,2.0,10/11/2025 11:30 am,10/11/2025 1:30 pm,0.0,0.0,,General - Standard 2+ Hours,2511919,,Domestic Assistance,complete,,"Kitchen wiped over, 
+Bathroom, 
+Sheets changed, 
+Housed dusted 
+Vaccumm","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,10/11/2025,,76742,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,219845.0,29ce9545-f16d-45a2-95ba-f16e99c87991,2511919.0,79.37,216.0,157.6,helper_hours_weighted,True,ok,2048.0,256.0
+64952691,Enola LAPOD,NSW,10007941,Karen PORTER,"
+
+  True
+
+",4.0,4.0,10/11/2025 11:15 am,10/11/2025 3:15 pm,0.0,0.0,,Assistance with self-care and activities of daily living - Standard 2+ Hours,2500189,,Personal Care,complete,,"Late checked out. 
+Personal care attended. DA completed. Took Karen out to lunch. Karen was feeling very down, I suggested to go out to lunch. Karen mood has improved since then. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,10/11/2025,,50968,432.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,187210.0,eb36b88e-3885-4dfb-942b-d94eb80d2e83,2500189.0,174.51,432.0,246.45,helper_hours_weighted,True,ok,6131.25,516.32
+62015043,Carol-Lyn BROWN,NSW,10008436,Doreen HEGGIE,"
+
+  True
+
+",1.0,1.0,10/11/2025 10:15 am,10/11/2025 11:15 am,8.0,12.0,,Assistance with self-care and activities of daily living - Standard,2499442,,Personal Care,complete,,"Doreen in bed in my arrival. I spent some time tidying up before Doreen got up. Gave Doreen medication, made porridge and coffee. Dressed and washed  Doreen and changed pad.  Left Doreen food and drinks on table. Gave Doreen a new packet of cigarettes and put 3 more in locked box. Doreen in good spirits on my leaving. No issues. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,10/11/2025,,51402,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2499442.0,261.36,114.0,162.58,helper_hours_weighted,True,ok,5208.0,142.68
+63591922,Mariana CORDOVA CORONEL DE BANDA,NSW,11578061,Annette MILLER-STANFORD,"
+
+  True
+
+",1.0,1.0,10/11/2025 9:30 am,10/11/2025 10:30 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2502676,,Personal Care,complete,,"Today I helped the client bathe, get changed, and applied cream to specific areas on her legs and arms. Then I took out the rubbish and hung up the washing.","NSW - Central Coast, State - NSW",True,True,,,10/11/2025,,85683,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,242403.0,1a03ab7f-0053-48aa-b830-80f3c9082974,2502676.0,124.21,114.0,92.94,helper_hours_weighted,True,ok,3223.25,130.23
+62018523,Karen HAMMOND,NSW,10008510,Priscilla BOARDMAN,"
+
+  True
+
+",1.0,1.0,10/11/2025 9:00 am,10/11/2025 10:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2528455,,Personal Care,complete,,Assisted Jane with a shower scrubbed bathroom and kitchen vacuum and moped floors dusting completed rubbish removed,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,10/11/2025,,51511,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,212864.0,07a0f05b-e82c-462f-966a-83a69fda7b17,2528455.0,182.78,114.0,125.42,helper_hours_weighted,True,ok,3902.25,120.07
+65816138,Nicole FRESSARD,NSW,11476575,Heather GREETHEAD,"
+
+  True
+
+",3.0,3.0,10/11/2025 9:00 am,10/11/2025 12:00 pm,0.0,0.0,,Assistance with self-care and activities of daily living - Standard 2+ Hours,2502576,,Personal Care,complete,,"P/C 
+Applied creams to heels and legs
+Leg brace and pants on 
+Quick walk around the village and checked the mail
+
+D/A
+Cleaned bathroom, shower & toilet
+Wiped over all surfaces in the kitchen and living room
+Vacuumed and mopped
+Taken rubbish out 
+","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,10/11/2025,,84740,324.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,2502576.0,271.96,324.0,403.54,helper_hours_weighted,True,ok,4982.05,390.75
+64880186,Mariana CORDOVA CORONEL DE BANDA,NSW,11578061,Judith TURNER,"
+
+  True
+
+",1.0,1.0,07/11/2025 4:00 pm,07/11/2025 5:00 pm,35.0,47.0,,Assistance with self-care and activities of daily living - Standard,2464339,,Personal Care,complete,,"Today I helped the client bathe, get changed, and reminded her about her medication, and then we had a chat. The client is very happy with my work.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,07/11/2025,,85683,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246358.0,200a7817-acec-4ade-8e39-312ee04272a5,2464339.0,97.05,114.0,92.94,helper_hours_weighted,True,ok,2895.0,137.86
+65344872,Sarah BURGIN,NSW,10008454, Henry FIFE,"
+
+  True
+
+",1.0,1.0,07/11/2025 3:35 pm,07/11/2025 4:35 pm,15.0,18.0,,Assistance with self-care and activities of daily living - Standard - Cancellation <48 hours,2481194,,Late Cancellation,complete,,,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,07/11/2025,,51427,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,250654.0,af665d0c-b2c7-4779-9c47-7c46468374cc,2481194.0,149.58,114.0,302.66,helper_hours_weighted,True,ok,3359.0,152.68
+63863283,Sri ASTUTIK ,NSW,11697863,Elizabeth CAPORALE,"
+
+  True
+
+",1.0,1.0,07/11/2025 12:45 pm,07/11/2025 1:45 pm,20.0,26.0,,General - Standard,2464376,,Domestic Assistance,complete,,"Have a good chat 
+Dusted the furnitures 
+Polished the furnitures 
+Vacuumed the floors 
+Mopped the floor 
+Put away the mop to the laundry 
+Cleaned the bathroom 
+Cleaned the toilet ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,07/11/2025,,89888,114.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,251687.0,f833740c-31f2-4445-b302-7bee23638ec2,2464376.0,330.88,114.0,314.21,helper_hours_weighted,True,ok,718.0,359.0
+62298009,Hazal EREN,NSW,12002969,Mavourneen ELVIN,"
+
+  True
+
+",1.5,1.5,07/11/2025 12:10 pm,07/11/2025 1:40 pm,0.0,1.0,,General - Standard,2464520,,Domestic Assistance,complete,,"Mavourneen informed me she was told by Lumia someone was coming at 10am instead of 12.10pm so she was a bit thrown when I arrived so late.
+Completed light cleaning: changed bed sheets, vacuumed, and folded washing. Mavourneen was happy :)","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,07/11/2025,,92750,171.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,256622.0,76e6644c-332f-45fe-8f36-34c17522f1f8,2464520.0,143.71,171.0,134.53,helper_hours_weighted,True,ok,1026.0,279.82
+62022507,Orina RYAN,NSW,11907698,Rose BOTWOOD,"
+
+  True
+
+",1.0,1.0,07/11/2025 12:00 pm,07/11/2025 1:00 pm,3.0,0.0,,Assistance with self-care and activities of daily living - Standard,2464489,,Personal Care,complete,,"*Assisted Rose with shower and dressing.
+* Vaccumed and mopped the Kitchen and bathroom 
+* Vaccumed the lounge room.
+","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,07/11/2025,,91815,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246241.0,3c923c3b-6961-4c24-ac75-3a1b1b1dcb05,2464489.0,140.22,114.0,104.84,helper_hours_weighted,True,ok,2246.0,132.12
+62683168,Michelle SMITH,NSW,11779036,Judith TURNER,"
+
+  True
+
+",2.0,2.0,07/11/2025 10:00 am,07/11/2025 12:00 pm,0.0,0.0,,General - Standard 2+ Hours,2464415,,Domestic Assistance,complete,,"* Judy had been over to a neighbours to say hello 
+* Ed at home relaxing 
+* I scrubbed kitchen cupboards and draws
+* Scrubbed kitchen floor and kick boards
+* Cleaned toilets Xanax
+* Cleaned bathrooms x2
+* Wiped mirrors 
+* I went to Kmart and bought a light vacuum before the shift
+* I then vacuumed the house 
+* Mopped throughout","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,07/11/2025,,90291,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,246358.0,200a7817-acec-4ade-8e39-312ee04272a5,2464415.0,79.37,216.0,137.83,helper_hours_weighted,True,ok,2895.0,275.71
+64300594,Nicole FRESSARD,NSW,11476575,Heather GREETHEAD,"
+
+  True
+
+",1.0,1.0,07/11/2025 10:00 am,07/11/2025 11:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2464279,,Personal Care,complete,,"Applied creams to Legs and heels
+Assisted with Leg brace on
+Walk around the village, Checked mailbox 
+Taken Rubbish out
+","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,07/11/2025,,84740,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,2464279.0,231.81,114.0,134.51,helper_hours_weighted,True,ok,4982.05,130.25
+62019185,Mariana CORDOVA CORONEL DE BANDA,NSW,11578061,Annette MILLER-STANFORD,"
+
+  True
+
+",1.0,1.0,07/11/2025 9:30 am,07/11/2025 10:30 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2464336,,Personal Care,complete,,"Today I helped her bathe, then I helped her dry her hair, get dressed, and apply a cream recommended by her doctor to specific areas on her legs and arms. The client is happy with my work.","NSW - Central Coast, State - NSW",True,True,,,07/11/2025,,85683,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,242403.0,1a03ab7f-0053-48aa-b830-80f3c9082974,2464336.0,123.22,114.0,92.94,helper_hours_weighted,True,ok,3223.25,130.23
+64952662,Enola LAPOD,NSW,10007941,Karen PORTER,"
+
+  True
+
+",3.0,3.0,07/11/2025 9:30 am,07/11/2025 12:30 pm,0.0,0.0,0.0,Accompanied activities - Standard 2+ Hours (inc transport),2461774,,Social Support (Accompanied activity),complete,,"DA completed, personal care. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,07/11/2025,,50968,342.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,187210.0,eb36b88e-3885-4dfb-942b-d94eb80d2e83,2461774.0,131.27,342.0,184.84,helper_hours_weighted,True,ok,6131.25,387.24
+62707354,Karen HAMMOND,NSW,10008510,Priscilla BOARDMAN,"
+
+  True
+
+",3.0,3.0,07/11/2025 9:00 am,07/11/2025 12:00 pm,0.0,0.0,0.0,Shopping - Standard 2+ Hours,2462998,,Domestic Assistance,complete,,.,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,07/11/2025,,51511,324.0,Services Australia,SERV-0003,NSW - Central Coast,hcp,,212864.0,07a0f05b-e82c-462f-966a-83a69fda7b17,2462998.0,375.56,324.0,376.27,helper_hours_weighted,True,ok,3902.25,360.21
+64502987,Carol-Lyn BROWN,NSW,10008436,Doreen HEGGIE,"
+
+  True
+
+",2.0,2.0,07/11/2025 8:40 am,07/11/2025 10:40 am,0.0,0.0,0.0,Accompanied activities - Standard 2+ Hours (inc transport),2462875,,Social Support (Accompanied activity),complete,,"Attended Doreen. Doreen was on the verandah when I arrived and appeared in good spirits. I made her coffee and porridge. I found last nights dinner untouched in the microwave. 
+With a fair amount of resistance, I helped her to shower and dress, ready to go out with her daughter. I also cleaned her nails.  Cleaned up in the bathroom, wiped over benches and other small tasks. Left Doreen sitting at the table in the kitchen. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,07/11/2025,,51402,228.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2462875.0,289.24,228.0,325.16,helper_hours_weighted,True,ok,5208.0,285.37
+62682693,Nicole FRESSARD,NSW,11476575,Dawn DETTMAR,"
+
+  True
+
+",2.0,2.0,06/11/2025 12:45 pm,06/11/2025 2:45 pm,8.0,9.0,,General - Standard 2+ Hours,2464278,,Domestic Assistance,complete,,"D/A 
+Cleaned bathroom, shower and toilet 
+Vacuumed and mopped all floors 
+","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,06/11/2025,,84740,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,203225.0,8c2267f5-8fc5-4b32-ad66-91a471f5f87b,2464278.0,224.95,216.0,269.03,helper_hours_weighted,True,ok,1361.0,272.2
+62750115,Kristyna FENCLOVA,NSW,11087784,Irene ARIDAH,"
+
+  True
+
+",2.0,2.0,06/11/2025 12:15 pm,06/11/2025 2:15 pm,0.0,0.0,,General - Standard 2+ Hours,2463456,,Domestic Assistance,complete,,Full DA done ,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,06/11/2025,,73102,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,255345.0,89974e9e-6c6c-41d0-8fca-90e789ac8c1f,2463456.0,83.71,216.0,101.08,helper_hours_weighted,True,ok,747.0,373.5
+62682734,Michelle SMITH,NSW,11779036,Patricia CLIMPSON,"
+
+  True
+
+",2.0,2.0,06/11/2025 11:00 am,06/11/2025 1:00 pm,13.0,0.0,,General - Standard 2+ Hours,2464412,,Domestic Assistance,complete,,"* Trish asked me to ask if she can stop PC as she feels she can do her own showers
+* Today I wiped kitchen 
+* Set up dish washer and turned on
+* Took out rubbish and recycling 4 x bottles of wine
+* Cleaned toilet
+* Cleaned bathroom 
+* Cleaned bathroom floor
+* Trish through up while I was there
+* Wanted to go to chemist and bank
+* Go me to drop her to Woy Woy to go to bank after one hour","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,06/11/2025,,90291,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,250486.0,5668326c-a811-498a-81bc-f579c55959ac,2464412.0,79.37,216.0,137.83,helper_hours_weighted,True,ok,1267.0,253.4
+65218743,Sylvia REZK,NSW,10008445,Frank BELL,"
+
+  True
+
+",2.0,2.0,06/11/2025 11:00 am,06/11/2025 1:00 pm,10.0,11.0,,General - Standard 2+ Hours,2462844,,Domestic Assistance,complete,,"Greet and introduced myself to Frank. Frank shows me around his place, showing crystal collections and other things. Cleaned bathroom. Vanity and mirror wiped down. Bath dusted. Toilet scrubbed. Vacuumed floor.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,06/11/2025,,51412,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,258386.0,b4c7ed66-8e27-4542-856d-5308925cc22e,2462844.0,198.56,216.0,444.31,helper_hours_weighted,True,ok,2084.0,320.62
+64919841,Carol-Lyn BROWN,NSW,10008436,Doreen HEGGIE,"
+
+  True
+
+",2.0,2.0,06/11/2025 10:15 am,06/11/2025 12:15 pm,9.0,13.0,,Assistance with self-care and activities of daily living - Standard,2462868,,Personal Care,complete,,"Attended Doreen. Doreen sittting in the kitchen when I arrived. I made her a new coffee and gave Doreen medication. I made Doreen porridge. I helped Doreen to shower and dress in fresh clothes. Doreen told me she was concerned about her legs as they are sore. 
+I did a load of laundry and hung it out. I cleaned different areas of the kitchen and tidied Doreen’s room. I left food on the table for lunch that Doreen said she would microwave when she was hungry. I also left new drinks and snacks. Doreen was going to bed to watch tv after I left. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,06/11/2025,,51402,228.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2462868.0,351.34,228.0,325.16,helper_hours_weighted,True,ok,5208.0,285.37
+65506365,Naomi TEXEIRA,NSW,11578062,Heather GREETHEAD,"
+
+  True
+
+",3.0,3.0,06/11/2025 10:15 am,06/11/2025 1:15 pm,0.0,0.0,10.0,Accompanied activities - Standard 2+ Hours (inc transport),2476208,,Social Support (Accompanied activity),complete,,"Greeted heather, went to woolies, had a coffee together, helped unpack groceries. Heather happy upon departure ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,woolworths ,06/11/2025,,86459,342.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,2476208.0,128.18,342.0,229.54,helper_hours_weighted,True,ok,4982.05,390.75
+65158449,Melanie BALKEN ,NSW,11778915,Christine TCACIUC,"
+
+  True
+
+",3.0,3.0,06/11/2025 10:00 am,06/11/2025 1:00 pm,0.0,0.0,0.0,Shopping - Standard 2+ Hours,2464419,,"Domestic Assistance, Personal Care",complete,,"Personal care for Christine, changed sheets, hung out washing , mopped, vacuumed, cleaned bathroom and took out rubbish. Had a chat with Christine and Nick. Finished early.","CC - CM - Caitlin Kirkpatrick, NSW - Central Coast",True,True,,,06/11/2025,,90407,324.0,Services Australia,SERV-0003,NSW - Central Coast,hcp,,249771.0,d036c153-9b45-4519-be30-9d9931c3fbfe,2464419.0,124.79,324.0,226.84,helper_hours_weighted,True,ok,1927.0,361.31
+62024250,Sri ASTUTIK ,NSW,11697863,Judith TURNER,"
+
+  True
+
+",1.0,1.0,05/11/2025 4:30 pm,05/11/2025 5:30 pm,20.0,28.0,,Assistance with self-care and activities of daily living - Standard,2513123,,Personal Care,complete,,"Assisted Judy with personal hygiene 
+Undress and dressed Judy
+Got the water ready
+Noticed the floor still slippery 
+Pad changed 
+Remained Judy to brush her hair and put her lipstick on
+Dried the floors 
+Hang the bathmat 
+Hang the towel ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,05/11/2025,,89888,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246358.0,200a7817-acec-4ade-8e39-312ee04272a5,2513123.0,258.1,114.0,314.21,helper_hours_weighted,True,ok,2895.0,137.86
+65344871,Sarah BURGIN,NSW,10008454, Henry FIFE,"
+
+  True
+
+",1.0,1.0,05/11/2025 2:05 pm,05/11/2025 3:05 pm,15.0,4.0,,Assistance with self-care and activities of daily living - Standard,2462876,,Personal Care,complete,,"greeted john, asked him if he had taken his meds for lunch, he hadn’t so he took them infront of me, asked him if he’s had anything to eat, he showed me he ate some oriental rice mix as he’s trying to keep to his low-sodium diet for the week. got him a glass of water as he didnt want me to make him anything to eat as he wasn’t hungry. watched tv and chatted for remainder of shift. asked again before departure if i could make him something to eat but he said he wasnt hungry, asked to do the washing up but he said he wants to do that himself. got him another glass of water on departure. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,05/11/2025,,51427,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,250654.0,af665d0c-b2c7-4779-9c47-7c46468374cc,2462876.0,258.73,114.0,302.66,helper_hours_weighted,True,ok,3359.0,152.68
+62328668,Sky FORTIER,NSW,11776512,Patricia CLIMPSON,"
+
+  True
+
+",1.0,1.0,05/11/2025 1:05 pm,05/11/2025 2:05 pm,2.0,3.0,,Assistance with self-care and activities of daily living - Standard,2464416,,Personal Care,complete,,"● Fold up sheets
+* PC was very upset that another person came today to help her. She is feeling overwhelmed that people keep coming. She also stated that ""she can wash her own self"" ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,05/11/2025,,90409,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,250486.0,5668326c-a811-498a-81bc-f579c55959ac,2464416.0,123.07,330.0,53.95,helper_hours_weighted,True,ok,1267.0,126.7
+62656522,Moamen MAROUF,NSW,10310314,Brian DEAMER,"
+
+  True
+
+",1.0,1.0,05/11/2025 11:45 am,05/11/2025 12:45 pm,2.0,4.0,,Physiotherapy - Direct,2462615,,Allied Health - Physiotherapy,complete,,Brain was seen today for physiotherapy service and did all exc program well with no issues.,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,05/11/2025,,51281,180.0,Services Australia,SERV-0034,NSW - Central Coast,hcp,,219845.0,29ce9545-f16d-45a2-95ba-f16e99c87991,2462615.0,182.41,180.0,181.8,helper_hours_weighted,True,ok,2048.0,128.0
+64020672,Sky FORTIER,NSW,11776512,Margaret MOLLOY,"
+
+  True
+
+",2.0,2.0,05/11/2025 11:00 am,05/11/2025 1:00 pm,0.0,0.0,0.0,Shopping - Standard 2+ Hours,2464416,,Domestic Assistance,complete,,"● Stript and made beds
+● Dusted
+● Wipped down kitchen
+● Clean bathrooms
+● Vaccumed
+● Mopped
+● Scrubbed kitchen cabinets ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,05/11/2025,,90409,216.0,Services Australia,SERV-0003,NSW - Central Coast,hcp,,255491.0,48812c65-1e97-441d-b8c7-6e3f149ae379,2464416.0,123.07,330.0,107.9,helper_hours_weighted,True,ok,677.0,338.5
+62485085,Anulal VARICKATHARAPPEL,NSW, 11396786,Karen PORTER,"
+
+  True
+
+",1.0,1.0,05/11/2025 10:15 am,05/11/2025 11:15 am,16.0,23.0,,Registered Nurse - Standard,2412535,,Registered Nurse,complete,,"Karan was attended this morning for a routine skin integrity and wellbeing check. She was alert, calm, and cooperative throughout the visit. Moisturiser was applied to both lower legs to maintain skin hydration. On assessment, the skin appeared intact with no signs of redness, oedema, or breakdown. No open wounds were present, and overall skin condition appeared healthy.
+
+Karan reported ongoing pain, which she identified as consistent with sciatic nerve discomfort. She mentioned that she is awaiting a GP appointment for further evaluation and management. 
+
+Vital signs were recorded as BP 143/82 mmHg, pulse 70 bpm, and SpO₂ 97%. She tolerated the visit well and expressed satisfaction with the care provided.","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,05/11/2025,,82357,160.0,Services Australia,SERV-0023,NSW - Central Coast,hcp,,187210.0,eb36b88e-3885-4dfb-942b-d94eb80d2e83,2412535.0,583.49,160.0,803.56,helper_hours_weighted,True,ok,6131.25,129.08
+63844399,Shannon SAMMONS,NSW,10988718,Doreen HEGGIE,"
+
+  True
+
+",1.0,1.0,05/11/2025 10:10 am,05/11/2025 11:10 am,8.0,10.0,,Assistance with self-care and activities of daily living - Standard,2463421,,Personal Care,complete,,"Declined shower, however got dressed and put a continence aid on. Kitchen cleaned, breakfast and coffee made. Pack of smokes and medication given. Went to shops for some more butter for her sandwich. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,05/11/2025,,72155,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2463421.0,101.85,114.0,170.84,helper_hours_weighted,True,ok,5208.0,142.68
+62458660,Sarah WADE,NSW,11781603,Rose BOTWOOD,"
+
+  True
+
+",1.0,1.0,05/11/2025 10:00 am,05/11/2025 11:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard - Cancellation <48 hours,2516792,,"Late Cancellation, Personal Care",complete,,,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,05/11/2025,,90294,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246241.0,3c923c3b-6961-4c24-ac75-3a1b1b1dcb05,2516792.0,77.78,114.0,69.53,helper_hours_weighted,True,ok,2246.0,132.12
+62682038,Michelle SMITH,NSW,11779036,Shirley MORRIS,"
+
+  True
+
+",2.0,2.0,05/11/2025 10:00 am,05/11/2025 12:00 pm,0.0,0.0,,General - Standard 2+ Hours,2464411,,Domestic Assistance,complete,,"* Shirley was feeling a bit off
+* Wiped kitchen table
+* Clean the toilet
+* Clean the bathroom and shower
+* Mop the floors
+* And vacuumed","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,05/11/2025,,90291,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,250925.0,522bcc07-71fb-4aec-b2d1-5777ad5e225e,2464411.0,79.37,216.0,137.83,helper_hours_weighted,True,ok,1144.0,286.0
+64080934,Karen HAMMOND,NSW,10008510,Priscilla BOARDMAN,"
+
+  True
+
+",4.0,4.0,05/11/2025 10:00 am,05/11/2025 2:00 pm,3.0,5.0,8.0,Accompanied activities - Standard 2+ Hours (inc transport),2462996,,Social Support (Accompanied activity),complete,,"Assisted Jane with showering and drying. Rubbed cream on her back. Cleaned bathroom and kitchen vacuumed and mopped floors. Took Jane shopping to pharmacy, Kmart and Woolworths, light lunch provided..","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,05/11/2025,,51511,456.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,212864.0,07a0f05b-e82c-462f-966a-83a69fda7b17,2462996.0,265.9,456.0,501.69,helper_hours_weighted,True,ok,3902.25,480.28
+57362911,Orina RYAN,NSW,11907698,Annette MILLER-STANFORD,"
+
+  True
+
+",3.0,3.0,05/11/2025 9:30 am,05/11/2025 12:30 pm,0.0,0.0,,Assistance with self-care and activities of daily living - Standard 2+ Hours,2464475,,Personal Care,complete,,"* Assisted with shower, dressing and applying cream.
+* Dusted lounge, bedrooms kitchen area.
+* Cleaned Bathrooms , Kitchen , bedrooms and living area.
+* Vaccumed Kitchen, lounge, living room bathroom and bedrooms.
+* Mopped Kitchen, bathrooms, hallways, livingroom and lounge room. 
+* Prepared  a sandwhich for lunch. 
+
+","NSW - Central Coast, State - NSW",True,True,,,05/11/2025,,91815,324.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,242403.0,1a03ab7f-0053-48aa-b830-80f3c9082974,2464475.0,240.4,324.0,314.52,helper_hours_weighted,True,ok,3223.25,390.7
+64300580,Nicole FRESSARD,NSW,11476575,Heather GREETHEAD,"
+
+  True
+
+",1.0,1.0,05/11/2025 9:00 am,05/11/2025 10:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2469360,,Personal Care,complete,,"Applied creams to legs and heels 
+Assisted with leg brace on 
+Helped Heather with a phone call 
+Heather and I went on a quick little walk around the village. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,05/11/2025,,84740,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,2469360.0,243.37,114.0,134.51,helper_hours_weighted,True,ok,4982.05,130.25
+62530542,Tracey MORGAN,NSW,10008244,Mavourneen ELVIN,"
+
+  True
+
+",2.0,2.0,04/11/2025 11:30 am,04/11/2025 1:30 pm,23.0,30.0,8.0,Accompanied activities - Standard 2+ Hours (inc transport),2462465,,Social Support (Accompanied activity),complete,,"She’s a lovely lady 
+We went to Erina to her appointment at food place 
+She bought some food 
+Then to have a coffee 
+She was happy ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,04/11/2025,,51226,228.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,256622.0,76e6644c-332f-45fe-8f36-34c17522f1f8,2462465.0,225.32,228.0,312.67,helper_hours_weighted,True,ok,1026.0,373.09
+62681824,Christie WHITEHEAD,NSW,10008371, Henry FIFE,"
+
+  True
+
+",2.0,2.0,04/11/2025 10:30 am,04/11/2025 12:30 pm,16.0,20.0,,General - Standard 2+ Hours,2462733,,Domestic Assistance,complete,,John did not want any DA done today as his housework was all up to date. We spoke about different jobs that I can leave for me to do on a Tuesday changing his sheets and any other jobs he has trouble with. John did mention he has been having some pain with his legs and will mention it to his doctor n Friday when he sees him. I seen that John’s Webster pack was up to date and offered to make his lunch but John was not hungry yet. I have noticed on previous visits that John gets frustrated with himself for forgetting names especially his family. I brought a notebook with me and we are going to slowly get together a family tree as he remembers names on our visits. Once we have that completed I told John we can make up a nice big one as a visual for him at home.,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,04/11/2025,,51333,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,250654.0,af665d0c-b2c7-4779-9c47-7c46468374cc,2462733.0,251.3,216.0,273.2,helper_hours_weighted,True,ok,3359.0,305.36
+64676040,Shannon SAMMONS,NSW,10988718,Christine TCACIUC,"
+
+  True
+
+",1.0,1.0,04/11/2025 10:15 am,04/11/2025 11:15 am,5.0,9.0,,Assistance with self-care and activities of daily living - Standard,2463420,,Personal Care,complete,,PC attended to,"CC - CM - Caitlin Kirkpatrick, NSW - Central Coast",True,True,,,04/11/2025,,72155,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,249771.0,d036c153-9b45-4519-be30-9d9931c3fbfe,2463420.0,193.87,114.0,170.84,helper_hours_weighted,True,ok,1927.0,120.44
+62668276,Sky FORTIER,NSW,11776512,Kay LEHMANN,"
+
+  True
+
+",1.5,1.5,04/11/2025 10:00 am,04/11/2025 11:30 am,0.0,0.0,,General - Standard,2464413,,Domestic Assistance,complete,,"● Make bed
+● Vaccumed whole house
+● Mopped whole house
+● Wipped down kitchen bench
+● Clean bathroom
+● Scrubbed bathroom floor","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,04/11/2025,,90409,171.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,229413.0,95683579-e015-4005-90f7-747a2aea60c8,2464413.0,77.49,171.0,80.92,helper_hours_weighted,True,ok,965.0,222.69
+64514505,Carol-Lyn BROWN,NSW,10008436,Doreen HEGGIE,"
+
+  True
+
+",2.0,2.0,04/11/2025 9:15 am,04/11/2025 11:15 am,9.0,12.0,21.0,Accompanied activities - Standard 2+ Hours (inc transport),2505185,,Social Support (Accompanied activity),complete,,"Attended Doreen. Arrived and got Doreen out of bed and washed and dressed. Gave medication. Drive to podiatrist appointment followed by bakery and grocery store. Drove to soldiers beach and sat in the car chatting and watching the ocean while Doreen ate. Returned home, left Doreen food and drinks as well as new cigarettes. Also put 2 new packets in locked box as requested by daughter. I also did some laundry. Doreen stated she wanted to go back to bed after I left so I set her up in her room. No issues","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,04/11/2025,,51402,228.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2505185.0,288.2,228.0,325.16,helper_hours_weighted,True,ok,5208.0,285.37
+61901494,Sarah WADE,NSW,11781603,Judith TURNER,"
+
+  True
+
+",1.0,1.0,03/11/2025 4:00 pm,03/11/2025 5:00 pm,8.0,12.0,,Assistance with self-care and activities of daily living - Standard,2464407,,Personal Care,complete,,,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,03/11/2025,,90294,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,246358.0,200a7817-acec-4ade-8e39-312ee04272a5,2464407.0,97.05,114.0,69.53,helper_hours_weighted,True,ok,2895.0,137.86
+63838640,Sarah BURGIN,NSW,10008454, Henry FIFE,"
+
+  True
+
+",1.0,1.0,03/11/2025 3:25 pm,03/11/2025 4:25 pm,16.0,4.0,,Assistance with self-care and activities of daily living - Standard,2462866,,Personal Care,complete,,"john’s partner was over, sat and chatted with john and kristine, he had a sandwich, water and a cup of tea, watched tv before departure ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,03/11/2025,,51427,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,250654.0,af665d0c-b2c7-4779-9c47-7c46468374cc,2462866.0,342.86,114.0,302.66,helper_hours_weighted,True,ok,3359.0,152.68
+60002064,Milika GREGSON,NSW,11191864,Brian DEAMER,"
+
+  True
+
+",2.0,2.0,03/11/2025 11:30 am,03/11/2025 1:30 pm,0.0,0.0,,General - Standard 2+ Hours,2463481,,Domestic Assistance,complete,,"Bathroom, 
+Kitchen wiped, 
+Sheets changed, 
+House dusted 
+Vacuum 
+Good chat with Brian","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,03/11/2025,,76742,216.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,219845.0,29ce9545-f16d-45a2-95ba-f16e99c87991,2463481.0,181.66,216.0,157.6,helper_hours_weighted,True,ok,2048.0,256.0
+64952690,Enola LAPOD,NSW,10007941,Karen PORTER,"
+
+  True
+
+",4.0,4.0,03/11/2025 11:15 am,03/11/2025 3:15 pm,0.0,0.0,,Assistance with self-care and activities of daily living - Standard 2+ Hours,2461771,,Personal Care,complete,,"Personal care, tidied the whole house, decluttered the spare room. Floors cleaned then mopped. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,03/11/2025,,50968,432.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,187210.0,eb36b88e-3885-4dfb-942b-d94eb80d2e83,2461771.0,174.51,432.0,246.45,helper_hours_weighted,True,ok,6131.25,516.32
+61902270,Dhanika MARKEY,NSW,11951514,Judith TURNER,"
+
+  True
+
+",2.0,2.0,03/11/2025 11:00 am,03/11/2025 1:00 pm,8.0,0.0,0.0,Accompanied activities - Standard 2+ Hours (inc transport),2464492,,"Social Support, Transport a Client",complete,,Nothing as they did not order the service and asked me to leave,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,03/11/2025,,92096,228.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,246358.0,200a7817-acec-4ade-8e39-312ee04272a5,2464492.0,83.71,228.0,101.08,helper_hours_weighted,True,ok,2895.0,275.71
+62015042,Carol-Lyn BROWN,NSW,10008436,Doreen HEGGIE,"
+
+  True
+
+",1.0,1.0,03/11/2025 10:15 am,03/11/2025 11:15 am,9.0,12.0,,Assistance with self-care and activities of daily living - Standard,2462856,,Personal Care,complete,,"Attended Doreen this morning. Doreen sitting at dining table on my arrival. Made Doreen porridge. Gave Doreen medication and a new packet of cigarettes as per daughter’s written instructions. 
+Showered Doreen and dressed in new pjs. Put a load of washing on, put mops in soaker as they were filthy. Cleaned toilet and wiped over bathroom with disinfectant, washed bathroom floor, emptied bins. I left Doreen a jam sandwich, jelly and sustagen out for lunch. Replaced 2 water bottles on table with fresh ones. 
+Doreen appeared settled on my leaving. No issues","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,03/11/2025,,51402,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2462856.0,361.22,114.0,162.58,helper_hours_weighted,True,ok,5208.0,142.68
+64914663,Sarah WADE,NSW,11781603,Rose BOTWOOD,"
+
+  True
+
+",3.0,3.0,03/11/2025 10:05 am,03/11/2025 1:05 pm,2.0,5.0,,General - Standard 2+ Hours,2464405,,"Domestic Assistance, Personal Care",complete,,"DA assistance, RB Had to leave early for a drs appointment ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,03/11/2025,,90294,324.0,Services Australia,SERV-0001,NSW - Central Coast,hcp,,246241.0,3c923c3b-6961-4c24-ac75-3a1b1b1dcb05,2464405.0,170.66,438.0,208.59,helper_hours_weighted,True,ok,2246.0,396.35
+62022691,Mariana CORDOVA CORONEL DE BANDA,NSW,11578061,Annette MILLER-STANFORD,"
+
+  True
+
+",1.0,1.0,03/11/2025 9:30 am,03/11/2025 10:30 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2464331,,Personal Care,complete,,"Yesterday, Monday, I helped her bathe, change, hang up her clothes, fold them and put them away. Then I took out the rubbish and put the bins outside. The client was calm and happy to see me.","NSW - Central Coast, State - NSW",True,True,,,03/11/2025,,85683,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,242403.0,1a03ab7f-0053-48aa-b830-80f3c9082974,2464331.0,127.02,114.0,92.94,helper_hours_weighted,True,ok,3223.25,130.23
+62018522,Karen HAMMOND,NSW,10008510,Priscilla BOARDMAN,"
+
+  True
+
+",1.0,1.0,03/11/2025 9:00 am,03/11/2025 10:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2462990,,Personal Care,complete,,Assist Jane with a shower cleaned bathroom and kitchen mopped  and make Jane some morning tea vacuumed floors dusted and polished furniture shook all the mats,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,03/11/2025,,51511,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,212864.0,07a0f05b-e82c-462f-966a-83a69fda7b17,2462990.0,182.78,114.0,125.42,helper_hours_weighted,True,ok,3902.25,120.07
+62023910,Sarah WADE,NSW,11781603,Patricia CLIMPSON,"
+
+  True
+
+",1.0,1.0,03/11/2025 9:00 am,03/11/2025 10:00 am,0.0,0.0,,Assistance with self-care and activities of daily living - Standard,2464405,,Personal Care,complete,,DA assistance ,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,03/11/2025,,90294,114.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,250486.0,5668326c-a811-498a-81bc-f579c55959ac,2464405.0,170.66,438.0,69.53,helper_hours_weighted,True,ok,1267.0,126.7
+64921555,Nicole FRESSARD,NSW,11476575,Heather GREETHEAD,"
+
+  True
+
+",3.0,3.0,03/11/2025 9:00 am,03/11/2025 12:00 pm,0.0,0.0,,Assistance with self-care and activities of daily living - Standard 2+ Hours,2464269,,Personal Care,complete,,"P/C 
+Applied creams to legs and Heels 
+Assisted with Leg brace 
+Heather and I went for a walk around the village and checked her mailbox 
+
+D/A  
+Cleaned bathroom, toilet & shower 
+Wiped over surfaces in kitchen & living room 
+Vacuumed and mopped 
+Hung clothes on the line
+","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW",True,True,,,03/11/2025,,84740,324.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,258354.0,0c7ecede-2a77-4d55-a4c4-e96de6a5346b,2464269.0,131.27,324.0,403.54,helper_hours_weighted,True,ok,4982.05,390.75
+61703936,Jazmin SEBO,NSW,11612124,Doreen HEGGIE,"
+
+  True
+
+",1.0,1.0,01/11/2025 10:15 am,01/11/2025 11:15 am,22.0,12.0,,Assistance with self-care and activities of daily living - Saturday,2428572,,Personal Care,complete,,"I visited Doreen, and we had a lovely chat. She was a bit reluctant to have a shower, but we talked about it and she ended up agreeing. I also made her a cup of coffee and drove to the bakery to buy a pie and cream roll according to her daughter’s instructions. The Webster back has not been replaced yet, but her daughter is aware that the Saturday dose is missing. ","NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,01/11/2025,,86460,145.0,Services Australia,SERV-0020,NSW - Central Coast,hcp,,183215.0,b93a0dd7-4470-47a0-b91a-6106a5bdfe5c,2428572.0,150.63,145.0,181.19,helper_hours_weighted,True,ok,5208.0,142.68
+63619333,Enola LAPOD,NSW,10007941,Karen PORTER,"
+
+  True
+
+",3.0,3.0,01/11/2025 9:30 am,01/11/2025 12:30 pm,0.0,0.0,,Accompanied activities - Saturday 2+ Hours,2456328,,"Social Support, Personal Care",complete,,,"NSW - Central Coast, NSW - CM - Jannayah Alderdice, State - NSW, Stream - NSW Aged Care",True,True,,,01/11/2025,,50968,417.0,Services Australia,SERV-0011,NSW - Central Coast,hcp,,187210.0,eb36b88e-3885-4dfb-942b-d94eb80d2e83,2456328.0,183.14,417.0,184.84,helper_hours_weighted,True,ok,6131.25,387.24

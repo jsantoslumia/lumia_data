@@ -1,0 +1,13 @@
+﻿visit_id,helper_name,helper_region,Employee ID,membership_name,attached_to_shift,projected_visit_hours,actual_visit_hours,visit_scheduled_start_time,visit_scheduled_end_time,provider_travel_distance_actual,provider_travel_time_actual_minutes,client_transport_actual,visit_rate,visit_shift_id,overnight_visit_rate,services,visit_status,cancellation_note,visit_tasks_note,membership_community_names,helper_enter_client_transport_at_checkout,helper_enter_client_transport_at_checkout (copy),cancellation_reason,client_transport_note,Date,Payrun,helper_id,visit_projected_price,membership_funder_full_name,visit_rate_external_id,membership_community_name,membership_funding_scheme,membership_custom_funding_scheme_name
+69994906,Thi Minh Phuong LUU,VIC,11566953,Christopher Boyer,"
+
+  True
+
+",8,8,31/12/2025 23:00,1/01/2026 7:00,0,0,,TAC (col) CW INACTIVE ND AT0025,2753225,,Overnight - Inactive - Support Worker,complete,,All tasks completed ,"Melbourne - North, State - VIC, Stream - Disability, VIC - CM - Jeterly Ann Goco",FALSE,FALSE,,,31/12/2025,,87854,"2380.8
+",TAC Care Online,,State - VIC,custom,Insurer
+69994858,Thi Minh Phuong LUU,VIC,11566953,Christopher Boyer,"
+
+  True
+
+",1,1,31/12/2025 22:00,31/12/2025 23:00,0,0,,TAC CW WD PM AT0020,2753225,,Attendant Care,complete,,All tasks completed ,"Melbourne - North, State - VIC, Stream - Disability, VIC - CM - Jeterly Ann Goco",FALSE,FALSE,,,31/12/2025,,87854,"77.38
+",TAC Care Online,,State - VIC,custom,Insurer
