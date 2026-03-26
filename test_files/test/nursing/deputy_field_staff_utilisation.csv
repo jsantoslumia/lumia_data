@@ -1,0 +1,4 @@
+period_start,period_end,company_id,company_name,active_workers,workers_worked,utilisation_pct,row_type
+2026-02-01,2026-02-28,,All locations,231,171,74.03,total
+2026-02-01,2026-02-28,2,Healthcare HQ Pty Ltd,130,86,66.15,by_location
+2026-02-01,2026-02-28,20,Meditech Staffing x Lumia Care,101,86,85.15,by_location

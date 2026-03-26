@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Build separate outputs:
-- shift_costs_allocation.xlsx (from new_model allocation pipeline)
+- shift_costs_allocation.csv (from new_model allocation pipeline)
 - visit_revenue.csv (visit-level revenue with DVA/VHC/CHSP claim logic)
 - memberships_sah_purchases.csv (optional SAH purchases)
 
@@ -10,7 +10,7 @@ py -m new_model_revenue \
   --costs ./input_files/shift_costs_feb.csv \
   --mapping ./wages_allocation_mapping.xlsx \
   --out-dir ./test_files/test \
-  --out-allocation shift_costs_allocation.xlsx \
+  --out-allocation shift_costs_allocation.csv \
   --out-visit-revenue visit_revenue.csv \
   --sah-transactions ./input_files/sah_transactions_feb.csv \
   --out-sah-purchases memberships_sah_purchases.csv \
@@ -401,8 +401,8 @@ def main() -> int:
     parser.add_argument("--out-dir", default=".", help="Output directory.")
     parser.add_argument(
         "--out-allocation",
-        default="shift_costs_allocation.xlsx",
-        help="Allocation output Excel filename.",
+        default="shift_costs_allocation.csv",
+        help="Allocation output CSV filename.",
     )
     parser.add_argument(
         "--out-visit-revenue",
@@ -443,7 +443,11 @@ def main() -> int:
     )
 
     allocation_path = out_dir / args.out_allocation
-    allocation_outputs["Final_All"].to_excel(allocation_path, index=False)
+    _write_csv(
+        allocation_outputs["Final_All"],
+        allocation_path,
+        utf8_bom=args.utf8_bom,
+    )
     print(
         f"Wrote: {allocation_path.resolve()}  (rows={len(allocation_outputs['Final_All']):,})"
     )

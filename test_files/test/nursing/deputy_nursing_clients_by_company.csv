@@ -1,0 +1,4 @@
+period_start,period_end,company_id,company_name,unique_nursing_clients,row_type
+2026-02-01,2026-02-28,,All locations,119,total
+2026-02-01,2026-02-28,2,Healthcare HQ Pty Ltd,30,by_company
+2026-02-01,2026-02-28,20,Meditech Staffing x Lumia Care,89,by_company
